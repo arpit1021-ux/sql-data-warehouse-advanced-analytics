@@ -45,7 +45,7 @@ BEGIN
 	RAISE NOTICE '>> Inserting Data Into: bronze.crm_cust_info';
 	COPY bronze.crm_cust_info (cst_id,cst_key,cst_firstname,cst_lastname,
 								cst_marital_status,cst_gndr,cst_create_date)
-	FROM 'D:\cust_info.csv'
+	FROM 'C:\Users\rais4\Downloads\Advance-SQL-Project-Data-Warehousing-EDA-Advanced-Data-Analytics-main\Data Warehouse\row_dataset\source_crm\cust_info.csv'
 	DELIMITER ','
 	CSV
 	HEADER;
@@ -59,7 +59,7 @@ BEGIN
 	TRUNCATE TABLE bronze.crm_prd_info;
 	RAISE NOTICE '>> Inserting Data Into: bronze.crm_prd_info';
 	COPY bronze.crm_prd_info (prd_id,prd_key,prd_nm,prd_cost,prd_line,prd_start_dt,prd_end_dt)
-	FROM 'D:\prd_info.csv'
+	FROM 'C:\Users\rais4\Downloads\Advance-SQL-Project-Data-Warehousing-EDA-Advanced-Data-Analytics-main\Data Warehouse\row_dataset\source_crm\prd_info.csv'
 	DELIMITER ','
 	CSV
 	HEADER;
@@ -74,7 +74,7 @@ BEGIN
 	RAISE NOTICE '>> Inserting Data Into: bronze.crm_sales_details';
 	COPY bronze.crm_sales_details (sls_ord_num,sls_prd_key,sls_cust_id,sls_order_dt,sls_ship_dt,
 								   sls_due_dt,sls_sales,sls_quantity,sls_price)
-	FROM 'D:\sales_details.csv'
+	FROM 'C:\Users\rais4\Downloads\Advance-SQL-Project-Data-Warehousing-EDA-Advanced-Data-Analytics-main\Data Warehouse\row_dataset\source_crm\sales_details.csv'
 	DELIMITER ','
 	CSV
 	HEADER;
@@ -94,7 +94,7 @@ BEGIN
 	TRUNCATE TABLE bronze.erp_loc_a101;
 	RAISE NOTICE '>> Inserting Data Into: bronze.erp_loc_a101';
 	COPY bronze.erp_loc_a101 (cid,cntry)
-	FROM 'D:\LOC_A101.csv'
+	FROM 'C:\Users\rais4\Downloads\Advance-SQL-Project-Data-Warehousing-EDA-Advanced-Data-Analytics-main\Data Warehouse\row_dataset\source_erp\LOC_A101.csv'
 	DELIMITER ','
 	CSV
 	HEADER;
@@ -108,7 +108,7 @@ BEGIN
 	TRUNCATE TABLE bronze.erp_cust_az12;
 	RAISE NOTICE '>> Inserting Data Into: bronze.erp_cust_az12';
 	COPY bronze.erp_cust_az12 (cid,bdate,gen)
-	FROM 'D:\CUST_AZ12.csv'
+	FROM 'C:\Users\rais4\Downloads\Advance-SQL-Project-Data-Warehousing-EDA-Advanced-Data-Analytics-main\Data Warehouse\row_dataset\source_erp\CUST_AZ12.csv'
 	DELIMITER ','
 	CSV
 	HEADER;
@@ -122,7 +122,7 @@ BEGIN
 	TRUNCATE TABLE bronze.erp_px_cat_g1v2;
 	RAISE NOTICE '>> Inserting Data Into: bronze.erp_px_cat_g1v2';
 	COPY bronze.erp_px_cat_g1v2 (id,cat,subcat,maintenance)
-	FROM 'D:\PX_CAT_G1V2.csv'
+	FROM 'C:\Users\rais4\Downloads\Advance-SQL-Project-Data-Warehousing-EDA-Advanced-Data-Analytics-main\Data Warehouse\row_dataset\source_erp\PX_CAT_G1V2.csv'
 	DELIMITER ','
 	CSV
 	HEADER;
