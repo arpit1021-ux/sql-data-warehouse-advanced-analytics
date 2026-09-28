@@ -1,0 +1,9 @@
+# Normalise line endings in the repository (Windows tools write CRLF)
+* text=auto
+
+# Binary artefacts
+*.png  binary
+*.jpg  binary
+*.pdf  binary
+*.pbix binary
+*.abf  binary

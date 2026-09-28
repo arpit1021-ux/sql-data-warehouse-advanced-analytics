@@ -1,6 +1,6 @@
 # 🚀 SQL Data Warehouse, Python Analytics & Power BI Dashboard
 
-![Project Banner](banner.png)
+![Project Banner](docs/images/banner.png)
 
 A complete, end-to-end **SQL-driven Data Warehouse & Analytics Project**, covering:
 
@@ -33,7 +33,7 @@ and delivers a 4-page **Power BI dashboard** and a **business insights report** 
 | 🌎 | US revenue per customer is **half of Australia's** ($1,225 vs $2,523) | US pricing/assortment review (≈ $0.9M at +10%) |
 | 🔁 | **63%** of customers bought only once | Second-purchase journey after the first order |
 
-![Executive Overview](Power%20BI%20Dashboard/screenshots/01_overview.png)
+![Executive Overview](powerbi/screenshots/01_overview.png)
 
 ---
 
@@ -110,7 +110,7 @@ SQL-based dashboards & reports:
 - **Product Performance Report**
 
 ### ✅ 4. Python Analysis
-Statistical and customer analytics the SQL layer can't easily do ([notebook](Python%20Analysis/retail_sales_analysis.ipynb)):
+Statistical and customer analytics the SQL layer can't easily do ([notebook](analysis/retail_sales_analysis.ipynb)):
 - Data-quality audit of the Gold layer (integrity, uniqueness, business rules)
 - Pareto concentration, category margins, cross-sell / attach rate, market performance
 - **RFM segmentation** (7 segments, exported to Power BI) and **quarterly cohort retention**
@@ -132,7 +132,7 @@ A consulting-style [report](INSIGHTS.md): executive summary, findings, sized rec
 
 # 📊 Power BI Dashboard
 
-Open [`Power BI Dashboard/Sales_Performance.pbix`](Power%20BI%20Dashboard/Sales_Performance.pbix) · [PDF export](Power%20BI%20Dashboard/Sales_Performance.pdf) · [model, DAX & validation details](Power%20BI%20Dashboard/README.md)
+Open [`Power BI Dashboard/Sales_Performance.pbix`](powerbi/Sales_Performance.pbix) · [PDF export](powerbi/Sales_Performance.pdf) · [model, DAX & validation details](powerbi/README.md)
 
 | Page | What it answers |
 |---|---|
@@ -143,37 +143,37 @@ Open [`Power BI Dashboard/Sales_Performance.pbix`](Power%20BI%20Dashboard/Sales_
 
 | | |
 |---|---|
-| ![Overview](Power%20BI%20Dashboard/screenshots/01_overview.png) | ![Trends](Power%20BI%20Dashboard/screenshots/02_trends.png) |
-| ![Products](Power%20BI%20Dashboard/screenshots/03_products.png) | ![Customers](Power%20BI%20Dashboard/screenshots/04_customers.png) |
+| ![Overview](powerbi/screenshots/01_overview.png) | ![Trends](powerbi/screenshots/02_trends.png) |
+| ![Products](powerbi/screenshots/03_products.png) | ![Customers](powerbi/screenshots/04_customers.png) |
 
 ---
 
 # 🐍 Python Analysis
 
-[`Python Analysis/retail_sales_analysis.ipynb`](Python%20Analysis/retail_sales_analysis.ipynb): pandas, NumPy, SciPy, Matplotlib.
+[`Python Analysis/retail_sales_analysis.ipynb`](analysis/retail_sales_analysis.ipynb): pandas, NumPy, SciPy, Matplotlib.
 
 | | |
 |---|---|
-| ![RFM](Python%20Analysis/charts/05_rfm_segments.png) | ![Cohorts](Python%20Analysis/charts/06_cohort_retention.png) |
+| ![RFM](analysis/charts/05_rfm_segments.png) | ![Cohorts](analysis/charts/06_cohort_retention.png) |
 
 ---
 
 # 🏗️ Project Architecture & Diagrams
 
 ### 📌 Overall Architecture  
-![Architecture](Data%20Warehouse/docs/data_architecture.png)
+![Architecture](docs/images/data_architecture.png)
 
 ### 🕸 Mesh Architecture Layers  
-![Mesh Architecture](Data%20Warehouse/docs/Mesh_Architecture_Layers.png)
+![Mesh Architecture](docs/images/mesh_architecture_layers.png)
 
 ### 🔗 Data Integration Workflow  
-![Data Integration](Data%20Warehouse/docs/data_integration.png)
+![Data Integration](docs/images/data_integration.png)
 
 ### 🔄 Data Flow Diagram  
-![Data Flow](Data%20Warehouse/docs/data_flow.png)
+![Data Flow](docs/images/data_flow.png)
 
 ### 🧩 Star Schema Data Model  
-![Data Model](Data%20Warehouse/docs/data_model.png)
+![Data Model](docs/images/data_model.png)
 
 ---
 
@@ -452,7 +452,7 @@ EDA + Advanced Data Analysis/scripts/
 
 ### 6. Run the Python analysis
 ```
-cd "Python Analysis"
+cd analysis
 pip install -r requirements.txt
 jupyter notebook retail_sales_analysis.ipynb
 ```

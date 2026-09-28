@@ -175,11 +175,11 @@ table dim_customers
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents(RepoFolder & "EDA + Advanced Data Analysis\dataset\gold.dim_customers.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Source = Csv.Document(File.Contents(RepoFolder & "data\gold\dim_customers.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
 				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    Typed = Table.TransformColumnTypes(Promoted, {{"customer_key", Int64.Type}, {"customer_id", Int64.Type}, {"customer_number", type text}, {"first_name", type text}, {"last_name", type text}, {"country", type text}, {"marital_status", type text}, {"gender", type text}, {"birthdate", type date}, {"create_date", type date}}, "en-US"),
 				    Unknown = Table.ReplaceValue(Typed, "n/a", "Unknown", Replacer.ReplaceValue, {"country", "gender", "marital_status"}),
-				    RfmSource = Csv.Document(File.Contents(RepoFolder & "Python Analysis\output\rfm_segments.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    RfmSource = Csv.Document(File.Contents(RepoFolder & "analysis\output\rfm_segments.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
 				    RfmPromoted = Table.PromoteHeaders(RfmSource, [PromoteAllScalars=true]),
 				    Rfm = Table.TransformColumnTypes(Table.SelectColumns(RfmPromoted, {"customer_key", "rfm_segment", "rfm_score", "recency_days"}), {{"customer_key", Int64.Type}, {"rfm_segment", type text}, {"rfm_score", type text}, {"recency_days", Int64.Type}}),
 				    Joined = Table.NestedJoin(Unknown, {"customer_key"}, Rfm, {"customer_key"}, "rfm", JoinKind.LeftOuter),

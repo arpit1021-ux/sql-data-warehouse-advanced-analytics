@@ -1,6 +1,6 @@
 # 📊 Power BI Dashboard: Sales Performance on the Gold Layer
 
-A 4-page interactive Power BI report built on the warehouse's Gold star schema, plus the RFM segments from the [Python analysis](../Python%20Analysis/).
+A 4-page interactive Power BI report built on the warehouse's Gold star schema, plus the RFM segments from the [Python analysis](../analysis/).
 
 **Open it:** [`Sales_Performance.pbix`](Sales_Performance.pbix) in Power BI Desktop, or skim the [PDF export](Sales_Performance.pdf).
 

@@ -96,7 +96,7 @@ table fact_sales
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents(RepoFolder & "EDA + Advanced Data Analysis\dataset\gold.fact_sales.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Source = Csv.Document(File.Contents(RepoFolder & "data\gold\fact_sales.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
 				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    Typed = Table.TransformColumnTypes(Promoted, {{"order_number", type text}, {"product_key", Int64.Type}, {"customer_key", Int64.Type}, {"order_date", type date}, {"shipping_date", type date}, {"due_date", type date}, {"sales_amount", Currency.Type}, {"quantity", Int64.Type}, {"price", Currency.Type}}, "en-US")
 				in

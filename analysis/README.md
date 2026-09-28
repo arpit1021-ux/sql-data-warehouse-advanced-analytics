@@ -21,7 +21,7 @@ Open **[`retail_sales_analysis.ipynb`](retail_sales_analysis.ipynb)** (GitHub re
 
 **Run it**
 ```bash
-cd "Python Analysis"
+cd analysis
 pip install -r requirements.txt
 jupyter notebook retail_sales_analysis.ipynb
 ```

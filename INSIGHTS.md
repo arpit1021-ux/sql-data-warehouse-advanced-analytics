@@ -3,7 +3,7 @@
 **Client context (simulated):** a multi-country bicycle retailer whose CRM and ERP data was consolidated into the SQL warehouse in this repo.
 **Question from leadership:** *"Revenue nearly tripled in 2013. What drove it, is it sustainable, and where should we focus next?"*
 **Data:** Gold layer, 60,398 order lines · 27,659 orders · 18,484 customers · Dec 2010 – Jan 2014 · $29.36M revenue.
-**Method:** SQL (warehouse + EDA), Python (statistics, RFM, cohorts: [`Python Analysis/`](Python%20Analysis/)), Power BI (dashboard: [`Power BI Dashboard/`](Power%20BI%20Dashboard/)).
+**Method:** SQL (warehouse + EDA), Python (statistics, RFM, cohorts: [`analysis/`](analysis/)), Power BI (dashboard: [`powerbi/`](powerbi/)).
 
 ---
 
@@ -30,19 +30,19 @@
 | 2012 | $5.84M | −17% | 3,269 | 3,225 | $1,787 |
 | 2013 | $16.34M | **+180%** | 21,287 | 12,521 | $768 |
 
-![Monthly revenue](Python%20Analysis/charts/01_monthly_revenue.png)
+![Monthly revenue](analysis/charts/01_monthly_revenue.png)
 
 Bike revenue alone grew from $5.84M to $15.35M in 2013, so the core business did grow. At the same time, 17,375 accessory and 7,124 clothing orders were added, which pulled the blended AOV down.
 **So what:** any KPI deck that shows AOV falling 57% without splitting by category will send leadership after the wrong problem.
 
 ### 2. Revenue concentration
-![Pareto](Python%20Analysis/charts/02_pareto_customers.png)
+![Pareto](analysis/charts/02_pareto_customers.png)
 
 * Top 20% of customers → 66% of revenue; 28% of customers → 80% of revenue.
 * 35 of the 130 products that sold → 80% of revenue (Road Bikes $14.5M, Mountain Bikes $10.0M, Touring Bikes $3.8M).
 
 ### 3. Category economics
-![Margin](Python%20Analysis/charts/03_margin_by_category.png)
+![Margin](analysis/charts/03_margin_by_category.png)
 
 | Category | Revenue share | Profit share | Gross margin |
 |---|---|---|---|
@@ -53,7 +53,7 @@ Bike revenue alone grew from $5.84M to $15.35M in 2013, so the core business did
 71.5% of bike buyers already buy accessories. But **9,352 customers (half the base) have never bought a bike**: they entered through accessories/clothing in 2013.
 
 ### 4. Markets
-![Countries](Python%20Analysis/charts/04_revenue_per_customer_country.png)
+![Countries](analysis/charts/04_revenue_per_customer_country.png)
 
 | Country | Customers | Revenue/customer | Orders/customer | AOV |
 |---|---|---|---|---|
@@ -67,7 +67,7 @@ Bike revenue alone grew from $5.84M to $15.35M in 2013, so the core business did
 The US has the lowest repeat rate *and* below-average order value. Canada buys often but small, like an accessories market.
 
 ### 5. Customer health (RFM + cohorts)
-![RFM](Python%20Analysis/charts/05_rfm_segments.png)
+![RFM](analysis/charts/05_rfm_segments.png)
 
 | Segment | Customers | % revenue | What it means |
 |---|---|---|---|
@@ -78,7 +78,7 @@ The US has the lowest repeat rate *and* below-average order value. Canada buys o
 | New Customers | 4,148 (22%) | 8% | One recent, small order. Drive a 2nd purchase |
 | Needs Attention / Hibernating | 6,491 (35%) | 5% | Low value, low priority |
 
-![Cohorts](Python%20Analysis/charts/06_cohort_retention.png)
+![Cohorts](analysis/charts/06_cohort_retention.png)
 
 2011–2012 bike buyers didn't return for 4–6 quarters, then re-activated at 25–45% once accessories launched in 2013. 2013 cohorts return at only ~8–11% in the following quarter.
 **So what:** customers come back when there is something new and relevant to buy. Retention is a merchandising problem as much as a marketing one.
@@ -110,4 +110,4 @@ Impact figures are **illustrative sizing** from the historical data, meant to ra
 * Jan 2014 contains only 4 weeks of data and Dec 2010 only 3 days; both are excluded from trend charts.
 * 19 sales have an invalid order date (nulled in the Silver layer), and 337 customers have no country. They're shown as "Unknown", never dropped.
 * **Age:** the SQL customer report computes age from today's date, which puts every customer in "40+". Age at purchase actually starts at 25 (median 42). The Power BI model uses age at first order instead.
-* **Customer lifespan** is defined differently in PostgreSQL (`AGE()`, complete months) and in Power BI/SQL Server (`DATEDIFF`, month boundaries), which shifts VIP counts by ~2%. See [`Power BI Dashboard/validation/expected_kpis.md`](Power%20BI%20Dashboard/validation/expected_kpis.md).
+* **Customer lifespan** is defined differently in PostgreSQL (`AGE()`, complete months) and in Power BI/SQL Server (`DATEDIFF`, month boundaries), which shifts VIP counts by ~2%. See [`Power BI Dashboard/validation/expected_kpis.md`](powerbi/validation/expected_kpis.md).

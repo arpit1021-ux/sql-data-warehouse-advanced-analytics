@@ -113,7 +113,7 @@ table dim_products
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents(RepoFolder & "EDA + Advanced Data Analysis\dataset\gold.dim_products.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Source = Csv.Document(File.Contents(RepoFolder & "data\gold\dim_products.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
 				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    Typed = Table.TransformColumnTypes(Promoted, {{"product_key", Int64.Type}, {"product_id", Int64.Type}, {"product_number", type text}, {"product_name", type text}, {"category_id", type text}, {"category", type text}, {"subcategory", type text}, {"maintenance", type text}, {"cost", Currency.Type}, {"product_line", type text}, {"start_date", type date}}, "en-US"),
 				    Blanks = Table.ReplaceValue(Typed, "", "Unknown", Replacer.ReplaceValue, {"category", "subcategory", "maintenance"}),

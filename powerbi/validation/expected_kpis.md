@@ -1,6 +1,6 @@
 # Expected KPI values
 
-Computed directly from the Gold layer exports in `EDA + Advanced Data Analysis/dataset/`.
+Computed directly from the Gold layer exports in `data/gold/`.
 After building the report, every value below must match your Power BI visuals (with no slicers applied).
 Re-run `reconcile_kpis.sql` against PostgreSQL to confirm the warehouse gives the same numbers.
 
