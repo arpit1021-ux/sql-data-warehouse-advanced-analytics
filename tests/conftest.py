@@ -1,7 +1,8 @@
 """Build the warehouse once per test session in a dedicated database.
 
-Uses $TEST_DATABASE_URL (a server where the test role may CREATE DATABASE and
-read data/raw) or, by default, the embedded PostgreSQL used by the pipeline.
+Uses $TEST_DATABASE_URL, else $DATABASE_URL (a server where the role may CREATE DATABASE
+and read the raw files), else the embedded PostgreSQL used by the pipeline. The raw-data
+folder as seen by that server comes from $TEST_SOURCE_DIR / $WAREHOUSE_SOURCE_DIR.
 """
 
 from __future__ import annotations
@@ -20,7 +21,9 @@ TEST_DATABASE = "dwh_test"
 
 @pytest.fixture(scope="session")
 def database_url() -> str:
-    admin_url = os.environ.get("TEST_DATABASE_URL") or start_embedded_server()
+    admin_url = (
+        os.environ.get("TEST_DATABASE_URL") or os.environ.get("DATABASE_URL") or start_embedded_server()
+    )
     with psycopg.connect(admin_url, autocommit=True) as conn:
         conn.execute(f'DROP DATABASE IF EXISTS "{TEST_DATABASE}" WITH (FORCE)')
         conn.execute(f'CREATE DATABASE "{TEST_DATABASE}"')
@@ -31,7 +34,11 @@ def database_url() -> str:
 
 @pytest.fixture(scope="session")
 def source_dir() -> str:
-    return os.environ.get("TEST_SOURCE_DIR", str(config.RAW_DATA_DIR))
+    return (
+        os.environ.get("TEST_SOURCE_DIR")
+        or os.environ.get("WAREHOUSE_SOURCE_DIR")
+        or str(config.RAW_DATA_DIR)
+    )
 
 
 @pytest.fixture(scope="session")

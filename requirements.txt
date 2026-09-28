@@ -1,6 +1,8 @@
 # Pipeline
 psycopg[binary]>=3.1
-pgserver>=0.1.4          # embedded PostgreSQL 16 for zero-setup runs and tests
+# Embedded PostgreSQL 16 for zero-setup runs and tests. pgserver publishes wheels for
+# Python 3.9-3.12 only; on newer Python use Docker or your own server (see README).
+pgserver>=0.1.4; python_version < "3.13"
 
 # Analysis notebook
 pandas>=2.0

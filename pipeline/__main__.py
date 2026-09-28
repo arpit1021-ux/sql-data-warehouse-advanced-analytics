@@ -12,12 +12,13 @@ from __future__ import annotations
 
 import argparse
 import logging
+import os
 import sys
 
 import psycopg
 
 from . import config, steps
-from .database import connect, resolve_database_url
+from .database import EmbeddedServerUnavailable, connect, resolve_database_url
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -30,9 +31,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--source-dir",
-        default=str(config.RAW_DATA_DIR),
-        help="data/raw folder as seen by the database server (default: %(default)s); "
-        "use /data/raw with the docker-compose database",
+        default=os.environ.get("WAREHOUSE_SOURCE_DIR", str(config.RAW_DATA_DIR)),
+        help="data/raw folder as seen by the database server (default: $WAREHOUSE_SOURCE_DIR, "
+        "else %(default)s); use /data/raw with the docker-compose database",
     )
     parser.add_argument("--no-export", action="store_true", help="skip writing data/gold/*.csv after `run`")
     parser.add_argument("-v", "--verbose", action="store_true", help="show SQL files and server notices")
@@ -49,7 +50,11 @@ def main(argv: list[str] | None = None) -> int:
     for noisy in ("psycopg", "pgserver"):
         logging.getLogger(noisy).setLevel(logging.WARNING)
 
-    url = resolve_database_url(args.database_url)
+    try:
+        url = resolve_database_url(args.database_url)
+    except EmbeddedServerUnavailable as exc:
+        logging.error("%s", exc)
+        return 1
     try:
         with connect(url) as conn:
             if args.command == "run":

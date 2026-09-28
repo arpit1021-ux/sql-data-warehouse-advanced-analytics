@@ -82,7 +82,7 @@ flowchart LR
 
 ## Quick start
 
-Requires Python 3.10+. No database installation needed: the pipeline starts an embedded PostgreSQL 16 automatically.
+**Option A: zero setup (Python 3.10–3.12).** The pipeline starts an embedded PostgreSQL 16 automatically.
 
 ```bash
 git clone https://github.com/arpit1021-ux/sql-data-warehouse-advanced-analytics.git
@@ -93,18 +93,22 @@ python -m pipeline run      # build bronze → silver → gold, run quality gate
 pytest                      # 67 tests against a fresh build
 ```
 
-<details>
-<summary>Use your own PostgreSQL server (or Docker) instead</summary>
+**Option B: Docker (any Python 3.10+).** Use this on Python 3.13+, where the embedded server isn't available.
 
-```bash
-docker compose up -d        # PostgreSQL 16 with data/raw mounted at /data/raw
-python -m pipeline run \
-    --database-url postgresql://postgres:postgres@localhost:5432/DataWarehouse \
-    --source-dir /data/raw
+```powershell
+docker compose up -d                      # PostgreSQL 16 with data/raw mounted at /data/raw
+pip install -r requirements.txt
+
+# PowerShell (bash: export DATABASE_URL=... WAREHOUSE_SOURCE_DIR=/data/raw)
+$env:DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/DataWarehouse"
+$env:WAREHOUSE_SOURCE_DIR = "/data/raw"
+
+python -m pipeline run
+pytest
 ```
-`--source-dir` is the `data/raw` folder **as the database server sees it**, because `COPY` reads files server-side.
-The same flags work for any server; `DATABASE_URL` can replace `--database-url`.
-</details>
+`WAREHOUSE_SOURCE_DIR` is the `data/raw` folder **as the database server sees it**, because `COPY` reads files
+server-side. The same two variables point the pipeline and tests at any PostgreSQL 16 server
+(`--database-url` / `--source-dir` work too).
 
 Sample run:
 ```

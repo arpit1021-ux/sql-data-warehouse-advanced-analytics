@@ -17,10 +17,22 @@ from .config import DEFAULT_DATABASE, EMBEDDED_PGDATA_DIR
 log = logging.getLogger(__name__)
 
 
+class EmbeddedServerUnavailable(RuntimeError):
+    """Raised when no database URL is configured and pgserver is not installed."""
+
+
 def start_embedded_server() -> str:
     """Start (or reuse) a local PostgreSQL 16 instance and return its admin connection URI."""
     warnings.filterwarnings("ignore", module="platformdirs")
-    import pgserver  # imported lazily: only needed for embedded mode
+    try:
+        import pgserver  # imported lazily: only needed for embedded mode
+    except ImportError as exc:
+        raise EmbeddedServerUnavailable(
+            "No database configured and the embedded server (pgserver) is not installed. "
+            "pgserver supports Python 3.9-3.12; either use one of those versions, or start the "
+            "Docker database (docker compose up -d) and set DATABASE_URL and WAREHOUSE_SOURCE_DIR "
+            "- see the README quick start."
+        ) from exc
 
     EMBEDDED_PGDATA_DIR.mkdir(parents=True, exist_ok=True)
     server = pgserver.get_server(EMBEDDED_PGDATA_DIR, cleanup_mode=None)
