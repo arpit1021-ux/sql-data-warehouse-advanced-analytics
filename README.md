@@ -96,7 +96,7 @@ pytest                      # 67 tests against a fresh build
 **Option B: Docker (any Python 3.10+).** Use this on Python 3.13+, where the embedded server isn't available.
 
 ```powershell
-docker compose up -d                      # PostgreSQL 16 on port 5433, data/raw mounted at /data/raw
+docker compose up -d --wait               # PostgreSQL 16 on port 5433; --wait returns once it accepts connections
 pip install -r requirements.txt
 
 # PowerShell (bash: export DATABASE_URL=... WAREHOUSE_SOURCE_DIR=/data/raw)

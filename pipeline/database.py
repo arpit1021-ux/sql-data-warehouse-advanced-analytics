@@ -44,7 +44,7 @@ def open_connection(database_url: str) -> psycopg.Connection:
         raise DatabaseUnavailable(
             f"Cannot connect to PostgreSQL at {where} ({first_line}). "
             "Check that the server is running (for Docker: start Docker Desktop, then "
-            "`docker compose up -d`) and that DATABASE_URL has the right port and password."
+            "`docker compose up -d --wait`) and that DATABASE_URL has the right port and password."
         ) from exc
 
 

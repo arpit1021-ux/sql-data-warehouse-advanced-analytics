@@ -1,7 +1,7 @@
 # PostgreSQL 16 for the warehouse. The raw CSVs are mounted read-only at /data/raw
 # so the server-side COPY in bronze.load_bronze() can read them.
 #
-#   docker compose up -d
+#   docker compose up -d --wait        # returns once the healthcheck passes
 #   python -m pipeline run \
 #       --database-url postgresql://postgres:postgres@localhost:5433/DataWarehouse \
 #       --source-dir /data/raw
@@ -20,7 +20,9 @@ services:
       - ./data/raw:/data/raw:ro
       - warehouse-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d DataWarehouse"]
+      # TCP check: the image's first-start init server listens on a socket only,
+      # so this passes only once the real server accepts network connections.
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U postgres -d DataWarehouse"]
       interval: 5s
       timeout: 5s
       retries: 10
