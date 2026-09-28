@@ -113,7 +113,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales by age group (age at first order)'"
+                  "Value": "'Sales by age group (age at the last order date)'"
                 }
               }
             }

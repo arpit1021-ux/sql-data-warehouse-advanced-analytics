@@ -123,53 +123,50 @@ table dim_customers
 		lineageTag: 3c85d0f5-be91-452c-a30a-ecbad1bb8d7a
 		summarizeBy: none
 
-	column 'First Order Date' = CALCULATE ( MIN ( fact_sales[order_date] ) )
-		dataType: dateTime
-		formatString: Short Date
-		lineageTag: 15eeac61-393a-4da3-ad09-2e56a83a5682
-		summarizeBy: none
-
-	column 'Last Order Date' = CALCULATE ( MAX ( fact_sales[order_date] ) )
-		dataType: dateTime
-		formatString: Short Date
-		lineageTag: 1879fd6e-ac92-4562-94fc-58c8b91169a9
-		summarizeBy: none
-
-	column 'Customer Lifetime Sales' = CALCULATE ( SUM ( fact_sales[sales_amount] ) )
-		dataType: decimal
-		formatString: \$#,0;(\$#,0);\$#,0
-		lineageTag: f858f963-dfa3-4bdd-9847-367755bd1092
-		summarizeBy: none
-
-	column 'Lifespan Months' = DATEDIFF ( dim_customers[First Order Date], dim_customers[Last Order Date], MONTH )
-		dataType: int64
-		formatString: 0
-		lineageTag: 3b5a3311-b7c3-4bcb-af7b-9edcf90d9a5f
-		summarizeBy: none
-
-	column 'Customer Segment' = SWITCH ( TRUE (), ISBLANK ( dim_customers[First Order Date] ), "No Orders", dim_customers[Lifespan Months] >= 12 && dim_customers[Customer Lifetime Sales] > 5000, "VIP", dim_customers[Lifespan Months] >= 12, "Regular", "New" )
-		dataType: string
-		lineageTag: 3607c1e3-e026-42d5-a074-3a716c9b47e2
-		summarizeBy: none
-
-	column 'Age at First Order' = IF ( NOT ISBLANK ( dim_customers[birthdate] ) && NOT ISBLANK ( dim_customers[First Order Date] ), INT ( YEARFRAC ( dim_customers[birthdate], dim_customers[First Order Date] ) ) )
+	column Age
 		dataType: int64
 		formatString: 0
 		lineageTag: 22a75b33-a831-4401-b0cd-4be85649bb7d
 		summarizeBy: none
+		sourceColumn: Age
 
-	column 'Age Group' = SWITCH ( TRUE (), ISBLANK ( dim_customers[Age at First Order] ), "Unknown", dim_customers[Age at First Order] < 30, "Under 30", dim_customers[Age at First Order] < 40, "30-39", dim_customers[Age at First Order] < 50, "40-49", dim_customers[Age at First Order] < 60, "50-59", "60+" )
+		annotation SummarizationSetBy = User
+
+	column 'Age Group'
 		dataType: string
 		lineageTag: dc1cb154-5d17-4813-a5a5-1105cdbb9910
 		summarizeBy: none
+		sourceColumn: Age Group
 		sortByColumn: 'Age Group Order'
 
-	column 'Age Group Order' = SWITCH ( TRUE (), ISBLANK ( dim_customers[Age at First Order] ), 6, dim_customers[Age at First Order] < 30, 1, dim_customers[Age at First Order] < 40, 2, dim_customers[Age at First Order] < 50, 3, dim_customers[Age at First Order] < 60, 4, 5 )
+		annotation SummarizationSetBy = User
+
+	column 'Age Group Order'
 		dataType: int64
 		isHidden
 		formatString: 0
 		lineageTag: 37840af6-b0f0-4d5f-bf01-95c15caf56bf
 		summarizeBy: none
+		sourceColumn: Age Group Order
+
+		annotation SummarizationSetBy = User
+
+	column 'Customer Segment'
+		dataType: string
+		lineageTag: 3607c1e3-e026-42d5-a074-3a716c9b47e2
+		summarizeBy: none
+		sourceColumn: Customer Segment
+
+		annotation SummarizationSetBy = User
+
+	column 'Lifespan Months'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3b5a3311-b7c3-4bcb-af7b-9edcf90d9a5f
+		summarizeBy: none
+		sourceColumn: Lifespan Months
+
+		annotation SummarizationSetBy = User
 
 	partition dim_customers = m
 		mode: import
@@ -179,14 +176,19 @@ table dim_customers
 				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    Typed = Table.TransformColumnTypes(Promoted, {{"customer_key", Int64.Type}, {"customer_id", Int64.Type}, {"customer_number", type text}, {"first_name", type text}, {"last_name", type text}, {"country", type text}, {"marital_status", type text}, {"gender", type text}, {"birthdate", type date}, {"create_date", type date}}, "en-US"),
 				    Unknown = Table.ReplaceValue(Typed, "n/a", "Unknown", Replacer.ReplaceValue, {"country", "gender", "marital_status"}),
-				    RfmSource = Csv.Document(File.Contents(RepoFolder & "analysis\output\rfm_segments.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
-				    RfmPromoted = Table.PromoteHeaders(RfmSource, [PromoteAllScalars=true]),
-				    Rfm = Table.TransformColumnTypes(Table.SelectColumns(RfmPromoted, {"customer_key", "rfm_segment", "rfm_score", "recency_days"}), {{"customer_key", Int64.Type}, {"rfm_segment", type text}, {"rfm_score", type text}, {"recency_days", Int64.Type}}),
-				    Joined = Table.NestedJoin(Unknown, {"customer_key"}, Rfm, {"customer_key"}, "rfm", JoinKind.LeftOuter),
-				    Expanded = Table.ExpandTableColumn(Joined, "rfm", {"rfm_segment", "rfm_score", "recency_days"}),
-				    NoRfm = Table.ReplaceValue(Expanded, null, "No Orders", Replacer.ReplaceValue, {"rfm_segment"})
+				    // Segment, age and lifespan come from the warehouse report so SQL and Power BI share one definition
+				    ReportSource = Table.PromoteHeaders(Csv.Document(File.Contents(RepoFolder & "data\gold\report_customers.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]), [PromoteAllScalars=true]),
+				    Report = Table.TransformColumnTypes(Table.SelectColumns(ReportSource, {"customer_key", "age", "age_group", "customer_segment", "lifespan"}), {{"customer_key", Int64.Type}, {"age", Int64.Type}, {"age_group", type text}, {"customer_segment", type text}, {"lifespan", Int64.Type}}, "en-US"),
+				    WithReport = Table.ExpandTableColumn(Table.NestedJoin(Unknown, {"customer_key"}, Report, {"customer_key"}, "report", JoinKind.LeftOuter), "report", {"age", "age_group", "customer_segment", "lifespan"}, {"Age", "Age Group", "Customer Segment", "Lifespan Months"}),
+				    // RFM segments from the Python analysis
+				    RfmSource = Table.PromoteHeaders(Csv.Document(File.Contents(RepoFolder & "analysis\output\rfm_segments.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]), [PromoteAllScalars=true]),
+				    Rfm = Table.TransformColumnTypes(Table.SelectColumns(RfmSource, {"customer_key", "rfm_segment", "rfm_score", "recency_days"}), {{"customer_key", Int64.Type}, {"rfm_segment", type text}, {"rfm_score", type text}, {"recency_days", Int64.Type}}, "en-US"),
+				    WithRfm = Table.ExpandTableColumn(Table.NestedJoin(WithReport, {"customer_key"}, Rfm, {"customer_key"}, "rfm", JoinKind.LeftOuter), "rfm", {"rfm_segment", "rfm_score", "recency_days"}),
+				    // Customers whose only orders have an invalid date are not classified by the reports
+				    Unclassified = Table.ReplaceValue(WithRfm, null, "Unknown", Replacer.ReplaceValue, {"Age Group", "Customer Segment", "rfm_segment"}),
+				    AgeGroupOrder = Table.AddColumn(Unclassified, "Age Group Order", each List.PositionOf({"Under 30", "30-39", "40-49", "50-59", "60+", "Unknown"}, [Age Group]) + 1, Int64.Type)
 				in
-				    NoRfm
+				    AgeGroupOrder
 
 	annotation PBI_ResultType = Table
 

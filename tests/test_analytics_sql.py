@@ -5,6 +5,7 @@ import pytest
 from pipeline import config
 
 SCRIPTS = sorted(config.ANALYTICS_SQL_DIR.glob("*.sql"))
+RECONCILIATION = config.REPO_ROOT / "powerbi" / "validation" / "reconcile_kpis.sql"
 
 
 def test_analytics_scripts_exist():
@@ -14,3 +15,7 @@ def test_analytics_scripts_exist():
 @pytest.mark.parametrize("script", SCRIPTS, ids=lambda p: p.name)
 def test_analytics_script_executes(warehouse, script):
     warehouse.execute(script.read_text(encoding="utf-8"))
+
+
+def test_powerbi_reconciliation_queries_execute(warehouse):
+    warehouse.execute(RECONCILIATION.read_text(encoding="utf-8"))

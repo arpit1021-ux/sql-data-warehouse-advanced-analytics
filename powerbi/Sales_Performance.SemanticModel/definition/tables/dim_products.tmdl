@@ -98,16 +98,13 @@ table dim_products
 
 		annotation UnderlyingDateTimeDataType = Date
 
-	column 'Product Lifetime Sales' = CALCULATE ( SUM ( fact_sales[sales_amount] ) )
-		dataType: decimal
-		formatString: \$#,0;(\$#,0);\$#,0
-		lineageTag: edc5e54f-664f-48ee-b617-15b06d9df900
-		summarizeBy: none
-
-	column 'Product Segment' = SWITCH ( TRUE (), ISBLANK ( dim_products[Product Lifetime Sales] ), "Not Sold", dim_products[Product Lifetime Sales] > 50000, "High-Performer", dim_products[Product Lifetime Sales] >= 10000, "Mid-Range", "Low-Performer" )
+	column 'Product Segment'
 		dataType: string
 		lineageTag: 7a6d8740-e6e9-4bc6-841d-095728b22d25
 		summarizeBy: none
+		sourceColumn: Product Segment
+
+		annotation SummarizationSetBy = User
 
 	partition dim_products = m
 		mode: import
@@ -117,9 +114,14 @@ table dim_products
 				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    Typed = Table.TransformColumnTypes(Promoted, {{"product_key", Int64.Type}, {"product_id", Int64.Type}, {"product_number", type text}, {"product_name", type text}, {"category_id", type text}, {"category", type text}, {"subcategory", type text}, {"maintenance", type text}, {"cost", Currency.Type}, {"product_line", type text}, {"start_date", type date}}, "en-US"),
 				    Blanks = Table.ReplaceValue(Typed, "", "Unknown", Replacer.ReplaceValue, {"category", "subcategory", "maintenance"}),
-				    Unknown = Table.ReplaceValue(Blanks, "n/a", "Unknown", Replacer.ReplaceValue, {"product_line"})
+				    Unknown = Table.ReplaceValue(Blanks, "n/a", "Unknown", Replacer.ReplaceValue, {"product_line"}),
+				    // Product segment comes from the warehouse report (gold.report_products)
+				    ReportSource = Table.PromoteHeaders(Csv.Document(File.Contents(RepoFolder & "data\gold\report_products.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]), [PromoteAllScalars=true]),
+				    Report = Table.TransformColumnTypes(Table.SelectColumns(ReportSource, {"product_key", "product_segment"}), {{"product_key", Int64.Type}, {"product_segment", type text}}, "en-US"),
+				    WithReport = Table.ExpandTableColumn(Table.NestedJoin(Unknown, {"product_key"}, Report, {"product_key"}, "report", JoinKind.LeftOuter), "report", {"product_segment"}, {"Product Segment"}),
+				    NotSold = Table.ReplaceValue(WithReport, null, "Not Sold", Replacer.ReplaceValue, {"Product Segment"})
 				in
-				    Unknown
+				    NotSold
 
 	annotation PBI_ResultType = Table
 

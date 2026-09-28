@@ -70,18 +70,12 @@ table dim_date
 		mode: import
 		source =
 				let
-				    StartDate = #date(2010, 1, 1),
-				    EndDate = #date(2014, 12, 31),
-				    Dates = List.Dates(StartDate, Duration.Days(EndDate - StartDate) + 1, #duration(1, 0, 0, 0)),
-				    Base = Table.TransformColumnTypes(Table.FromList(Dates, Splitter.SplitByNothing(), {"date"}), {{"date", type date}}),
-				    Year = Table.AddColumn(Base, "year", each Date.Year([date]), Int64.Type),
-				    Quarter = Table.AddColumn(Year, "quarter_name", each "Q" & Text.From(Date.QuarterOfYear([date])), type text),
-				    YearQuarter = Table.AddColumn(Quarter, "year_quarter", each Text.From(Date.Year([date])) & "-Q" & Text.From(Date.QuarterOfYear([date])), type text),
-				    Month = Table.AddColumn(YearQuarter, "month", each Date.Month([date]), Int64.Type),
-				    MonthShort = Table.AddColumn(Month, "month_short", each Date.ToText([date], "MMM", "en-US"), type text),
-				    YearMonth = Table.AddColumn(MonthShort, "year_month", each Date.ToText([date], "yyyy-MM", "en-US"), type text)
+				    Source = Csv.Document(File.Contents(RepoFolder & "data\gold\dim_date.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Selected = Table.SelectColumns(Promoted, {"date", "year", "quarter_name", "year_quarter", "month", "month_short", "year_month"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"date", type date}, {"year", Int64.Type}, {"quarter_name", type text}, {"year_quarter", type text}, {"month", Int64.Type}, {"month_short", type text}, {"year_month", type text}}, "en-US")
 				in
-				    YearMonth
+				    Typed
 
 	annotation PBI_ResultType = Table
 

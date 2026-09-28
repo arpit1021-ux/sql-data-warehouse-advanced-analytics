@@ -2,6 +2,8 @@
 // DAX reference: every measure and calculated column in Sales_Performance.pbix
 // Generated from the Power BI project (Sales_Performance.SemanticModel/definition),
 // which is the source of truth. Measures live in the _Measures table.
+// Customer and product segments, age and lifespan are not DAX: they are loaded
+// from gold.report_customers / gold.report_products so SQL and Power BI agree.
 // =============================================================================
 
 // ---------------------------------------------------------------------------- SALES
@@ -113,39 +115,7 @@ Top 10 Customer Sales =
 Product Page Title =
     "Product Performance — " & IF ( ISFILTERED ( dim_products[category] ), CONCATENATEX ( VALUES ( dim_products[category] ), dim_products[category], ", " ), "All Categories" )
 
-// ---------------------------------------------------------------------------- CALCULATED COLUMNS: dim_customers
+// ---------------------------------------------------------------------------- CALCULATED COLUMNS
 
 dim_customers[Customer Name] =
     dim_customers[first_name] & " " & dim_customers[last_name]
-
-dim_customers[First Order Date] =
-    CALCULATE ( MIN ( fact_sales[order_date] ) )
-
-dim_customers[Last Order Date] =
-    CALCULATE ( MAX ( fact_sales[order_date] ) )
-
-dim_customers[Customer Lifetime Sales] =
-    CALCULATE ( SUM ( fact_sales[sales_amount] ) )
-
-dim_customers[Lifespan Months] =
-    DATEDIFF ( dim_customers[First Order Date], dim_customers[Last Order Date], MONTH )
-
-dim_customers[Customer Segment] =
-    SWITCH ( TRUE (), ISBLANK ( dim_customers[First Order Date] ), "No Orders", dim_customers[Lifespan Months] >= 12 && dim_customers[Customer Lifetime Sales] > 5000, "VIP", dim_customers[Lifespan Months] >= 12, "Regular", "New" )
-
-dim_customers[Age at First Order] =
-    IF ( NOT ISBLANK ( dim_customers[birthdate] ) && NOT ISBLANK ( dim_customers[First Order Date] ), INT ( YEARFRAC ( dim_customers[birthdate], dim_customers[First Order Date] ) ) )
-
-dim_customers[Age Group] =
-    SWITCH ( TRUE (), ISBLANK ( dim_customers[Age at First Order] ), "Unknown", dim_customers[Age at First Order] < 30, "Under 30", dim_customers[Age at First Order] < 40, "30-39", dim_customers[Age at First Order] < 50, "40-49", dim_customers[Age at First Order] < 60, "50-59", "60+" )
-
-dim_customers[Age Group Order] =
-    SWITCH ( TRUE (), ISBLANK ( dim_customers[Age at First Order] ), 6, dim_customers[Age at First Order] < 30, 1, dim_customers[Age at First Order] < 40, 2, dim_customers[Age at First Order] < 50, 3, dim_customers[Age at First Order] < 60, 4, 5 )
-
-// ---------------------------------------------------------------------------- CALCULATED COLUMNS: dim_products
-
-dim_products[Product Lifetime Sales] =
-    CALCULATE ( SUM ( fact_sales[sales_amount] ) )
-
-dim_products[Product Segment] =
-    SWITCH ( TRUE (), ISBLANK ( dim_products[Product Lifetime Sales] ), "Not Sold", dim_products[Product Lifetime Sales] > 50000, "High-Performer", dim_products[Product Lifetime Sales] >= 10000, "Mid-Range", "Low-Performer" )
