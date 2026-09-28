@@ -1,0 +1,16 @@
+[project]
+name = "sql-data-warehouse-analytics"
+version = "1.0.0"
+description = "PostgreSQL data warehouse (bronze/silver/gold) with quality gates, Python analytics and a Power BI report"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]

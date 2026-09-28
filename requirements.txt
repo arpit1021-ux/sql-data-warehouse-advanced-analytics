@@ -1,0 +1,16 @@
+# Pipeline
+psycopg[binary]>=3.1
+pgserver>=0.1.4          # embedded PostgreSQL 16 for zero-setup runs and tests
+
+# Analysis notebook
+pandas>=2.0
+numpy>=1.24
+matplotlib>=3.7
+scipy>=1.10
+jupyter>=1.0
+nbconvert>=7.0
+ipykernel>=6.0
+
+# Tests and linting
+pytest>=8.0
+ruff>=0.5
