@@ -95,7 +95,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 94,11093,AW00011093,Aimee,He,Australia,Married,Female,1978-09-06,2025-10-07
 95,11094,AW00011094,Cedric,Ma,Australia,Single,Male,1967-09-29,2025-10-07
 96,11095,AW00011095,Chad,Kumar,Australia,Single,Male,1968-02-29,2025-10-07
-97,11096,AW00011096,Andr├®s,Anand,Australia,Married,Male,1968-02-07,2025-10-07
+97,11096,AW00011096,Andrés,Anand,Australia,Married,Male,1968-02-07,2025-10-07
 98,11097,AW00011097,Edwin,Nara,Australia,Married,Male,1972-10-23,2025-10-07
 99,11098,AW00011098,Mallory,Rubio,Australia,Single,Female,1966-10-29,2025-10-07
 100,11099,AW00011099,Adam,Ross,Australia,Married,Male,1966-09-05,2025-10-07
@@ -119,7 +119,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 118,11117,AW00011117,April,Deng,Australia,Married,Female,1966-08-21,2025-10-07
 119,11118,AW00011118,Alvin,Zeng,Australia,Single,Male,1962-12-31,2025-10-07
 120,11119,AW00011119,Evan,James,Australia,Single,Male,1940-10-07,2025-10-07
-121,11120,AW00011120,Beth,Jim├®nez,Australia,Single,Female,1942-02-06,2025-10-07
+121,11120,AW00011120,Beth,Jiménez,Australia,Single,Female,1942-02-06,2025-10-07
 122,11121,AW00011121,Orlando,Suarez,Australia,Married,Male,1966-05-18,2025-10-07
 123,11122,AW00011122,Byron,Vazquez,Australia,Married,Male,1965-09-30,2025-10-07
 124,11123,AW00011123,Philip,Alvarez,Australia,Married,Male,1965-12-18,2025-10-07
@@ -252,7 +252,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 251,11250,AW00011250,Shannon,Liu,United Kingdom,Married,Female,1966-03-08,2025-10-08
 252,11251,AW00011251,Xavier,Long,Canada,Single,Male,1938-01-01,2025-10-08
 253,11252,AW00011252,Nicholas,Thompson,United States,Single,Male,1937-12-05,2025-10-08
-254,11253,AW00011253,Jos├®,Hernandez,Canada,Married,Male,1949-08-24,2025-10-08
+254,11253,AW00011253,José,Hernandez,Canada,Married,Male,1949-08-24,2025-10-08
 255,11254,AW00011254,Johnathan,Vance,United States,Married,Male,1938-08-31,2025-10-08
 256,11255,AW00011255,Colin,Lin,United States,Married,Male,1938-10-02,2025-10-08
 257,11256,AW00011256,Katelyn,Hernandez,United States,Married,Female,1939-03-20,2025-10-08
@@ -450,7 +450,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 449,11448,AW00011448,Kyle,Patterson,Australia,Single,Male,1980-10-25,2025-10-08
 450,11449,AW00011449,Alvin,Hu,Australia,Married,Male,1980-08-01,2025-10-08
 451,11450,AW00011450,Brett,Mehta,Australia,Single,Male,1981-05-11,2025-10-08
-452,11451,AW00011451,Ruben,Mu├▒oz,Australia,Single,Male,1980-05-08,2025-10-08
+452,11451,AW00011451,Ruben,Muñoz,Australia,Single,Male,1980-05-08,2025-10-08
 453,11452,AW00011452,Erika,Rubio,Australia,Single,Female,1979-05-05,2025-10-08
 454,11453,AW00011453,Stanley,Malhotra,Australia,Single,Male,1984-08-17,2025-10-08
 455,11454,AW00011454,Melinda,Navarro,Australia,Single,Female,1979-10-20,2025-10-08
@@ -1388,7 +1388,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 1387,12386,AW00012386,Katherine,Perry,Germany,Single,Female,1977-10-06,2025-10-08
 1388,12387,AW00012387,Meredith,Vazquez,France,Single,Female,1983-12-24,2025-10-08
 1389,12388,AW00012388,Casey,Kumar,Germany,Single,Female,1978-01-16,2025-10-08
-1390,12389,AW00012389,Albert,Jim├®nez,France,Single,Male,1978-01-03,2025-10-08
+1390,12389,AW00012389,Albert,Jiménez,France,Single,Male,1978-01-03,2025-10-08
 1391,12390,AW00012390,Denise,Martinez,Germany,Single,Female,1983-09-14,2025-10-08
 1392,12391,AW00012391,Olivia,Kelly,United Kingdom,Single,Female,1983-02-20,2025-10-08
 1393,12392,AW00012392,Nichole,Nath,United Kingdom,Single,Female,1977-01-22,2025-10-08
@@ -1526,7 +1526,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 1525,12524,AW00012524,Kate,Shan,France,Single,Female,1980-07-23,2025-10-08
 1526,12525,AW00012525,Chelsea,Rodriguez,United Kingdom,Married,Female,1980-10-25,2025-10-08
 1527,12526,AW00012526,Michele,Suarez,United Kingdom,Married,Female,1986-05-15,2025-10-08
-1528,12527,AW00012527,Jos├®,Rodriguez,United States,Married,Male,1965-05-23,2025-10-08
+1528,12527,AW00012527,José,Rodriguez,United States,Married,Male,1965-05-23,2025-10-08
 1529,12528,AW00012528,Devin,Wilson,United States,Single,Male,1964-08-29,2025-10-08
 1530,12529,AW00012529,Isaiah,Allen,United States,Married,Male,1965-04-09,2025-10-08
 1531,12530,AW00012530,Isabel,Coleman,Canada,Single,Female,1977-11-23,2025-10-08
@@ -1990,7 +1990,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 1989,12988,AW00012988,Barbara,Goel,Australia,Single,Female,1980-01-23,2025-10-12
 1990,12989,AW00012989,Carly,Goel,Australia,Married,Female,1975-05-13,2025-10-12
 1991,12990,AW00012990,Leslie,Hernandez,Australia,Single,Female,1975-04-14,2025-10-12
-1992,12991,AW00012991,J├®sus,Serrano,Australia,Married,Male,1979-03-09,2025-10-12
+1992,12991,AW00012991,Jésus,Serrano,Australia,Married,Male,1979-03-09,2025-10-12
 1993,12992,AW00012992,Ernest,Zeng,Australia,Married,Male,1979-10-18,2025-10-12
 1994,12993,AW00012993,Xavier,Henderson,Australia,Married,Male,1979-12-23,2025-10-12
 1995,12994,AW00012994,Anna,Martinez,Australia,Single,Female,1975-10-07,2025-10-12
@@ -2007,7 +2007,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 2006,13005,AW00013005,Desiree,Alvarez,Australia,Married,Female,1972-02-12,2025-10-12
 2007,13006,AW00013006,Whitney,Rana,Australia,Single,Female,1971-10-19,2025-10-12
 2008,13007,AW00013007,Brooke,Ward,Australia,Single,Female,1971-04-04,2025-10-12
-2009,13008,AW00013008,Alberto,Mu├▒oz,Australia,Married,Male,1976-07-05,2025-10-12
+2009,13008,AW00013008,Alberto,Muñoz,Australia,Married,Male,1976-07-05,2025-10-12
 2010,13009,AW00013009,Mindy,She,Australia,Married,Female,1970-09-08,2025-10-12
 2011,13010,AW00013010,Erica,Ye,Australia,Married,Female,1976-08-12,2025-10-12
 2012,13011,AW00013011,Anne,Ortega,Australia,Single,Female,1970-11-01,2025-10-12
@@ -2104,7 +2104,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 2103,13102,AW00013102,Mariah,Bryant,United States,Single,Female,1963-03-19,2025-10-12
 2104,13103,AW00013103,Brendan,Raji,Australia,Single,Male,1969-01-29,2025-10-12
 2105,13104,AW00013104,Gregory,Becker,Australia,Single,Male,1974-04-08,2025-10-12
-2106,13105,AW00013105,Whitney,Kov├ír,Australia,Married,Female,1967-12-30,2025-10-12
+2106,13105,AW00013105,Whitney,Kovár,Australia,Married,Female,1967-12-30,2025-10-12
 2107,13106,AW00013106,Ebony,Munoz,Australia,Married,Female,1973-07-04,2025-10-12
 2108,13107,AW00013107,Mary,Nelson,Australia,Married,Female,1968-01-08,2025-10-12
 2109,13108,AW00013108,Curtis,Wang,Australia,Married,Male,1968-06-24,2025-10-12
@@ -2224,7 +2224,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 2223,13222,AW00013222,Arturo,Liu,Canada,Married,Male,1951-08-30,2025-10-12
 2224,13223,AW00013223,Noah,Lee,United States,Single,Male,1952-01-06,2025-10-12
 2225,13224,AW00013224,Amanda,Brooks,United States,Married,Female,1951-08-11,2025-10-12
-2226,13225,AW00013225,J├®sus,Suarez,United States,Married,Male,1952-12-19,2025-10-12
+2226,13225,AW00013225,Jésus,Suarez,United States,Married,Male,1952-12-19,2025-10-12
 2227,13226,AW00013226,Jenna,Mitchell,United States,Married,Female,1952-09-09,2025-10-12
 2228,13227,AW00013227,Alexander,Wilson,United States,Married,Male,1952-11-21,2025-10-12
 2229,13228,AW00013228,Thomas,Sanchez,United States,Married,Male,1952-10-28,2025-10-12
@@ -2405,7 +2405,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 2404,13403,AW00013403,Jennifer,Jackson,United States,Single,Female,1957-10-30,2025-10-12
 2405,13404,AW00013404,Kelvin,Yang,United Kingdom,Married,Male,1975-03-09,2025-10-12
 2406,13405,AW00013405,Ethan,Bryant,France,Married,Male,1963-04-04,2025-10-12
-2407,13406,AW00013406,Craig,Jim├®nez,Germany,Married,Male,1962-07-05,2025-10-12
+2407,13406,AW00013406,Craig,Jiménez,Germany,Married,Male,1962-07-05,2025-10-12
 2408,13407,AW00013407,Cassandra,Rana,United Kingdom,Single,Female,1963-04-06,2025-10-12
 2409,13408,AW00013408,Katherine,Gonzales,United Kingdom,Married,Female,1962-10-06,2025-10-12
 2410,13409,AW00013409,Cory,Fernandez,France,Married,Male,1966-03-22,2025-10-12
@@ -2511,7 +2511,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 2510,13509,AW00013509,Lucas,Johnson,United Kingdom,Married,Male,1943-03-04,2025-10-12
 2511,13510,AW00013510,Jon,Shen,France,Married,Male,1951-05-12,2025-10-12
 2512,13511,AW00013511,Ernest,Liu,France,Single,Male,1946-11-01,2025-10-12
-2513,13512,AW00013512,Ken,S├ínchez,France,Married,Female,1947-03-28,2025-10-12
+2513,13512,AW00013512,Ken,Sánchez,France,Married,Female,1947-03-28,2025-10-12
 2514,13513,AW00013513,Abigail,Henderson,Germany,Married,Female,1947-03-08,2025-10-12
 2515,13514,AW00013514,Lindsay,Luo,Germany,Single,Female,1947-08-11,2025-10-12
 2516,13515,AW00013515,Cara,Liang,Germany,Married,Female,1948-01-01,2025-10-12
@@ -2696,7 +2696,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 2695,13694,AW00013694,Savannah,Gray,United Kingdom,Single,Female,1982-12-10,2025-10-12
 2696,13695,AW00013695,Christian,Clark,France,Single,Male,1976-10-20,2025-10-12
 2697,13696,AW00013696,Katherine,Edwards,Germany,Single,Female,1977-05-14,2025-10-12
-2698,13697,AW00013697,J├®sus,Munoz,Germany,Single,Male,1976-12-21,2025-10-12
+2698,13697,AW00013697,Jésus,Munoz,Germany,Single,Male,1976-12-21,2025-10-12
 2699,13698,AW00013698,Catherine,Sanchez,Germany,Single,Female,1976-03-31,2025-10-12
 2700,13699,AW00013699,Rachel,Alexander,United States,Single,Female,1980-07-21,2025-10-12
 2701,13700,AW00013700,Evan,Howard,United States,Single,Male,1980-08-30,2025-10-12
@@ -2747,7 +2747,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 2746,13745,AW00013745,Andrew,Robinson,United States,Married,Male,1962-07-28,2025-10-12
 2747,13746,AW00013746,Janelle,Madan,United States,Married,Female,1962-08-24,2025-10-12
 2748,13747,AW00013747,Brian,Torres,United States,Married,Male,1974-04-06,2025-10-12
-2749,13748,AW00013748,Jos├®,Martinez,United States,Married,Male,1969-04-06,2025-10-12
+2749,13748,AW00013748,José,Martinez,United States,Married,Male,1969-04-06,2025-10-12
 2750,13749,AW00013749,Julio,Alonso,United States,Married,Male,1969-09-18,2025-10-12
 2751,13750,AW00013750,Raymond,Sai,United States,Married,Male,1963-12-01,2025-10-12
 2752,13751,AW00013751,Allison,Rivera,Canada,Single,Female,1964-03-18,2025-10-12
@@ -3206,7 +3206,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 3205,14204,AW00014204,Chelsea,Sara,France,Married,Female,1969-08-01,2025-10-12
 3206,14205,AW00014205,Wesley,Wu,France,Single,Male,1952-10-20,2025-10-12
 3207,14206,AW00014206,Edwin,West,Germany,Married,Male,1953-01-02,2025-10-12
-3208,14207,AW00014207,Jos├®,Saraiva,Germany,Married,Male,1953-03-20,2025-10-12
+3208,14207,AW00014207,José,Saraiva,Germany,Married,Male,1953-03-20,2025-10-12
 3209,14208,AW00014208,Eugene,Xu,United Kingdom,Single,Male,1953-02-18,2025-10-12
 3210,14209,AW00014209,Craig,Ramos,Australia,Married,Male,1980-10-06,2025-10-12
 3211,14210,AW00014210,Jenny,Tang,Australia,Married,Female,1982-04-26,2025-10-12
@@ -3392,7 +3392,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 3391,14390,AW00014390,Logan,Kumar,United States,Married,Male,1953-05-21,2025-10-12
 3392,14391,AW00014391,Jason,Long,United States,Married,Male,1952-09-04,2025-10-12
 3393,14392,AW00014392,Justin,Jackson,United States,Married,Male,1953-02-20,2025-10-12
-3394,14393,AW00014393,Jos├®,Perez,United States,Single,Male,1958-10-01,2025-10-12
+3394,14393,AW00014393,José,Perez,United States,Single,Male,1958-10-01,2025-10-12
 3395,14394,AW00014394,Jacob,Rodriguez,United States,Married,Male,1958-10-03,2025-10-12
 3396,14395,AW00014395,Devin,Reed,United States,Single,Male,1963-09-16,2025-10-12
 3397,14396,AW00014396,Zoe,Sanchez,United States,Single,Female,1953-10-15,2025-10-12
@@ -3827,7 +3827,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 3826,14825,AW00014825,Rebekah,Alonso,Germany,Single,Female,1982-08-31,2025-10-12
 3827,14826,AW00014826,Stefanie,Lopez,France,Married,Female,1985-02-13,2025-10-12
 3828,14827,AW00014827,Ernest,Xu,Germany,Single,Male,1984-10-01,2025-10-12
-3829,14828,AW00014828,Hector,Mu├▒oz,Germany,Single,Male,1985-03-08,2025-10-12
+3829,14828,AW00014828,Hector,Muñoz,Germany,Single,Male,1985-03-08,2025-10-12
 3830,14829,AW00014829,Gina,Vazquez,France,Single,Female,1983-07-15,2025-10-12
 3831,14830,AW00014830,Isabella,Ward,Germany,Married,Female,1974-08-09,2025-10-12
 3832,14831,AW00014831,Gilbert,Xie,United Kingdom,Married,Male,1968-08-05,2025-10-12
@@ -4214,7 +4214,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 4213,15212,AW00015212,Marcus,Henderson,Australia,Married,Male,1967-01-11,2025-11-17
 4214,15213,AW00015213,Briana,Martin,Australia,Married,Female,1967-01-03,2025-11-18
 4215,15214,AW00015214,Amanda,Jenkins,Australia,Single,Female,1972-05-15,2025-11-19
-4216,15215,AW00015215,Alberto,Jim├®nez,Australia,Single,Male,1972-03-24,2025-11-20
+4216,15215,AW00015215,Alberto,Jiménez,Australia,Single,Male,1972-03-24,2025-11-20
 4217,15216,AW00015216,Desiree,Gutierrez,Australia,Married,Female,1965-12-14,2025-11-21
 4218,15217,AW00015217,Ethan,Jai,Australia,Single,Male,1971-02-15,2025-11-22
 4219,15218,AW00015218,Willie,Johnsen,Australia,Single,Male,1971-03-06,2025-11-23
@@ -4429,7 +4429,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 4428,15427,AW00015427,Jade,Murphy,United States,Single,Female,1985-05-17,2026-01-04
 4429,15428,AW00015428,Richard,Howard,United States,Married,Male,1984-10-28,2026-01-04
 4430,15429,AW00015429,Aaron,Li,United States,Married,Male,1984-10-16,2026-01-04
-4431,15430,AW00015430,Alfredo,Jim├®nez,United States,Married,Male,1983-12-07,2026-01-04
+4431,15430,AW00015430,Alfredo,Jiménez,United States,Married,Male,1983-12-07,2026-01-04
 4432,15431,AW00015431,John,Jackson,United States,Married,Male,1983-09-14,2026-01-04
 4433,15432,AW00015432,Alvin,Kumar,United States,Single,Male,1984-02-15,2026-01-04
 4434,15433,AW00015433,Adam,Sharma,United States,Single,Male,1984-02-15,2026-01-04
@@ -4669,7 +4669,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 4668,15667,AW00015667,Hector,Ramos,Germany,Married,Male,1976-03-16,2026-01-04
 4669,15668,AW00015668,Erick,Fernandez,United Kingdom,Married,Male,1981-02-23,2026-01-04
 4670,15669,AW00015669,Paul,Suurs,United Kingdom,Married,Female,1981-04-20,2026-01-04
-4671,15670,AW00015670,Sergio,S├ínchez,France,Married,Male,1975-01-31,2026-01-04
+4671,15670,AW00015670,Sergio,Sánchez,France,Married,Male,1975-01-31,2026-01-04
 4672,15671,AW00015671,Lawrence,Torres,United Kingdom,Single,Male,1974-11-24,2026-01-04
 4673,15672,AW00015672,Kelvin,Nara,Germany,Single,Male,1974-07-19,2026-01-04
 4674,15673,AW00015673,Jon,Goel,France,Single,Male,1980-06-04,2026-01-04
@@ -4777,7 +4777,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 4776,15775,AW00015775,Michelle,Ward,United States,Married,Female,1979-12-13,2026-01-04
 4777,15776,AW00015776,Jesse,Mitchell,United States,Married,Male,1979-09-06,2026-01-04
 4778,15777,AW00015777,Brianna,Smith,United States,Married,Female,1968-01-18,2026-01-04
-4779,15778,AW00015778,Jos├®,Miller,United States,Single,Male,1962-11-07,2026-01-04
+4779,15778,AW00015778,José,Miller,United States,Single,Male,1962-11-07,2026-01-04
 4780,15779,AW00015779,Jackson,Hayes,United States,Married,Male,1973-08-14,2026-01-04
 4781,15780,AW00015780,Claudia,McDonald,United States,Married,Female,1968-05-10,2026-01-04
 4782,15781,AW00015781,Blake,Evans,United States,Married,Male,1962-09-30,2026-01-04
@@ -5025,7 +5025,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 5024,16023,AW00016023,Willie,Zhang,Australia,Single,Male,1953-01-13,2026-01-04
 5025,16024,AW00016024,Isaac,Hill,United States,Married,Male,1984-02-14,2026-01-04
 5026,16025,AW00016025,Jorge,Sun,Australia,Married,Male,1950-09-04,2026-01-04
-5027,16026,AW00016026,Byron,Jim├®nez,Australia,Married,Male,1952-01-07,2026-01-04
+5027,16026,AW00016026,Byron,Jiménez,Australia,Married,Male,1952-01-07,2026-01-04
 5028,16027,AW00016027,Anne,Vazquez,Australia,Married,Female,1957-08-11,2026-01-04
 5029,16028,AW00016028,Cody,Cooper,Australia,Married,Male,1951-07-28,2026-01-04
 5030,16029,AW00016029,Abby,Patel,Australia,Married,Female,1952-05-07,2026-01-04
@@ -5058,7 +5058,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 5057,16056,AW00016056,Alison,Shan,France,Married,Female,1966-09-17,2026-01-04
 5058,16057,AW00016057,Michele,Gomez,Germany,Married,Female,1966-12-10,2026-01-04
 5059,16058,AW00016058,Margaret,Zhang,United Kingdom,Married,Female,1965-05-31,2026-01-04
-5060,16059,AW00016059,J├®sus,Carlson,Germany,Married,Male,1944-04-09,2026-01-04
+5060,16059,AW00016059,Jésus,Carlson,Germany,Married,Male,1944-04-09,2026-01-04
 5061,16060,AW00016060,Antonio,Griffin,United States,Married,Male,1976-04-25,2026-01-04
 5062,16061,AW00016061,Miguel,Butler,United States,Married,Male,1981-07-02,2026-01-04
 5063,16062,AW00016062,Katherine,Johnson,United States,Married,Female,1981-06-05,2026-01-04
@@ -5115,7 +5115,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 5114,16113,AW00016113,Roger,Lal,United States,Single,Male,1979-08-09,2026-01-04
 5115,16114,AW00016114,Gavin,Ross,United States,Married,Male,1968-09-10,2026-01-04
 5116,16115,AW00016115,Jennifer,Diaz,United States,Single,Female,1973-12-11,2026-01-04
-5117,16116,AW00016116,Bego├▒a,Hurtado,United States,Single,Male,1973-12-04,2026-01-04
+5117,16116,AW00016116,Begoña,Hurtado,United States,Single,Male,1973-12-04,2026-01-04
 5118,16117,AW00016117,Brad,Lal,United States,Married,Male,1968-05-01,2026-01-04
 5119,16118,AW00016118,James,Wright,United States,Married,Male,1968-03-02,2026-01-04
 5120,16119,AW00016119,Hailey,Watson,United States,Married,Female,1967-03-12,2026-01-04
@@ -5251,7 +5251,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 5250,16249,AW00016249,Jesse,Rivera,United States,Married,Male,1970-12-01,2026-01-04
 5251,16250,AW00016250,Brendan,Raje,United Kingdom,Single,Male,1979-05-18,2026-01-04
 5252,16251,AW00016251,Makayla,Howard,United Kingdom,Single,Female,1978-03-08,2026-01-04
-5253,16252,AW00016252,Danny,Jim├®nez,Germany,Single,Male,1973-03-21,2026-01-04
+5253,16252,AW00016252,Danny,Jiménez,Germany,Single,Male,1973-03-21,2026-01-04
 5254,16253,AW00016253,Bethany,Lal,Germany,Single,Female,1973-03-02,2026-01-04
 5255,16254,AW00016254,Maria,Morris,France,Single,Female,1973-02-17,2026-01-04
 5256,16255,AW00016255,Taylor,Russell,France,Single,Female,1973-02-18,2026-01-04
@@ -5325,7 +5325,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 5324,16323,AW00016323,Dustin,Raje,France,Single,Male,1980-10-02,2026-01-04
 5325,16324,AW00016324,Juan,Romero,United Kingdom,Married,Male,1986-03-15,2026-01-04
 5326,16325,AW00016325,Emma,Williams,United Kingdom,Single,Female,1919-03-10,2026-01-04
-5327,16326,AW00016326,J├®sus,Romero,Germany,Single,Male,1978-07-17,2026-01-04
+5327,16326,AW00016326,Jésus,Romero,Germany,Single,Male,1978-07-17,2026-01-04
 5328,16327,AW00016327,Darren,Diaz,Germany,Single,Male,1984-03-02,2026-01-04
 5329,16328,AW00016328,Maurice,Rai,United Kingdom,Single,Male,1978-08-15,2026-01-04
 5330,16329,AW00016329,Jamie,Ye,United Kingdom,Single,Female,1984-12-09,2026-01-04
@@ -5436,7 +5436,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 5435,16434,AW00016434,Taylor,Bailey,Germany,Married,Female,1970-04-03,2026-01-04
 5436,16435,AW00016435,Steven,Cooper,United Kingdom,Married,Male,1975-07-06,2026-01-04
 5437,16436,AW00016436,Ethan,Henderson,France,Single,Male,1974-08-11,2026-01-04
-5438,16437,AW00016437,J├®sus,Gutierrez,United Kingdom,Single,Male,1983-04-23,2026-01-04
+5438,16437,AW00016437,Jésus,Gutierrez,United Kingdom,Single,Male,1983-04-23,2026-01-04
 5439,16438,AW00016438,Kaitlin,Arthur,France,Married,Female,1982-01-14,2026-01-04
 5440,16439,AW00016439,Dawn,Deng,France,Single,Female,1985-04-24,2026-01-04
 5441,16440,AW00016440,Jimmy,Martin,France,Single,Male,1985-06-02,2026-01-04
@@ -5541,7 +5541,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 5540,16539,AW00016539,Christy,Li,Germany,Single,Female,1971-01-07,2026-01-04
 5541,16540,AW00016540,Theodore,Browning,Germany,Married,Male,1966-03-15,2026-01-04
 5542,16541,AW00016541,Micah,Hu,United Kingdom,Single,Male,1966-06-27,2026-01-04
-5543,16542,AW00016542,J├®sus,Ortega,United Kingdom,Married,Male,1965-12-07,2026-01-04
+5543,16542,AW00016542,Jésus,Ortega,United Kingdom,Married,Male,1965-12-07,2026-01-04
 5544,16543,AW00016543,Jenny,McDonald,United Kingdom,Married,Female,1976-12-04,2026-01-04
 5545,16544,AW00016544,Eduardo,Morgan,France,Married,Male,1970-04-04,2026-01-04
 5546,16545,AW00016545,Alicia,Pal,France,Married,Female,1964-07-11,2026-01-04
@@ -5598,7 +5598,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 5597,16596,AW00016596,Gabrielle,Carter,France,Single,Female,1956-09-24,2026-01-04
 5598,16597,AW00016597,Kelli,Xu,Germany,Single,Female,1956-09-11,2026-01-04
 5599,16598,AW00016598,Kate,Rai,United Kingdom,Single,Female,1957-05-02,2026-01-04
-5600,16599,AW00016599,Ram├│n,Cai,United Kingdom,Married,Male,1955-11-14,2026-01-04
+5600,16599,AW00016599,Ramón,Cai,United Kingdom,Married,Male,1955-11-14,2026-01-04
 5601,16600,AW00016600,Janet,Suarez,France,Single,Female,1953-11-13,2026-01-04
 5602,16601,AW00016601,Tabitha,Rana,United Kingdom,Single,Female,1953-08-08,2026-01-04
 5603,16602,AW00016602,Jill,Travers,United Kingdom,Married,Female,1954-03-19,2026-01-04
@@ -6086,7 +6086,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 6085,17084,AW00017084,Byron,Serrano,France,Single,Male,1986-05-14,2026-01-04
 6086,17085,AW00017085,Edwin,Deng,United Kingdom,Married,Male,1979-10-06,2026-01-04
 6087,17086,AW00017086,Xavier,Anderson,Germany,Single,Male,1979-04-08,2026-01-04
-6088,17087,AW00017087,J├®sus,Dominguez,United Kingdom,Married,Male,1977-12-21,2026-01-04
+6088,17087,AW00017087,Jésus,Dominguez,United Kingdom,Married,Male,1977-12-21,2026-01-04
 6089,17088,AW00017088,Wayne,Yuan,France,Single,Male,1978-01-29,2026-01-04
 6090,17089,AW00017089,Crystal,Zhu,Germany,Married,Female,1978-05-03,2026-01-04
 6091,17090,AW00017090,Leslie,Alvarez,Germany,Single,Female,1978-02-13,2026-01-04
@@ -6105,7 +6105,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 6104,17103,AW00017103,Franklin,Xu,Germany,Married,Male,1978-03-14,2026-01-04
 6105,17104,AW00017104,Clifford,Rodriguez,Germany,Single,Male,1983-03-04,2026-01-04
 6106,17105,AW00017105,Madison,Walker,United Kingdom,Single,Female,1977-05-25,2026-01-04
-6107,17106,AW00017106,Gina,Jim├®nez,France,Single,Female,1976-09-18,2026-01-04
+6107,17106,AW00017106,Gina,Jiménez,France,Single,Female,1976-09-18,2026-01-04
 6108,17107,AW00017107,Priscilla,Yuan,Germany,Single,Female,1976-08-01,2026-01-04
 6109,17108,AW00017108,Susan,Xu,France,Single,Female,1977-03-08,2026-01-04
 6110,17109,AW00017109,Sydney,Wilson,France,Single,Female,1976-11-16,2026-01-04
@@ -6197,7 +6197,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 6196,17195,AW00017195,Franklin,Sharma,France,Married,Male,1949-11-19,2026-01-04
 6197,17196,AW00017196,Douglas,Fernandez,France,Single,Male,1950-01-24,2026-01-04
 6198,17197,AW00017197,Mindy,Nara,Germany,Single,Female,1949-07-16,2026-01-04
-6199,17198,AW00017198,Cheryl,Jim├®nez,Germany,Single,Female,1950-04-17,2026-01-04
+6199,17198,AW00017198,Cheryl,Jiménez,Germany,Single,Female,1950-04-17,2026-01-04
 6200,17199,AW00017199,Dennis,Zhou,Germany,Married,Male,1956-11-04,2026-01-04
 6201,17200,AW00017200,Russell,She,Germany,Single,Male,1951-04-02,2026-01-04
 6202,17201,AW00017201,Vincent,Yang,Germany,Single,Male,1951-05-21,2026-01-04
@@ -6358,7 +6358,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 6357,17356,AW00017356,Mary,Evans,United States,Single,Female,1982-05-11,2026-01-04
 6358,17357,AW00017357,Brandon,Miller,United States,Married,Male,1981-09-18,2026-01-04
 6359,17358,AW00017358,Sydney,Bell,United States,Married,Female,1981-08-25,2026-01-04
-6360,17359,AW00017359,Mar├¡a,Flores,United States,Married,Female,1980-09-04,2026-01-04
+6360,17359,AW00017359,María,Flores,United States,Married,Female,1980-09-04,2026-01-04
 6361,17360,AW00017360,Kyle,Lal,Canada,Married,Male,1980-07-03,2026-01-04
 6362,17361,AW00017361,Blake,Harris,United States,Married,Male,1979-03-09,2026-01-04
 6363,17362,AW00017362,Miguel,Collins,United States,Married,Male,1977-07-31,2026-01-04
@@ -6654,7 +6654,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 6653,17652,AW00017652,Javier,Vazquez,Germany,Married,Male,1976-03-22,2026-01-04
 6654,17653,AW00017653,Linda,Vazquez,France,Single,Female,1981-10-05,2026-01-04
 6655,17654,AW00017654,Caroline,Alexander,Canada,Single,Female,1981-05-02,2026-01-04
-6656,17655,AW00017655,Angela,S├ínchez,Canada,Single,Female,1979-10-30,2026-01-04
+6656,17655,AW00017655,Angela,Sánchez,Canada,Single,Female,1979-10-30,2026-01-04
 6657,17656,AW00017656,Carol,Martinez,Canada,Single,Female,1979-08-26,2026-01-04
 6658,17657,AW00017657,Noah,Martin,Canada,Married,Male,1981-06-22,2026-01-04
 6659,17658,AW00017658,Jade,Howard,United States,Married,Female,1934-09-03,2026-01-04
@@ -6889,7 +6889,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 6888,17887,AW00017887,Joel,Madan,United Kingdom,Married,Male,1975-04-15,2026-01-04
 6889,17888,AW00017888,Mandy,Liu,United Kingdom,Single,Female,1969-08-07,2026-01-04
 6890,17889,AW00017889,Blake,Taylor,United Kingdom,Married,Male,1963-12-26,2026-01-04
-6891,17890,AW00017890,Derrick,Jim├®nez,United Kingdom,Married,Male,1966-01-30,2026-01-04
+6891,17890,AW00017890,Derrick,Jiménez,United Kingdom,Married,Male,1966-01-30,2026-01-04
 6892,17891,AW00017891,Sharon,Lal,France,Married,Female,1961-05-10,2026-01-04
 6893,17892,AW00017892,Ronnie,Xu,United Kingdom,Married,Male,1960-12-25,2026-01-04
 6894,17893,AW00017893,Omar,Rai,Germany,Married,Male,1961-03-24,2026-01-04
@@ -8256,7 +8256,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 8255,19254,AW00019254,Anibal,Sousa,Germany,Single,Male,1962-05-07,2026-01-05
 8256,19255,AW00019255,Terrance,Sara,France,Single,Male,1960-08-13,2026-01-05
 8257,19256,AW00019256,Abigail,Griffin,France,Married,Female,1966-03-07,2026-01-05
-8258,19257,AW00019257,Dana,Jim├®nez,Germany,Married,Female,1965-01-12,2026-01-05
+8258,19257,AW00019257,Dana,Jiménez,Germany,Married,Female,1965-01-12,2026-01-05
 8259,19258,AW00019258,Douglas,Mehta,United Kingdom,Married,Male,1976-05-13,2026-01-05
 8260,19259,AW00019259,Barbara,Lin,Germany,Married,Female,1942-07-22,2026-01-05
 8261,19260,AW00019260,Latoya,Sharma,United Kingdom,Single,Female,1945-01-04,2026-01-05
@@ -8276,7 +8276,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 8275,19274,AW00019274,Karen,Yang,Germany,Married,Female,1948-07-08,2026-01-05
 8276,19275,AW00019275,Gregory,Rai,France,Married,Male,1972-12-17,2026-01-05
 8277,19276,AW00019276,Ruben,Sai,France,Single,Male,1972-08-06,2026-01-05
-8278,19277,AW00019277,Billy,Jim├®nez,France,Married,Male,1966-01-24,2026-01-05
+8278,19277,AW00019277,Billy,Jiménez,France,Married,Male,1966-01-24,2026-01-05
 8279,19278,AW00019278,Willie,Sun,United Kingdom,Single,Male,1966-01-10,2026-01-05
 8280,19279,AW00019279,Omar,Xu,United Kingdom,Single,Male,1965-09-02,2026-01-05
 8281,19280,AW00019280,Darrell,Andersen,France,Married,Male,1969-08-23,2026-01-05
@@ -8519,7 +8519,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 8518,19517,AW00019517,Max,Gomez,France,Single,Male,1981-03-21,2026-01-05
 8519,19518,AW00019518,Clifford,Arun,Germany,Single,Male,1980-07-09,2026-01-05
 8520,19519,AW00019519,Bianca,Zhu,France,Single,Female,1979-04-17,2026-01-05
-8521,19520,AW00019520,Kari,Mu├▒oz,United Kingdom,Married,Female,1984-02-17,2026-01-05
+8521,19520,AW00019520,Kari,Muñoz,United Kingdom,Married,Female,1984-02-17,2026-01-05
 8522,19521,AW00019521,Jaime,Dominguez,France,Single,Female,1978-09-22,2026-01-05
 8523,19522,AW00019522,Christian,Powell,United Kingdom,Married,Male,1985-08-12,2026-01-05
 8524,19523,AW00019523,Brittney,Holt,United Kingdom,Single,Female,1983-08-23,2026-01-05
@@ -8740,7 +8740,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 8739,19738,AW00019738,Henry,Martinez,United States,Married,Male,1946-01-22,2026-01-05
 8740,19739,AW00019739,Lucas,Perry,United States,Married,Male,1945-08-01,2026-01-05
 8741,19740,AW00019740,Connie,Liang,United States,Single,Female,1946-05-21,2026-01-05
-8742,19741,AW00019741,Mar├¡a,Rivera,United States,Single,Female,1946-05-21,2026-01-05
+8742,19741,AW00019741,María,Rivera,United States,Single,Female,1946-05-21,2026-01-05
 8743,19742,AW00019742,Alexia,Russell,United States,Married,Female,1946-12-09,2026-01-05
 8744,19743,AW00019743,Holly,Rana,United States,Single,Female,1947-02-07,2026-01-05
 8745,19744,AW00019744,Tamara,Cai,United States,Married,Female,1947-01-31,2026-01-05
@@ -8905,7 +8905,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 8904,19903,AW00019903,Marcus,Nelson,France,Single,Male,1962-06-03,2026-01-05
 8905,19904,AW00019904,Jasmine,Gray,Germany,Married,Female,1961-09-11,2026-01-05
 8906,19905,AW00019905,Chelsea,Fernandez,United Kingdom,Single,Female,1967-10-18,2026-01-05
-8907,19906,AW00019906,Armando,Mu├▒oz,United Kingdom,Married,Male,1961-10-31,2026-01-05
+8907,19906,AW00019906,Armando,Muñoz,United Kingdom,Married,Male,1961-10-31,2026-01-05
 8908,19907,AW00019907,Bruce,Diaz,France,Married,Male,1961-04-03,2026-01-05
 8909,19908,AW00019908,Pamela,Prasad,France,Single,Female,1961-01-04,2026-01-05
 8910,19909,AW00019909,Geoffrey,Chandra,Germany,Married,Male,1960-09-05,2026-01-05
@@ -8948,7 +8948,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 8947,19946,AW00019946,Tamara,Raje,United Kingdom,Single,Female,1952-12-06,2026-01-05
 8948,19947,AW00019947,Darryl,Liu,Australia,Single,Male,1986-05-22,2026-01-05
 8949,19948,AW00019948,Lacey,Hu,Australia,Single,Female,1981-04-20,2026-01-05
-8950,19949,AW00019949,Ni├▒ia,Anand,Australia,Married,Female,1982-06-25,2026-01-05
+8950,19949,AW00019949,Niñia,Anand,Australia,Married,Female,1982-06-25,2026-01-05
 8951,19950,AW00019950,Ronnie,Lu,Australia,Married,Male,1981-07-10,2026-01-05
 8952,19951,AW00019951,Roy,Moreno,Australia,Single,Male,1982-01-23,2026-01-05
 8953,19952,AW00019952,Adrienne,Martin,Australia,Single,Female,1980-09-24,2026-01-05
@@ -9447,7 +9447,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 9446,20445,AW00020445,Barbara,Deng,Australia,Married,Female,1966-10-15,2026-01-05
 9447,20446,AW00020446,Clayton,Rai,Australia,Married,Male,1960-08-06,2026-01-05
 9448,20447,AW00020447,Jodi,Goel,Australia,Single,Female,1961-08-30,2026-01-05
-9449,20448,AW00020448,J├®sus,Blanco,Australia,Married,Male,1967-02-18,2026-01-05
+9449,20448,AW00020448,Jésus,Blanco,Australia,Married,Male,1967-02-18,2026-01-05
 9450,20449,AW00020449,Rachel,Walker,United States,Single,Female,1981-10-05,2026-01-05
 9451,20450,AW00020450,Edwin,Tang,Australia,Single,Male,1962-08-10,2026-01-05
 9452,20451,AW00020451,Kelli,Anand,Australia,Single,Female,1962-11-12,2026-01-05
@@ -9496,7 +9496,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 9495,20494,AW00020494,Jesse,Peterson,United States,Married,Male,1959-12-08,2026-01-05
 9496,20495,AW00020495,Wesley,Wang,United States,Married,Male,1949-03-10,2026-01-05
 9497,20496,AW00020496,Jada,Roberts,United States,Married,Female,1949-03-03,2026-01-05
-9498,20497,AW00020497,Francisco,Javier Castrej├│n,United States,Married,Female,1949-09-01,2026-01-05
+9498,20497,AW00020497,Francisco,Javier Castrejón,United States,Married,Female,1949-09-01,2026-01-05
 9499,20498,AW00020498,Miguel,Phillips,Canada,Married,Male,1949-11-08,2026-01-05
 9500,20499,AW00020499,Christian,Robinson,Canada,Single,Male,1955-12-21,2026-01-05
 9501,20500,AW00020500,Morgan,Butler,Canada,Married,Female,1949-10-24,2026-01-05
@@ -9730,7 +9730,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 9729,20728,AW00020728,Cedric,Chande,France,Single,Male,1976-06-12,2026-01-05
 9730,20729,AW00020729,Aimee,Zhou,Germany,Married,Female,1977-04-18,2026-01-05
 9731,20730,AW00020730,Aaron,Shan,United Kingdom,Single,Male,1976-12-12,2026-01-05
-9732,20731,AW00020731,Andre,Kov├ír,Germany,Single,Male,1975-12-12,2026-01-05
+9732,20731,AW00020731,Andre,Kovár,Germany,Single,Male,1975-12-12,2026-01-05
 9733,20732,AW00020732,Joshua,Walker,n/a,Single,Male,1986-03-21,2026-01-05
 9734,20733,AW00020733,Sheena,Luo,n/a,Single,Female,1980-06-05,2026-01-05
 9735,20734,AW00020734,Luis,Phillips,Canada,Married,Male,1980-01-14,2026-01-05
@@ -9840,7 +9840,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 9839,20838,AW00020838,Chloe,Jones,United Kingdom,Single,Female,1964-10-14,2026-01-05
 9840,20839,AW00020839,Courtney,Lopez,United Kingdom,Single,Female,1964-10-11,2026-01-05
 9841,20840,AW00020840,Alison,Xie,France,Single,Female,1963-08-06,2026-01-05
-9842,20841,AW00020841,J├®sus,Alonso,Germany,Single,Male,1975-05-01,2026-01-05
+9842,20841,AW00020841,Jésus,Alonso,Germany,Single,Male,1975-05-01,2026-01-05
 9843,20842,AW00020842,Tyrone,Moreno,Germany,Single,Male,1966-04-03,2026-01-05
 9844,20843,AW00020843,Jose,Shan,Germany,Married,Male,1965-09-02,2026-01-05
 9845,20844,AW00020844,Nicolas,Pal,France,Married,Male,1981-03-16,2026-01-05
@@ -9981,7 +9981,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 9980,20979,AW00020979,Diane,Jimenez,Germany,Married,Female,1947-04-25,2026-01-05
 9981,20980,AW00020980,Matthew,Miller,Germany,Single,Male,1947-02-07,2026-01-05
 9982,20981,AW00020981,Craig,Romero,Germany,Married,Male,1947-12-24,2026-01-05
-9983,20982,AW00020982,Arthur,Jim├®nez,United Kingdom,Single,Male,1947-08-09,2026-01-05
+9983,20982,AW00020982,Arthur,Jiménez,United Kingdom,Single,Male,1947-08-09,2026-01-05
 9984,20983,AW00020983,Meredith,Vance,Australia,Single,Female,1986-06-22,2026-01-05
 9985,20984,AW00020984,Sabrina,Rubio,Australia,Married,Female,1985-11-09,2026-01-05
 9986,20985,AW00020985,Autumn,Liu,Australia,Married,Female,1985-07-16,2026-01-05
@@ -10282,7 +10282,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 10281,21280,AW00021280,Justin,Walker,n/a,Single,Male,1984-06-21,2026-01-05
 10282,21281,AW00021281,Andrea,Hill,n/a,Single,Female,1983-08-27,2026-01-05
 10283,21282,AW00021282,Julia,Smith,n/a,Married,Female,1983-09-07,2026-01-05
-10284,21283,AW00021283,Orlando,Jim├®nez,Australia,Married,Male,1956-03-17,2026-01-05
+10284,21283,AW00021283,Orlando,Jiménez,Australia,Married,Male,1956-03-17,2026-01-05
 10285,21284,AW00021284,Cody,Stewart,Canada,Married,Male,1981-05-05,2026-01-05
 10286,21285,AW00021285,Mackenzie,Rivera,n/a,Married,Female,1969-04-13,2026-01-05
 10287,21286,AW00021286,Luke,Roy,n/a,Single,Male,1969-03-02,2026-01-05
@@ -10569,7 +10569,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 10568,21567,AW00021567,Candace,Sanchez,Australia,Married,Female,1982-07-09,2026-01-05
 10569,21568,AW00021568,Jacquelyn,Hernandez,Australia,Married,Female,1977-05-20,2026-01-05
 10570,21569,AW00021569,Brendan,Rai,Australia,Single,Male,1981-09-10,2026-01-05
-10571,21570,AW00021570,Barry,Kov├ír,Australia,Married,Male,1975-12-30,2026-01-05
+10571,21570,AW00021570,Barry,Kovár,Australia,Married,Male,1975-12-30,2026-01-05
 10572,21571,AW00021571,Darryl,Yang,Australia,Married,Male,1975-10-23,2026-01-05
 10573,21572,AW00021572,Randall,Ramos,Australia,Married,Male,1982-04-23,2026-01-05
 10574,21573,AW00021573,Jimmy,Munoz,Australia,Single,Male,1975-01-31,2026-01-05
@@ -10661,7 +10661,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 10660,21659,AW00021659,Gabrielle,Jenkins,Canada,Married,Female,1968-12-22,2026-01-05
 10661,21660,AW00021660,Allison,Watson,United States,Married,Female,1969-01-24,2026-01-05
 10662,21661,AW00021661,Terry,Champion,Germany,Single,Male,1984-02-15,2026-01-05
-10663,21662,AW00021662,Orlando,Mu├▒oz,France,Single,Male,1977-11-29,2026-01-05
+10663,21662,AW00021662,Orlando,Muñoz,France,Single,Male,1977-11-29,2026-01-05
 10664,21663,AW00021663,Kenneth,Goel,Germany,Single,Male,1978-02-13,2026-01-05
 10665,21664,AW00021664,Edwin,Yuan,France,Single,Male,1977-08-26,2026-01-05
 10666,21665,AW00021665,Karl,Jai,France,Single,Male,1979-01-05,2026-01-05
@@ -10672,7 +10672,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 10671,21670,AW00021670,Benjamin,Lal,France,Single,Male,1983-04-03,2026-01-05
 10672,21671,AW00021671,Nicolas,Jai,France,Single,Male,1978-04-23,2026-01-05
 10673,21672,AW00021672,Craig,Gomez,Germany,Single,Male,1977-11-03,2026-01-05
-10674,21673,AW00021673,J├®sus,Gill,France,Single,Male,1978-01-14,2026-01-05
+10674,21673,AW00021673,Jésus,Gill,France,Single,Male,1978-01-14,2026-01-05
 10675,21674,AW00021674,Jada,Morris,Germany,Married,Female,1976-09-17,2026-01-05
 10676,21675,AW00021675,Adriana,Rana,France,Single,Female,1976-08-09,2026-01-05
 10677,21676,AW00021676,Valerie,Guo,France,Single,Female,1977-01-04,2026-01-05
@@ -10943,7 +10943,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 10942,21941,AW00021941,Gail,Moore,United States,Single,Female,1963-08-19,2026-01-05
 10943,21942,AW00021942,Julia,Roberts,United States,Married,Female,1964-03-04,2026-01-05
 10944,21943,AW00021943,Cindy,Mehta,Australia,Single,Female,1975-02-05,2026-01-05
-10945,21944,AW00021944,Daisy,Jim├®nez,Australia,Married,Female,1980-09-16,2026-01-05
+10945,21944,AW00021944,Daisy,Jiménez,Australia,Married,Female,1980-09-16,2026-01-05
 10946,21945,AW00021945,Pearlie,Rusek,Australia,Single,Female,1985-08-13,2026-01-05
 10947,21946,AW00021946,Michele,Deng,Australia,Married,Female,1974-07-03,2026-01-05
 10948,21947,AW00021947,Diane,Romero,Australia,Married,Female,1975-04-08,2026-01-05
@@ -11437,7 +11437,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 11436,22435,AW00022435,Ross,Navarro,France,Single,Male,1980-06-18,2026-01-05
 11437,22436,AW00022436,Roger,Raji,Germany,Single,Male,1976-03-22,2026-01-05
 11438,22437,AW00022437,Trisha,Zheng,United Kingdom,Single,Female,1975-07-27,2026-01-05
-11439,22438,AW00022438,Casey,Jim├®nez,France,Single,Male,1974-12-08,2026-01-05
+11439,22438,AW00022438,Casey,Jiménez,France,Single,Male,1974-12-08,2026-01-05
 11440,22439,AW00022439,Tracy,Raji,United Kingdom,Married,Female,1974-07-02,2026-01-05
 11441,22440,AW00022440,Robyn,Sanz,France,Single,Female,1974-11-17,2026-01-05
 11442,22441,AW00022441,Andrea,Torres,Germany,Single,Female,1985-08-16,2026-01-05
@@ -11686,7 +11686,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 11685,22684,AW00022684,Lauren,Cooper,Germany,Married,Female,1968-11-12,2026-01-05
 11686,22685,AW00022685,Barbara,Ma,Germany,Single,Female,1984-11-01,2026-01-05
 11687,22686,AW00022686,Wayne,Anand,United Kingdom,Single,Male,1984-09-08,2026-01-05
-11688,22687,AW00022687,Javier,Jim├®nez,United Kingdom,Married,Male,1969-05-10,2026-01-05
+11688,22687,AW00022687,Javier,Jiménez,United Kingdom,Married,Male,1969-05-10,2026-01-05
 11689,22688,AW00022688,Seth,Perez,Germany,Single,Male,1968-03-18,2026-01-05
 11690,22689,AW00022689,Gilbert,Zheng,France,Single,Male,1967-10-13,2026-01-05
 11691,22690,AW00022690,Kurt,Luo,France,Married,Male,1978-10-07,2026-01-05
@@ -12210,7 +12210,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 12209,23208,AW00023208,Janet,Watson,Canada,Single,Female,1935-07-03,2026-01-05
 12210,23209,AW00023209,Lucas,Lewis,Canada,Single,Male,1975-06-01,2026-01-05
 12211,23210,AW00023210,Timothy,Gray,United States,Married,Male,1969-05-22,2026-01-05
-12212,23211,AW00023211,Rebekah,Kov├ír,United States,Married,Female,1968-11-10,2026-01-05
+12212,23211,AW00023211,Rebekah,Kovár,United States,Married,Female,1968-11-10,2026-01-05
 12213,23212,AW00023212,James,Jones,United States,Single,Male,1979-04-13,2026-01-05
 12214,23213,AW00023213,Noah,Green,United States,Single,Male,1973-08-14,2026-01-05
 12215,23214,AW00023214,Kaylee,James,United States,Married,Female,1974-11-17,2026-01-05
@@ -12432,7 +12432,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 12431,23430,AW00023430,Savannah,Turner,Australia,Single,Female,1979-02-24,2026-01-05
 12432,23431,AW00023431,Margaret,Guo,Australia,Married,Female,1973-11-08,2026-01-05
 12433,23432,AW00023432,Jordan,Roberts,Australia,Single,Male,1974-04-09,2026-01-05
-12434,23433,AW00023433,Pedro,Mu├▒oz,Australia,Single,Male,1973-10-07,2026-01-05
+12434,23433,AW00023433,Pedro,Muñoz,Australia,Single,Male,1973-10-07,2026-01-05
 12435,23434,AW00023434,Katie,Nath,Australia,Single,Female,1973-08-24,2026-01-05
 12436,23435,AW00023435,Rosa,Chen,Australia,Single,Female,1973-12-25,2026-01-05
 12437,23436,AW00023436,Tanya,Munoz,Australia,Single,Female,1979-01-13,2026-01-05
@@ -12639,7 +12639,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 12638,23637,AW00023637,Yolanda,Jai,France,Married,Female,1965-04-09,2026-01-05
 12639,23638,AW00023638,Nelson,Ruiz,United Kingdom,Married,Male,1953-10-16,2026-01-05
 12640,23639,AW00023639,Christy,Guo,United Kingdom,Married,Female,1952-11-05,2026-01-05
-12641,23640,AW00023640,Bruce,Jim├®nez,Australia,Married,Male,1980-07-07,2026-01-05
+12641,23640,AW00023640,Bruce,Jiménez,Australia,Married,Male,1980-07-07,2026-01-05
 12642,23641,AW00023641,Megan,Morris,Australia,Married,Female,1982-01-08,2026-01-05
 12643,23642,AW00023642,Anne,Gutierrez,Australia,Married,Female,1981-01-14,2026-01-05
 12644,23643,AW00023643,Erica,Zheng,Australia,Single,Female,1980-05-21,2026-01-05
@@ -12931,7 +12931,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 12930,23929,AW00023929,Kristin,Xie,France,Married,Female,1969-11-06,2026-01-05
 12931,23930,AW00023930,Meagan,Arun,United Kingdom,Married,Female,1975-10-10,2026-01-05
 12932,23931,AW00023931,Reginald,Ruiz,France,Married,Male,1968-11-29,2026-01-05
-12933,23932,AW00023932,Carrie,Jim├®nez,France,Married,Female,1969-03-31,2026-01-05
+12933,23932,AW00023932,Carrie,Jiménez,France,Married,Female,1969-03-31,2026-01-05
 12934,23933,AW00023933,Sabrina,Carlson,Germany,Single,Female,1969-01-31,2026-01-05
 12935,23934,AW00023934,Bonnie,Andersen,France,Single,Female,1983-10-14,2026-01-05
 12936,23935,AW00023935,Alexis,Barnes,United Kingdom,Single,Female,1981-10-21,2026-01-05
@@ -12987,7 +12987,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 12986,23985,AW00023985,Janet,Torres,United Kingdom,Married,Female,1948-02-14,2026-01-05
 12987,23986,AW00023986,Tanya,Torres,United Kingdom,Married,Female,1951-04-18,2026-01-05
 12988,23987,AW00023987,Dawn,Sharma,United Kingdom,Married,Female,1947-04-02,2026-01-05
-12989,23988,AW00023988,Cesar,S├ínchez,United Kingdom,Married,Male,1946-12-17,2026-01-05
+12989,23988,AW00023988,Cesar,Sánchez,United Kingdom,Married,Male,1946-12-17,2026-01-05
 12990,23989,AW00023989,Damien,Beck,United Kingdom,Single,Male,1958-08-22,2026-01-05
 12991,23990,AW00023990,Claudia,Huang,France,Single,Female,1954-09-30,2026-01-05
 12992,23991,AW00023991,Todd,Zhao,France,Married,Male,1948-07-23,2026-01-05
@@ -13003,7 +13003,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 13002,24001,AW00024001,Arthur,Raman,Australia,Single,Male,1983-03-11,2026-01-05
 13003,24002,AW00024002,Thomas,Harris,Australia,Married,Male,1982-11-24,2026-01-05
 13004,24003,AW00024003,Warren,Kumar,Australia,Single,Male,1983-06-19,2026-01-05
-13005,24004,AW00024004,C├®sar,Raman,Australia,Married,Male,1981-10-30,2026-01-05
+13005,24004,AW00024004,César,Raman,Australia,Married,Male,1981-10-30,2026-01-05
 13006,24005,AW00024005,Julio,Jimenez,Australia,Single,Male,1984-11-03,2026-01-05
 13007,24006,AW00024006,Peter,Deng,Australia,Single,Male,1985-04-02,2026-01-05
 13008,24007,AW00024007,Randy,Huang,Australia,Single,Male,1984-09-23,2026-01-05
@@ -13013,7 +13013,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 13012,24011,AW00024011,Morgan,Thompson,United Kingdom,Single,Female,1972-06-02,2026-01-05
 13013,24012,AW00024012,James,Lewis,France,Single,Male,1971-05-09,2026-01-05
 13014,24013,AW00024013,Jay,Ruiz,France,Married,Male,1966-05-23,2026-01-05
-13015,24014,AW00024014,Geoffrey,Kov├ír,Germany,Married,Male,1965-10-10,2026-01-05
+13015,24014,AW00024014,Geoffrey,Kovár,Germany,Married,Male,1965-10-10,2026-01-05
 13016,24015,AW00024015,Jenna,Hall,United Kingdom,Single,Female,1965-09-13,2026-01-05
 13017,24016,AW00024016,Karla,Sharma,France,Single,Female,1964-11-18,2026-01-05
 13018,24017,AW00024017,Rebekah,Lopez,Germany,Single,Female,1965-05-25,2026-01-05
@@ -13266,7 +13266,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 13265,24264,AW00024264,Richard,Long,United States,Single,Male,1983-04-27,2026-01-05
 13266,24265,AW00024265,Seth,McDonald,United States,Married,Male,1983-03-13,2026-01-05
 13267,24266,AW00024266,Melvin,Chander,Australia,Married,Male,1954-08-25,2026-01-05
-13268,24267,AW00024267,J├®sus,Hernandez,Australia,Married,Male,1961-04-08,2026-01-05
+13268,24267,AW00024267,Jésus,Hernandez,Australia,Married,Male,1961-04-08,2026-01-05
 13269,24268,AW00024268,Meredith,Gill,Australia,Married,Female,1961-10-20,2026-01-05
 13270,24269,AW00024269,Todd,Lu,Australia,Married,Male,1956-03-01,2026-01-05
 13271,24270,AW00024270,Latasha,Ortega,Australia,Married,Female,1955-11-12,2026-01-05
@@ -13276,7 +13276,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 13275,24274,AW00024274,Shaun,Shan,Australia,Married,Male,1956-08-02,2026-01-05
 13276,24275,AW00024275,Lucas,Rivera,United States,Married,Male,1986-01-14,2026-01-05
 13277,24276,AW00024276,Kaitlyn,Nelson,Australia,Single,Female,1958-01-06,2026-01-05
-13278,24277,AW00024277,Donald,Kov├ír,Australia,Single,Male,1957-11-02,2026-01-05
+13278,24277,AW00024277,Donald,Kovár,Australia,Single,Male,1957-11-02,2026-01-05
 13279,24278,AW00024278,Cedric,Xu,Australia,Married,Male,1969-08-01,2026-01-05
 13280,24279,AW00024279,Angel,Nelson,Australia,Single,Male,1959-05-16,2026-01-05
 13281,24280,AW00024280,Peter,Shan,Australia,Single,Male,1960-03-30,2026-01-05
@@ -13377,7 +13377,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 13376,24375,AW00024375,Pamela,Schmidt,Australia,Married,Female,1976-09-29,2026-01-05
 13377,24376,AW00024376,Tommy,Black,Australia,Married,Male,1985-01-06,2026-01-05
 13378,24377,AW00024377,Richard,Wood,Australia,Single,Male,1979-09-21,2026-01-05
-13379,24378,AW00024378,Brandi,Jim├®nez,Australia,Single,Female,1973-12-02,2026-01-05
+13379,24378,AW00024378,Brandi,Jiménez,Australia,Single,Female,1973-12-02,2026-01-05
 13380,24379,AW00024379,Noah,Jenkins,Australia,Single,Male,1970-12-21,2026-01-05
 13381,24380,AW00024380,Maurice,Yuan,Australia,Married,Male,1971-04-12,2026-01-05
 13382,24381,AW00024381,Danny,Serrano,Australia,Single,Male,1976-05-10,2026-01-05
@@ -13478,7 +13478,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 13477,24476,AW00024476,Jared,Brooks,Australia,Married,Male,1977-09-12,2026-01-05
 13478,24477,AW00024477,Warren,Zeng,Australia,Single,Male,1966-08-26,2026-01-05
 13479,24478,AW00024478,Lindsay,Sharma,Australia,Single,Female,1972-03-01,2026-01-05
-13480,24479,AW00024479,Desir├®e,Moreno,Australia,Single,Female,1972-01-31,2026-01-05
+13480,24479,AW00024479,Desirée,Moreno,Australia,Single,Female,1972-01-31,2026-01-05
 13481,24480,AW00024480,Kelli,Liu,Australia,Single,Female,1964-02-19,2026-01-05
 13482,24481,AW00024481,Dennis,Sun,Australia,Married,Male,1969-07-13,2026-01-05
 13483,24482,AW00024482,Roy,Ramos,Australia,Married,Male,1969-08-12,2026-01-05
@@ -13505,13 +13505,13 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 13504,24503,AW00024503,Laura,Ma,Australia,Married,Female,1952-05-22,2026-01-05
 13505,24504,AW00024504,Eddie,Navarro,Australia,Married,Male,1947-01-31,2026-01-05
 13506,24505,AW00024505,Clifford,Gonzalez,Australia,Married,Male,1954-12-07,2026-01-05
-13507,24506,AW00024506,Jaime,Mu├▒oz,Australia,Married,Female,1948-08-19,2026-01-05
+13507,24506,AW00024506,Jaime,Muñoz,Australia,Married,Female,1948-08-19,2026-01-05
 13508,24507,AW00024507,Madison,Garcia,United States,Single,Female,1982-03-07,2026-01-05
 13509,24508,AW00024508,Alex,Phillips,United States,Single,Male,1982-03-13,2026-01-05
 13510,24509,AW00024509,Emma,Long,United States,Single,Female,1982-05-09,2026-01-05
 13511,24510,AW00024510,Christian,Martinez,United States,Married,Male,1982-01-08,2026-01-05
 13512,24511,AW00024511,Logan,Hall,United States,Single,Male,1981-10-30,2026-01-05
-13513,24512,AW00024512,Adrienne,Jim├®nez,United States,Single,Female,1982-02-10,2026-01-05
+13513,24512,AW00024512,Adrienne,Jiménez,United States,Single,Female,1982-02-10,2026-01-05
 13514,24513,AW00024513,Alejandro,Deng,United States,Married,Male,1981-11-22,2026-01-05
 13515,24514,AW00024514,Jesse,Phillips,United States,Married,Male,1981-09-14,2026-01-05
 13516,24515,AW00024515,Ian,Jones,United States,Single,Male,1981-11-16,2026-01-05
@@ -14398,12 +14398,12 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 14397,25396,AW00025396,Xavier,Ramirez,United States,Single,Male,1976-08-19,2026-01-05
 14398,25397,AW00025397,Lucas,Bradley,United States,Married,Male,1976-10-25,2026-01-05
 14399,25398,AW00025398,Thomas,Jones,United States,Single,Male,1976-12-21,2026-01-05
-14400,25399,AW00025399,Jorge,Leit├úo,United States,Married,Male,1982-12-10,2026-01-05
+14400,25399,AW00025399,Jorge,Leitão,United States,Married,Male,1982-12-10,2026-01-05
 14401,25400,AW00025400,Kyle,Jai,United States,Married,Male,1977-04-13,2026-01-05
 14402,25401,AW00025401,Gabriel,Young,United States,Married,Male,1982-03-28,2026-01-05
 14403,25402,AW00025402,Maria,Hughes,United States,Married,Female,1980-06-17,2026-01-05
 14404,25403,AW00025403,Jasmine,Clark,United States,Single,Female,1974-11-10,2026-01-05
-14405,25404,AW00025404,Jos├®,Lopez,United States,Single,Male,1973-11-20,2026-01-05
+14405,25404,AW00025404,José,Lopez,United States,Single,Male,1973-11-20,2026-01-05
 14406,25405,AW00025405,Brandon,Wagner,United States,Married,Male,1973-10-15,2026-01-05
 14407,25406,AW00025406,Casey,Andersen,United States,Married,Female,1974-03-22,2026-01-05
 14408,25407,AW00025407,Tony,Anand,United States,Single,Male,1974-05-07,2026-01-05
@@ -14537,7 +14537,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 14536,25535,AW00025535,Brandi,Navarro,France,Single,Female,1942-01-18,2026-01-05
 14537,25536,AW00025536,Rebekah,Sai,Germany,Single,Female,1942-04-25,2026-01-05
 14538,25537,AW00025537,Nathan,Phillips,United Kingdom,Single,Male,1941-08-06,2026-01-05
-14539,25538,AW00025538,Andy,Jim├®nez,France,Single,Male,1968-01-03,2026-01-05
+14539,25538,AW00025538,Andy,Jiménez,France,Single,Male,1968-01-03,2026-01-05
 14540,25539,AW00025539,Mathew,Ortega,France,Married,Male,1968-01-18,2026-01-05
 14541,25540,AW00025540,Rodney,Alonso,France,Married,Male,1973-07-04,2026-01-05
 14542,25541,AW00025541,Gary,Hernandez,Germany,Married,Male,1969-09-18,2026-01-05
@@ -14568,7 +14568,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 14567,25566,AW00025566,Kristine,Navarro,Australia,Married,Female,1983-03-26,2026-01-05
 14568,25567,AW00025567,Dennis,Zheng,Australia,Single,Male,1983-01-09,2026-01-05
 14569,25568,AW00025568,Christy,Wu,Australia,Married,Female,1983-03-21,2026-01-05
-14570,25569,AW00025569,J├®sus,Alvarez,France,Single,Male,1954-07-14,2026-01-05
+14570,25569,AW00025569,Jésus,Alvarez,France,Single,Male,1954-07-14,2026-01-05
 14571,25570,AW00025570,Robyn,Torres,France,Single,Female,1948-11-13,2026-01-05
 14572,25571,AW00025571,Richard,Lopez,Germany,Single,Male,1948-12-06,2026-01-05
 14573,25572,AW00025572,Allen,Gonzalez,United Kingdom,Single,Male,1949-03-02,2026-01-05
@@ -14604,7 +14604,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 14603,25602,AW00025602,Jermaine,Sara,Germany,Single,Male,1974-07-05,2026-01-05
 14604,25603,AW00025603,Dawn,Guo,United Kingdom,Single,Female,1980-03-20,2026-01-05
 14605,25604,AW00025604,Martin,Vance,United Kingdom,Single,Male,1974-09-24,2026-01-05
-14606,25605,AW00025605,Abby,Kov├ír,United Kingdom,Single,Female,1957-10-20,2026-01-05
+14606,25605,AW00025605,Abby,Kovár,United Kingdom,Single,Female,1957-10-20,2026-01-05
 14607,25606,AW00025606,Meredith,Fernandez,France,Single,Female,1958-05-09,2026-01-05
 14608,25607,AW00025607,Sharon,Chander,France,Single,Female,1969-05-22,2026-01-05
 14609,25608,AW00025608,Sandra,Zeng,United Kingdom,Single,Female,1958-01-31,2026-01-05
@@ -14615,7 +14615,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 14614,25613,AW00025613,Erik,Ruiz,France,Married,Male,1974-06-18,2026-01-05
 14615,25614,AW00025614,Deanna,Subram,France,Married,Female,1973-11-13,2026-01-05
 14616,25615,AW00025615,Destiny,Hall,United Kingdom,Married,Female,1973-10-26,2026-01-05
-14617,25616,AW00025616,J├®sus,Rubio,United Kingdom,Married,Male,1973-08-26,2026-01-05
+14617,25616,AW00025616,Jésus,Rubio,United Kingdom,Married,Male,1973-08-26,2026-01-05
 14618,25617,AW00025617,Leonard,Shan,France,Married,Male,1979-02-09,2026-01-05
 14619,25618,AW00025618,Albert,Hernandez,Germany,Married,Male,1973-12-22,2026-01-05
 14620,25619,AW00025619,Rafael,Raji,France,Married,Male,1984-09-16,2026-01-05
@@ -14987,7 +14987,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 14986,25985,AW00025985,Justin,Harris,United States,Married,Male,1968-11-23,2026-01-14
 14987,25986,AW00025986,Isabel,Bryant,United States,Married,Female,1968-07-23,2026-01-14
 14988,25987,AW00025987,Hunter,Kumar,United States,Married,Male,1978-11-18,2026-01-14
-14989,25988,AW00025988,Victor,Mu├▒oz,United States,Single,Male,1973-01-14,2026-01-14
+14989,25988,AW00025988,Victor,Muñoz,United States,Single,Male,1973-01-14,2026-01-14
 14990,25989,AW00025989,Jeremy,Price,Canada,Married,Male,1973-01-14,2026-01-14
 14991,25990,AW00025990,Jenna,Parker,United States,Single,Female,1968-02-19,2026-01-14
 14992,25991,AW00025991,Arianna,Hayes,Canada,Married,Female,1973-03-08,2026-01-14
@@ -15384,7 +15384,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 15383,26382,AW00026382,Dale,Xu,Germany,Single,Male,1974-05-02,2026-01-14
 15384,26383,AW00026383,Ronnie,Hu,France,Single,Male,1961-08-15,2026-01-14
 15385,26384,AW00026384,Jon,Zhu,France,Married,Male,1962-01-31,2026-01-14
-15386,26385,AW00026385,Javier,Mu├▒oz,Germany,Single,Male,1961-12-26,2026-01-14
+15386,26385,AW00026385,Javier,Muñoz,Germany,Single,Male,1961-12-26,2026-01-14
 15387,26386,AW00026386,Kelli,Zhao,United Kingdom,Single,Female,1961-10-18,2026-01-14
 15388,26387,AW00026387,Dalton,Roberts,United Kingdom,Single,Male,1962-06-21,2026-01-14
 15389,26388,AW00026388,Wayne,Jai,France,Married,Male,1961-02-22,2026-01-14
@@ -15445,7 +15445,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 15444,26443,AW00026443,Kathryn,She,Australia,Married,Female,1977-01-22,2026-01-14
 15445,26444,AW00026444,Pamela,Lopez,Australia,Single,Female,1976-04-03,2026-01-14
 15446,26445,AW00026445,Aidan,Foster,Australia,Single,Male,1976-03-05,2026-01-14
-15447,26446,AW00026446,Jamie,Mu├▒oz,Australia,Single,Male,1975-09-06,2026-01-14
+15447,26446,AW00026446,Jamie,Muñoz,Australia,Single,Male,1975-09-06,2026-01-14
 15448,26447,AW00026447,Noah,Russell,Australia,Single,Male,1976-10-17,2026-01-14
 15449,26448,AW00026448,Kara,Yuan,United States,Married,Female,1954-06-25,2026-01-14
 15450,26449,AW00026449,Jared,Gray,Canada,Married,Male,1959-03-08,2026-01-14
@@ -15664,7 +15664,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 15663,26662,AW00026662,Lori,Alvarez,Australia,Single,Female,1974-03-13,2026-01-14
 15664,26663,AW00026663,Joanna,Serrano,Australia,Single,Female,1972-12-21,2026-01-14
 15665,26664,AW00026664,Amy,Zhu,Australia,Married,Female,1973-05-20,2026-01-14
-15666,26665,AW00026665,J├®sus,Vazquez,Australia,Single,Male,1973-04-25,2026-01-14
+15666,26665,AW00026665,Jésus,Vazquez,Australia,Single,Male,1973-04-25,2026-01-14
 15667,26666,AW00026666,Ashlee,Beck,Australia,Single,Female,1974-09-08,2026-01-14
 15668,26667,AW00026667,Jillian,Patel,Australia,Single,Female,1975-05-19,2026-01-14
 15669,26668,AW00026668,Toni,Madan,Australia,Married,Female,1972-12-21,2026-01-14
@@ -15840,7 +15840,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 15839,26838,AW00026838,Cassie,Shan,France,Single,Female,1971-06-03,2026-01-14
 15840,26839,AW00026839,Jeremy,Nelson,France,Single,Male,1970-08-18,2026-01-14
 15841,26840,AW00026840,Eric,Yang,France,Married,Male,1976-03-15,2026-01-14
-15842,26841,AW00026841,Roberto,Jim├®nez,France,Married,Male,1971-02-10,2026-01-14
+15842,26841,AW00026841,Roberto,Jiménez,France,Married,Male,1971-02-10,2026-01-14
 15843,26842,AW00026842,Felicia,Alonso,United Kingdom,Married,Female,1969-12-23,2026-01-14
 15844,26843,AW00026843,Noah,Gonzalez,Germany,Single,Male,1934-08-08,2026-01-14
 15845,26844,AW00026844,Erin,Cooper,United Kingdom,Single,Female,1935-11-24,2026-01-14
@@ -15981,10 +15981,10 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 15980,26979,AW00026979,Christy,Jai,United Kingdom,Married,Female,1979-12-22,2026-01-14
 15981,26980,AW00026980,Marc,Suarez,Germany,Married,Male,1978-01-05,2026-01-14
 15982,26981,AW00026981,Audrey,Suarez,Germany,Single,Female,1983-08-18,2026-01-14
-15983,26982,AW00026982,Jose,Mu├▒oz,France,Single,Male,1977-10-03,2026-01-14
+15983,26982,AW00026982,Jose,Muñoz,France,Single,Male,1977-10-03,2026-01-14
 15984,26983,AW00026983,Adriana,Vance,Germany,Married,Female,1978-09-19,2026-01-14
 15985,26984,AW00026984,Manuel,Prasad,Germany,Married,Male,1979-05-09,2026-01-14
-15986,26985,AW00026985,J├®sus,Diaz,Germany,Married,Male,1979-03-11,2026-01-14
+15986,26985,AW00026985,Jésus,Diaz,Germany,Married,Male,1979-03-11,2026-01-14
 15987,26986,AW00026986,Riley,Watson,Germany,Married,Female,1978-12-14,2026-01-14
 15988,26987,AW00026987,Roy,Lopez,Germany,Married,Male,1984-09-16,2026-01-14
 15989,26988,AW00026988,Brandy,Srini,Germany,Married,Female,1979-02-19,2026-01-14
@@ -16011,7 +16011,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 16010,27009,AW00027009,Erica,Lu,United Kingdom,Single,Female,1977-02-22,2026-01-14
 16011,27010,AW00027010,Jordyn,Patterson,United States,Married,Female,1981-05-13,2026-01-14
 16012,27011,AW00027011,Kevin,Powell,United States,Married,Male,1981-06-17,2026-01-14
-16013,27012,AW00027012,Anne,Jim├®nez,United States,Single,Female,1980-05-22,2026-01-14
+16013,27012,AW00027012,Anne,Jiménez,United States,Single,Female,1980-05-22,2026-01-14
 16014,27013,AW00027013,Alisha,Yuan,United States,Married,Female,1980-03-26,2026-01-14
 16015,27014,AW00027014,Luke,Hughes,Canada,Married,Male,1972-02-20,2026-01-14
 16016,27015,AW00027015,Jessica,Torres,United States,Single,Female,1972-05-16,2026-01-14
@@ -16537,7 +16537,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 16536,27535,AW00027535,Ian,Cook,United States,Single,Male,1969-10-24,2026-01-14
 16537,27536,AW00027536,Victoria,Wilson,Canada,Married,Female,1980-11-21,2026-01-14
 16538,27537,AW00027537,Amanda,Bryant,United States,Married,Female,1974-02-18,2026-01-14
-16539,27538,AW00027538,Jos├®,Jackson,United States,Married,Male,1968-08-13,2026-01-14
+16539,27538,AW00027538,José,Jackson,United States,Married,Male,1968-08-13,2026-01-14
 16540,27539,AW00027539,Samuel,Winston,United States,Single,Male,1974-01-06,2026-01-14
 16541,27540,AW00027540,Jacqueline,Butler,United States,Single,Female,1974-05-03,2026-01-14
 16542,27541,AW00027541,Samantha,Martin,United States,Single,Female,1974-04-11,2026-01-14
@@ -16857,7 +16857,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 16856,27855,AW00027855,Lisa,Ye,Germany,Single,Female,1947-06-21,2026-01-25
 16857,27856,AW00027856,Bonnie,Tang,United Kingdom,Married,Female,1946-07-14,2026-01-25
 16858,27857,AW00027857,Brandi,Munoz,France,Single,Female,1947-08-23,2026-01-25
-16859,27858,AW00027858,Anders,Skj├©naa,Germany,Single,Female,1948-05-01,2026-01-25
+16859,27858,AW00027858,Anders,Skjønaa,Germany,Single,Female,1948-05-01,2026-01-25
 16860,27859,AW00027859,Danny,Carlson,Germany,Married,Male,1948-06-23,2026-01-25
 16861,27860,AW00027860,Hector,Martin,Australia,Married,Male,1985-12-19,2026-01-25
 16862,27861,AW00027861,Karen,He,Australia,Single,Female,1985-07-20,2026-01-25
@@ -16892,7 +16892,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 16891,27890,AW00027890,Kyle,Evans,United Kingdom,Single,Male,1966-02-07,2026-01-25
 16892,27891,AW00027891,Carlos,Howard,United Kingdom,Married,Male,1971-10-19,2026-01-25
 16893,27892,AW00027892,Isabella,Foster,United Kingdom,Married,Female,1966-04-10,2026-01-25
-16894,27893,AW00027893,Clinton,Jim├®nez,France,Single,Male,1965-05-20,2026-01-25
+16894,27893,AW00027893,Clinton,Jiménez,France,Single,Male,1965-05-20,2026-01-25
 16895,27894,AW00027894,Gerald,Sai,United Kingdom,Single,Male,1965-02-02,2026-01-25
 16896,27895,AW00027895,Colin,Pal,France,Single,Male,1963-09-04,2026-01-25
 16897,27896,AW00027896,Orlando,Torres,United Kingdom,Married,Male,1966-03-27,2026-01-25
@@ -17114,10 +17114,10 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 17113,28112,AW00028112,Savannah,Evans,United States,Married,Female,1986-01-19,2026-01-25
 17114,28113,AW00028113,Amanda,Powell,Australia,Single,Female,1957-10-11,2026-01-25
 17115,28114,AW00028114,Jared,Cox,Australia,Single,Male,1958-12-11,2026-01-25
-17116,28115,AW00028115,Deanna,Jim├®nez,Australia,Married,Female,1958-09-04,2026-01-25
+17116,28115,AW00028115,Deanna,Jiménez,Australia,Married,Female,1958-09-04,2026-01-25
 17117,28116,AW00028116,Sabrina,Dominguez,Australia,Single,Female,1969-08-01,2026-01-25
 17118,28117,AW00028117,Craig,Vazquez,Australia,Single,Male,1971-02-08,2026-01-25
-17119,28118,AW00028118,Briana,Jim├®nez,Australia,Married,Female,1961-01-07,2026-01-25
+17119,28118,AW00028118,Briana,Jiménez,Australia,Married,Female,1961-01-07,2026-01-25
 17120,28119,AW00028119,Curtis,Ma,Australia,Single,Male,1966-04-06,2026-01-25
 17121,28120,AW00028120,Pedro,Alvarez,Australia,Single,Male,1966-07-16,2026-01-25
 17122,28121,AW00028121,Julia,Robinson,Canada,Married,Female,1980-08-14,2026-01-25
@@ -17323,7 +17323,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 17322,28321,AW00028321,Arturo,Wu,Australia,Married,Male,1965-11-07,2026-01-25
 17323,28322,AW00028322,Willie,Chen,Australia,Single,Male,1980-07-18,2026-01-25
 17324,28323,AW00028323,Nathan,Moore,Australia,Single,Male,1968-11-29,2026-01-25
-17325,28324,AW00028324,J├®sus,Martin,Australia,Married,Male,1968-04-03,2026-01-25
+17325,28324,AW00028324,Jésus,Martin,Australia,Married,Male,1968-04-03,2026-01-25
 17326,28325,AW00028325,Drew,Lal,Australia,Single,Male,1967-01-12,2026-01-25
 17327,28326,AW00028326,Carla,Lopez,Australia,Single,Female,1975-05-01,2026-01-25
 17328,28327,AW00028327,Tabitha,Serrano,Australia,Single,Female,1968-12-13,2026-01-25
@@ -17458,7 +17458,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 17457,28456,AW00028456,Todd,Xu,France,Married,Male,1972-06-17,2026-01-25
 17458,28457,AW00028457,Bruce,Gonzalez,France,Single,Male,1941-03-30,2026-01-25
 17459,28458,AW00028458,Casey,She,France,Single,Female,1967-12-07,2026-01-25
-17460,28459,AW00028459,Dana,Mu├▒oz,United Kingdom,Married,Female,1963-11-11,2026-01-25
+17460,28459,AW00028459,Dana,Muñoz,United Kingdom,Married,Female,1963-11-11,2026-01-25
 17461,28460,AW00028460,Nathan,Powell,France,Married,Male,1963-12-02,2026-01-25
 17462,28461,AW00028461,Joe,Dominguez,Germany,Married,Male,1968-09-13,2026-01-25
 17463,28462,AW00028462,Kendra,Serrano,France,Married,Female,1962-09-19,2026-01-25
@@ -17518,7 +17518,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 17517,28516,AW00028516,Vincent,Lin,United Kingdom,Single,Male,1975-10-11,2026-01-25
 17518,28517,AW00028517,Troy,Gonzalez,United Kingdom,Single,Male,1975-01-23,2026-01-25
 17519,28518,AW00028518,Tammy,Sanchez,Germany,Single,Female,1975-05-17,2026-01-25
-17520,28519,AW00028519,J├®sus,Ramos,France,Married,Male,1975-04-14,2026-01-25
+17520,28519,AW00028519,Jésus,Ramos,France,Married,Male,1975-04-14,2026-01-25
 17521,28520,AW00028520,Susan,Liang,France,Married,Female,1974-10-03,2026-01-25
 17522,28521,AW00028521,Bradley,Tang,Germany,Single,Male,1975-03-15,2026-01-25
 17523,28522,AW00028522,Rosa,Ma,Germany,Married,Female,1980-07-03,2026-01-25
@@ -17919,7 +17919,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 17918,28917,AW00028917,Sandra,Zhou,France,Single,Female,1953-08-02,2026-01-25
 17919,28918,AW00028918,Gina,Blanco,United Kingdom,Married,Female,1953-10-05,2026-01-25
 17920,28919,AW00028919,Krystal,Wagner,France,Married,Female,1952-12-02,2026-01-25
-17921,28920,AW00028920,Ren├®e,Alvarez,Germany,Single,Female,1953-03-20,2026-01-25
+17921,28920,AW00028920,Renée,Alvarez,Germany,Single,Female,1953-03-20,2026-01-25
 17922,28921,AW00028921,Corey,Deng,United Kingdom,Married,Male,1969-05-09,2026-01-25
 17923,28922,AW00028922,Brent,Ye,Australia,Married,Male,1981-05-12,2026-01-25
 17924,28923,AW00028923,Roberto,Hernandez,Australia,Single,Male,1981-02-03,2026-01-25
@@ -17930,7 +17930,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 17929,28928,AW00028928,Margaret,Wu,Australia,Single,Female,1981-12-17,2026-01-25
 17930,28929,AW00028929,Marie,Fernandez,Australia,Single,Female,1981-02-08,2026-01-25
 17931,28930,AW00028930,Jarrod,Kapoor,Australia,Married,Male,1980-11-23,2026-01-25
-17932,28931,AW00028931,Darren,Jim├®nez,Australia,Married,Male,1981-05-05,2026-01-25
+17932,28931,AW00028931,Darren,Jiménez,Australia,Married,Male,1981-05-05,2026-01-25
 17933,28932,AW00028932,Marshall,Ashe,Australia,Married,Male,1985-08-23,2026-01-25
 17934,28933,AW00028933,Colleen,Rai,Australia,Married,Female,1980-05-09,2026-01-25
 17935,28934,AW00028934,Ricardo,Nara,Australia,Married,Male,1980-04-02,2026-01-25
@@ -18112,7 +18112,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 18111,29110,AW00029110,Sydney,Smith,United States,Single,Female,1978-10-09,2026-01-25
 18112,29111,AW00029111,Dale,Anand,United States,Single,Male,1984-11-21,2026-01-25
 18113,29112,AW00029112,Edward,Powell,United States,Single,Male,1981-12-22,2026-01-25
-18114,29113,AW00029113,Al├¡cia,Anand,Australia,Single,Female,1961-11-23,2026-01-25
+18114,29113,AW00029113,Alícia,Anand,Australia,Single,Female,1961-11-23,2026-01-25
 18115,29114,AW00029114,Levi,Raman,Australia,Married,Male,1973-03-15,2026-01-25
 18116,29115,AW00029115,Jacquelyn,Munoz,Australia,Married,Female,1962-08-08,2026-01-25
 18117,29116,AW00029116,Janelle,Patel,Australia,Married,Female,1980-04-30,2026-01-25
@@ -18312,7 +18312,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 18311,29310,AW00029310,Armando,Gutierrez,Australia,Single,Male,1969-04-21,2026-01-25
 18312,29311,AW00029311,Marie,Carlson,Australia,Single,Female,1967-11-07,2026-01-25
 18313,29312,AW00029312,Colleen,She,Australia,Single,Female,1973-04-14,2026-01-25
-18314,29313,AW00029313,J├®sus,Sanz,Australia,Married,Male,1967-04-07,2026-01-25
+18314,29313,AW00029313,Jésus,Sanz,Australia,Married,Male,1967-04-07,2026-01-25
 18315,29314,AW00029314,Meredith,Malhotra,Australia,Married,Female,1972-11-02,2026-01-25
 18316,29315,AW00029315,Jill,Gomez,Australia,Married,Female,1975-04-06,2026-01-25
 18317,29316,AW00029316,Max,Romero,Australia,Single,Male,1964-05-21,2026-01-25
@@ -18400,7 +18400,7 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 18399,29398,AW00029398,Bruce,Suri,Germany,Single,Male,1971-01-17,2026-01-25
 18400,29399,AW00029399,Janet,Gomez,Germany,Single,Female,1976-01-31,2026-01-25
 18401,29400,AW00029400,Marvin,Browning,Germany,Married,Male,1976-10-20,2026-01-25
-18402,29401,AW00029401,J├®sus,Gomez,United Kingdom,Married,Male,1976-10-28,2026-01-25
+18402,29401,AW00029401,Jésus,Gomez,United Kingdom,Married,Male,1976-10-28,2026-01-25
 18403,29402,AW00029402,Damien,Andersen,France,Single,Male,1969-10-19,2026-01-25
 18404,29403,AW00029403,Erik,Romero,Germany,Married,Male,1970-01-02,2026-01-25
 18405,29404,AW00029404,Chloe,Ross,France,Single,Female,1974-05-02,2026-01-25
@@ -18482,4 +18482,4 @@ customer_key,customer_id,customer_number,first_name,last_name,country,marital_st
 18481,29480,AW00029480,Nina,Raji,United Kingdom,Single,n/a,1977-05-06,2026-01-25
 18482,29481,AW00029481,Ivan,Suri,Germany,Single,n/a,1965-07-04,2026-01-25
 18483,29482,AW00029482,Clayton,Zhang,France,Married,n/a,1964-09-01,2026-01-25
-18484,29483,AW00029483,Marc,Navarro,France,Married,n/a,,2026-01-27
+18484,29483,AW00029483,Marc,Navarro,France,Married,n/a,1965-06-06,2026-01-27

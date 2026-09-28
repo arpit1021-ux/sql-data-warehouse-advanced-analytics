@@ -3,7 +3,7 @@
 **Client context (simulated):** a multi-country bicycle retailer whose CRM and ERP data was consolidated into the SQL warehouse in this repo.
 **Question from leadership:** *"Revenue nearly tripled in 2013. What drove it, is it sustainable, and where should we focus next?"*
 **Data:** Gold layer, 60,398 order lines · 27,659 orders · 18,484 customers · Dec 2010 – Jan 2014 · $29.36M revenue.
-**Method:** SQL (warehouse + EDA), Python (statistics, RFM, cohorts: [`analysis/`](analysis/)), Power BI (dashboard: [`powerbi/`](powerbi/)).
+**Method:** SQL warehouse and analytics ([`sql/`](sql/)), Python statistics, RFM and cohorts ([`analysis/`](analysis/)), Power BI dashboard ([`powerbi/`](powerbi/)). Every number below is reproduced by `python -m pipeline run` and the test suite.
 
 ---
 
@@ -109,5 +109,6 @@ Impact figures are **illustrative sizing** from the historical data, meant to ra
 ## Data caveats
 * Jan 2014 contains only 4 weeks of data and Dec 2010 only 3 days; both are excluded from trend charts.
 * 19 sales have an invalid order date (nulled in the Silver layer), and 337 customers have no country. They're shown as "Unknown", never dropped.
-* **Age:** the SQL customer report computes age from today's date, which puts every customer in "40+". Age at purchase actually starts at 25 (median 42). The Power BI model uses age at first order instead.
-* **Customer lifespan** is defined differently in PostgreSQL (`AGE()`, complete months) and in Power BI/SQL Server (`DATEDIFF`, month boundaries), which shifts VIP counts by ~2%. See [`Power BI Dashboard/validation/expected_kpis.md`](powerbi/validation/expected_kpis.md).
+* 15 customers have birthdates before 1924 (flagged as a warning by the quality checks, kept in the data).
+* **Age** is always measured at a fixed date: the last order date (2014-01-28) in the warehouse reports and the dashboard, and the first order date in the demographic analysis. Measuring from today would put every customer in "40+".
+* **Customer lifespan** counts calendar-month boundaries between first and last order, defined once in `gold.month_diff()` and matched by `DATEDIFF(MONTH)` in Power BI, so SQL, Python and the dashboard report identical segment counts (VIP 1,653, Regular 2,200, New 14,629).
