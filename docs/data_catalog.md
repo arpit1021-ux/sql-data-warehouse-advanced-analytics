@@ -1,61 +1,124 @@
-# Data Catalog for Gold Layer
+# Data Catalog: Gold Layer
 
-## Overview
-The Gold Layer is the business-level data representation, structured to support analytical and reporting use cases. It consists of **dimension tables** and **fact tables** for specific business metrics.
+The Gold layer is the business-facing model: a star schema (`dim_*`, `fact_sales`) plus reporting views
+(`report_*`). Everything is defined as PostgreSQL views over Silver in
+[`sql/warehouse/gold/`](../sql/warehouse/gold/), so it always reflects the latest load.
 
----
-
-### 1. **gold.dim_customers**
-- **Purpose:** Stores customer details enriched with demographic and geographic data.
-- **Columns:**
-
-| Column Name      | Data Type     | Description                                                                                   |
-|------------------|---------------|-----------------------------------------------------------------------------------------------|
-| customer_key     | INT           | Surrogate key uniquely identifying each customer record in the dimension table.               |
-| customer_id      | INT           | Unique numerical identifier assigned to each customer.                                        |
-| customer_number  | NVARCHAR(50)  | Alphanumeric identifier representing the customer, used for tracking and referencing.         |
-| first_name       | NVARCHAR(50)  | The customer's first name, as recorded in the system.                                         |
-| last_name        | NVARCHAR(50)  | The customer's last name or family name.                                                     |
-| country          | NVARCHAR(50)  | The country of residence for the customer (e.g., 'Australia').                               |
-| marital_status   | NVARCHAR(50)  | The marital status of the customer (e.g., 'Married', 'Single').                              |
-| gender           | NVARCHAR(50)  | The gender of the customer (e.g., 'Male', 'Female', 'n/a').                                  |
-| birthdate        | DATE          | The date of birth of the customer, formatted as YYYY-MM-DD (e.g., 1971-10-06).               |
-| create_date      | DATE          | The date and time when the customer record was created in the system|
+**Conventions**
+* Monetary values are whole currency units (the source data has no currency code).
+* "As-of date" means the last order date in the data (**2014-01-28**). Age and recency are measured at that date,
+  so results don't change depending on when the warehouse is rebuilt.
+* Month counts use `gold.month_diff(from, to)`: calendar-month boundaries crossed (2013-01-31 → 2013-02-01 = 1),
+  the same rule as `DATEDIFF(MONTH)` in Power BI.
+* Unknown source values are stored as `n/a` (shown as "Unknown" in Power BI).
 
 ---
 
-### 2. **gold.dim_products**
-- **Purpose:** Provides information about the products and their attributes.
-- **Columns:**
+## gold.dim_customers
+One row per customer (18,484). CRM is the master record; ERP adds birthdate, gender fallback and country.
 
-| Column Name         | Data Type     | Description                                                                                   |
-|---------------------|---------------|-----------------------------------------------------------------------------------------------|
-| product_key         | INT           | Surrogate key uniquely identifying each product record in the product dimension table.         |
-| product_id          | INT           | A unique identifier assigned to the product for internal tracking and referencing.            |
-| product_number      | NVARCHAR(50)  | A structured alphanumeric code representing the product, often used for categorization or inventory. |
-| product_name        | NVARCHAR(50)  | Descriptive name of the product, including key details such as type, color, and size.         |
-| category_id         | NVARCHAR(50)  | A unique identifier for the product's category, linking to its high-level classification.     |
-| category            | NVARCHAR(50)  | The broader classification of the product (e.g., Bikes, Components) to group related items.  |
-| subcategory         | NVARCHAR(50)  | A more detailed classification of the product within the category, such as product type.      |
-| maintenance_required| NVARCHAR(50)  | Indicates whether the product requires maintenance (e.g., 'Yes', 'No').                       |
-| cost                | INT           | The cost or base price of the product, measured in monetary units.                            |
-| product_line        | NVARCHAR(50)  | The specific product line or series to which the product belongs (e.g., Road, Mountain).      |
-| start_date          | DATE          | The date when the product became available for sale or use, stored in|
+| Column | Type | Description |
+|---|---|---|
+| customer_key | BIGINT | Surrogate key |
+| customer_id | INT | CRM customer id |
+| customer_number | VARCHAR(50) | Business key, e.g. `AW00011000` |
+| first_name | VARCHAR(50) | First name (trimmed) |
+| last_name | VARCHAR(50) | Last name (trimmed) |
+| country | VARCHAR(50) | Country of residence, from ERP (`n/a` if missing) |
+| marital_status | VARCHAR(50) | `Married`, `Single` or `n/a` |
+| gender | VARCHAR(50) | CRM gender, falling back to ERP; `Male`, `Female` or `n/a` |
+| birthdate | DATE | Date of birth (future dates removed in Silver) |
+| create_date | DATE | Date the customer was created in CRM |
+
+## gold.dim_products
+One row per **current** product version (295); historical versions are excluded.
+
+| Column | Type | Description |
+|---|---|---|
+| product_key | BIGINT | Surrogate key |
+| product_id | INT | CRM product id |
+| product_number | VARCHAR(50) | Business key, e.g. `FR-R92B-58` |
+| product_name | VARCHAR(50) | Name including colour and size |
+| category_id | VARCHAR(50) | Category id, e.g. `CO_RF` |
+| category | VARCHAR(50) | `Bikes`, `Accessories`, `Clothing`, `Components` |
+| subcategory | VARCHAR(50) | E.g. `Road Bikes`, `Helmets` |
+| maintenance | VARCHAR(50) | Whether the product needs maintenance (`Yes` / `No`) |
+| cost | INT | Unit cost |
+| product_line | VARCHAR(50) | `Road`, `Mountain`, `Touring`, `Other Sales` or `n/a` |
+| start_date | DATE | Date this product version became available |
+
+## gold.fact_sales
+One row per order line (60,398).
+
+| Column | Type | Description |
+|---|---|---|
+| order_number | VARCHAR(50) | Sales order, e.g. `SO54496` |
+| product_key | BIGINT | → `dim_products.product_key` |
+| customer_key | BIGINT | → `dim_customers.customer_key` |
+| order_date | DATE | Order date (NULL for 19 lines whose source date was invalid) |
+| shipping_date | DATE | Ship date |
+| due_date | DATE | Payment due date |
+| sales_amount | INT | Line revenue = quantity × price (repaired in Silver when inconsistent) |
+| quantity | INT | Units ordered |
+| price | INT | Unit price |
+
+## gold.dim_date
+One row per day from 1 Jan of the first sales year to 31 Dec of the last (2010-01-01 to 2014-12-31).
+
+| Column | Type | Description |
+|---|---|---|
+| date | DATE | Calendar date (key) |
+| date_key | INT | `YYYYMMDD` |
+| year, quarter, month | INT | Calendar parts |
+| quarter_name | TEXT | `Q1`–`Q4` |
+| year_quarter | TEXT | `2013-Q4` |
+| month_short | TEXT | `Jan`–`Dec` |
+| year_month | TEXT | `2013-12` |
+| day_of_week | INT | ISO day, 1 = Monday |
+| day_name | TEXT | `Mon`–`Sun` |
+| is_weekend | BOOLEAN | Saturday or Sunday |
+
+## gold.report_customers
+One row per customer with at least one dated order (18,482).
+
+| Column | Type | Description |
+|---|---|---|
+| customer_key, customer_number, customer_name | | Customer identifiers |
+| age | INT | Age at the as-of date |
+| age_group | TEXT | `Under 30`, `30-39`, `40-49`, `50-59`, `60+`, `Unknown` |
+| customer_segment | TEXT | `VIP` (lifespan ≥ 12 months and sales > 5,000), `Regular` (lifespan ≥ 12 months), `New` |
+| last_order_date | DATE | Most recent order |
+| recency | INT | Months from last order to the as-of date |
+| total_orders, total_sales, total_quantity, total_products | | Lifetime totals |
+| lifespan | INT | Months between first and last order |
+| avg_order_value | NUMERIC | total_sales / total_orders |
+| avg_monthly_spend | NUMERIC | total_sales / lifespan (total_sales when lifespan is 0) |
+
+## gold.report_products
+One row per product that has sold (130).
+
+| Column | Type | Description |
+|---|---|---|
+| product_key, product_name, category, subcategory, cost | | Product attributes |
+| last_sale_date | DATE | Most recent sale |
+| recency_in_months | INT | Months from last sale to the as-of date |
+| product_segment | TEXT | `High-Performer` (sales > 50,000), `Mid-Range` (≥ 10,000), `Low-Performer` |
+| lifespan | INT | Months between first and last sale |
+| total_orders, total_sales, total_quantity, total_customers | | Lifetime totals |
+| avg_selling_price | NUMERIC | Average of sales / quantity per line |
+| avg_order_revenue | NUMERIC | total_sales / total_orders |
+| avg_monthly_revenue | NUMERIC | total_sales / lifespan (total_sales when lifespan is 0) |
 
 ---
 
-### 3. **gold.fact_sales**
-- **Purpose:** Stores transactional sales data for analytical purposes.
-- **Columns:**
+## etl.load_log
+Audit trail written by `bronze.load_bronze()` and `silver.load_silver()`: one row per table per load.
 
-| Column Name     | Data Type     | Description                                                                                   |
-|-----------------|---------------|-----------------------------------------------------------------------------------------------|
-| order_number    | NVARCHAR(50)  | A unique alphanumeric identifier for each sales order (e.g., 'SO54496').                      |
-| product_key     | INT           | Surrogate key linking the order to the product dimension table.                               |
-| customer_key    | INT           | Surrogate key linking the order to the customer dimension table.                              |
-| order_date      | DATE          | The date when the order was placed.                                                           |
-| shipping_date   | DATE          | The date when the order was shipped to the customer.                                          |
-| due_date        | DATE          | The date when the order payment was due.                                                      |
-| sales_amount    | INT           | The total monetary value of the sale for the line item, in whole currency units (e.g., 25).   |
-| quantity        | INT           | The number of units of the product ordered for the line item (e.g., 1).                       |
-| price           | INT           | The price per unit of the product for the line item, in whole currency units (e.g., 25).      |
+| Column | Type | Description |
+|---|---|---|
+| log_id | BIGINT | Identity |
+| layer | TEXT | `bronze` or `silver` |
+| table_name | TEXT | Table loaded |
+| rows_loaded | BIGINT | Rows inserted |
+| started_at, finished_at | TIMESTAMPTZ | Load window |
+| duration_ms | NUMERIC | Generated from the load window |

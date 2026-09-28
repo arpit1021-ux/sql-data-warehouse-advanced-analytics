@@ -28,14 +28,14 @@ This document outlines the naming conventions used for schemas, tables, views, c
 - **`<sourcesystem>_<entity>`**  
   - `<sourcesystem>`: Name of the source system (e.g., `crm`, `erp`).  
   - `<entity>`: Exact table name from the source system.  
-  - Example: `crm_customer_info` → Customer information from the CRM system.
+  - Example: `crm_cust_info` → Customer information from the CRM system.
 
 ### **Silver Rules**
 - All names must start with the source system name, and table names must match their original names without renaming.
 - **`<sourcesystem>_<entity>`**  
   - `<sourcesystem>`: Name of the source system (e.g., `crm`, `erp`).  
   - `<entity>`: Exact table name from the source system.  
-  - Example: `crm_customer_info` → Customer information from the CRM system.
+  - Example: `crm_cust_info` → Customer information from the CRM system.
 
 ### **Gold Rules**
 - All names must use meaningful, business-aligned names for tables, starting with the category prefix.
@@ -50,9 +50,9 @@ This document outlines the naming conventions used for schemas, tables, views, c
 
 | Pattern     | Meaning                           | Example(s)                              |
 |-------------|-----------------------------------|-----------------------------------------|
-| `dim_`      | Dimension table                  | `dim_customer`, `dim_product`           |
+| `dim_`      | Dimension table                  | `dim_customers`, `dim_products`, `dim_date` |
 | `fact_`     | Fact table                       | `fact_sales`                            |
-| `report_`   | Report table                     | `report_customers`, `report_sales_monthly`   |
+| `report_`   | Reporting view                   | `report_customers`, `report_products`   |
 
 ## **Column Naming Conventions**
 
@@ -68,7 +68,7 @@ This document outlines the naming conventions used for schemas, tables, views, c
 - **`dwh_<column_name>`**  
   - `dwh`: Prefix exclusively for system-generated metadata.  
   - `<column_name>`: Descriptive name indicating the column's purpose.  
-  - Example: `dwh_load_date` → System-generated column used to store the date when the record was loaded.
+  - Example: `dwh_create_date` → System-generated timestamp recording when the row was loaded into Silver.
  
 ## **Stored Procedure**
 
@@ -78,4 +78,10 @@ This document outlines the naming conventions used for schemas, tables, views, c
   - `<layer>`: Represents the layer being loaded, such as `bronze`, `silver`, or `gold`.
   - Example: 
     - `load_bronze` → Stored procedure for loading data into the Bronze layer.
+
+## **Pipeline Metadata**
+
+- Pipeline bookkeeping lives in the `etl` schema, separate from business data.
+  - `etl.load_log` → one row per table per load (rows, start/finish time, duration).
+  - `etl.log_load()` → procedure every load procedure calls to write that row.
     - `load_silver` → Stored procedure for loading data into the Silver layer.

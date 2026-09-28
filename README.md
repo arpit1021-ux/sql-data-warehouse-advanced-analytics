@@ -1,505 +1,230 @@
-# 🚀 SQL Data Warehouse, Python Analytics & Power BI Dashboard
+# SQL Data Warehouse, Python Analytics & Power BI Dashboard
 
-![Project Banner](docs/images/banner.png)
+[![CI](https://github.com/arpit1021-ux/sql-data-warehouse-advanced-analytics/actions/workflows/ci.yml/badge.svg)](https://github.com/arpit1021-ux/sql-data-warehouse-advanced-analytics/actions/workflows/ci.yml)
+![PostgreSQL 16](https://img.shields.io/badge/PostgreSQL-16-336791)
+![Python](https://img.shields.io/badge/Python-pandas%20%7C%20SciPy-3776AB)
+![Power BI](https://img.shields.io/badge/Power%20BI-DAX%20%7C%20TMDL-F2C811)
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
 
-A complete, end-to-end **SQL-driven Data Warehouse & Analytics Project**, covering:
+![Project banner](docs/images/banner.png)
 
-- **Data Modeling & ETL Pipeline (Bronze → Silver → Gold)**
-- **Data Cleaning, Standardization & Transformation**
-- **EDA + Advanced SQL Analytics**
-- **Customer & Product Reporting**
-- **Business Insights & KPI Generation**
-- **Python Analytics: RFM segmentation, cohort retention, Pareto, significance testing**
-- **Interactive Power BI Dashboard on the Gold Layer (DAX, star-schema model, RLS)**
-- **Consulting-style Insights & Recommendations report**
+An end-to-end analytics project for a multi-country bicycle retailer whose data is split across a **CRM** and an
+**ERP** system. Six raw CSV extracts are loaded into a **PostgreSQL** warehouse (Bronze → Silver → Gold), guarded by
+automated **data-quality gates**, analysed with **SQL and Python**, and served in a 4-page **Power BI** dashboard and
+a consulting-style **[insights report](INSIGHTS.md)**.
 
-This project simulates a **real industry-grade data engineering + business analytics workflow**, starting from raw ERP & CRM datasets and delivering insights with **SQL → Python → Power BI**, ending in business recommendations.
-
-![Tool](https://img.shields.io/badge/Tool-PostgreSQL-blue) ![Tool](https://img.shields.io/badge/Tool-Advanced_SQL-blueviolet) ![Process](https://img.shields.io/badge/Process-Data_Warehousing_|_ETL-orange) ![Process](https://img.shields.io/badge/Process-Star_Schema_|_Data_Modeling-yellow) ![Feature](https://img.shields.io/badge/Feature-EDA_|_Advanced_Analytics-lightgreen) ![Feature](https://img.shields.io/badge/Feature-Fact_|_Dimension_Tables-green) ![Domain](https://img.shields.io/badge/Domain-Retail_Analytics-red) ![Type](https://img.shields.io/badge/Type-End_to_End_Project-critical) ![Python](https://img.shields.io/badge/Python-pandas_|_SciPy-3776AB) ![BI](https://img.shields.io/badge/BI-Power_BI_|_DAX-F2C811) ![Status](https://img.shields.io/badge/Status-Completed-success)
+Everything is reproducible with one command, and **CI rebuilds the warehouse and runs 67 tests on every push**.
 
 ---
 
-## 🔍 Summary  
-This project builds a complete SQL Data Warehouse (Bronze → Silver → Gold) from raw ERP + CRM data, analyses it with advanced SQL and Python,
-and delivers a 4-page **Power BI dashboard** and a **business insights report** for a retail business.
+## Headline insights ([full report →](INSIGHTS.md))
 
-## 📌 Headline insights ([full report →](INSIGHTS.md))
-
-| | Finding | So what |
+| | Finding | Recommendation |
 |---|---|---|
-| 📈 | 2013 revenue grew **+180%**, driven by 12.5K new customers + an accessories launch; AOV fell 57% purely from product mix | Report AOV by category, not blended |
+| 📈 | 2013 revenue grew **+180%**, driven by 12.5K new customers and an accessories launch; AOV fell 57% purely from product mix | Report AOV by category, not blended |
 | 💰 | Accessories earn a **62.8% margin** vs 39% for bikes | Bundle accessories with every bike |
-| ⚠️ | **33% of revenue** sits with ~2,900 high-value customers who haven't ordered in ~a year (RFM "At Risk") | Win-back programme (≈ $0.3M illustrative upside) |
-| 🌎 | US revenue per customer is **half of Australia's** ($1,225 vs $2,523) | US pricing/assortment review (≈ $0.9M at +10%) |
+| ⚠️ | **33% of revenue** sits with about 2,900 high-value customers who haven't ordered in about a year (RFM "At Risk") | Win-back programme (≈ $0.3M illustrative upside) |
+| 🌎 | US revenue per customer is **half of Australia's** ($1,225 vs $2,523) | US pricing and assortment review (≈ $0.9M at +10%) |
 | 🔁 | **63%** of customers bought only once | Second-purchase journey after the first order |
 
 ![Executive Overview](powerbi/screenshots/01_overview.png)
 
 ---
 
-## 📚 Table of Contents
+## Architecture
 
-- [🧩 Business Problem](#-business-problem)
-- [🚀 Project Overview](#-project-overview)
-- [🏗️ Project Architecture & Diagrams](#️-project-architecture--diagrams)
-- [📊 Power BI Dashboard](#-power-bi-dashboard)
-- [🐍 Python Analysis](#-python-analysis)
-- [📌 Insights & Recommendations](INSIGHTS.md)
-- [🏗️ Tech Stack](#️-tech-stack)
-- [🧠 Key Skills Demonstrated](#-key-skills-demonstrated)
-- [🗂️ Project Folder Structure](#️-project-folder-structure)
-- [🛠️ Key Features](#-key-features)
-- [📊 Reports Generated](#-reports-generated)
-- [🧬 Data Architecture Flow](#-data-architecture-flow)
-- [📁 Important Files](#-important-files)
-- [📈 Key Outcomes](#-key-outcomes)
-- [🎓 What I Will Learn](#-what-i-will-learn)
-- [📥 Clone This Repository](#-clone-this-repository)
-- [🏁 How to Run This Project](#-how-to-run-this-project)
-- [⭐ Project Highlights (for Resume / Portfolio)](#-project-highlights-for-resume--portfolio)
-- [📑 License](#-license)
-- [⚠️ Dataset Disclaimer](#-dataset-disclaimer)
-- [🧑‍💻 Author](#-author)
+```mermaid
+flowchart LR
+    subgraph Sources["data/raw (CSV)"]
+        CRM["CRM<br/>customers · products · sales"]
+        ERP["ERP<br/>demographics · locations · categories"]
+    end
+    subgraph Warehouse["PostgreSQL warehouse"]
+        B["Bronze<br/>raw tables<br/>bronze.load_bronze()"]
+        S["Silver<br/>cleansed tables<br/>silver.load_silver()"]
+        G["Gold<br/>star schema + report views"]
+        Q{{"Quality gates<br/>28 checks"}}
+        L[("etl.load_log")]
+    end
+    subgraph Consume["Consumption"]
+        SQLA["SQL analytics<br/>sql/analytics"]
+        PY["Python notebook<br/>RFM · cohorts · stats"]
+        PBI["Power BI<br/>4-page dashboard"]
+        INS["INSIGHTS.md"]
+    end
+    CRM --> B
+    ERP --> B
+    B --> S --> G
+    B -.-> L
+    S -.-> L
+    S --> Q
+    G --> Q
+    G --> SQLA
+    G -->|"data/gold/*.csv"| PY
+    G -->|"data/gold/*.csv"| PBI
+    PY -->|"rfm_segments.csv"| PBI
+    PY --> INS
+```
 
----
+| Layer | Object type | Load | What happens |
+|---|---|---|---|
+| **Bronze** | Tables | Full load (truncate + `COPY`) | Source files loaded as-is for traceability |
+| **Silver** | Tables | Full load (truncate + insert) | De-duplication, trimming, code decoding, date repair, SCD-2 end dates, sales = qty × price repair |
+| **Gold** | Views | – | Star schema (`dim_customers`, `dim_products`, `dim_date`, `fact_sales`) and reports (`report_customers`, `report_products`) |
 
-# 🧩 Business Problem
-
-> 🏪 **Retail Company Issue:**  
-> Data scattered across ERP & CRM → no unified reporting → poor insights → inconsistent decisions.
-
-You built a scalable **Data Warehouse + Analytics System** to solve:
-
-- Scattered data  
-- Inconsistent formats  
-- No single source of truth  
-- No customer or product performance tracking  
-- No advanced reporting  
-
-The result is a **clean, scalable, analytics-ready warehouse**.
-
----
-
-# 🚀 Project Overview
-
-This project demonstrates how to build and analyze a data warehouse environment using SQL.  
-It includes:
-
-### ✅ 1. Data Warehouse Development
-- Data ingestion (Bronze layer)  
-- Data cleaning & harmonization (Silver layer)  
-- Business modeling & fact/dimension tables (Gold layer)  
-- Stored procedures for ETL  
-- Data quality testing  
-- Documentation (data model, flow diagrams, architecture)
-
-### ✅ 2. EDA + Advanced SQL Data Analysis
-Using advanced SQL analytics techniques:
-- Ranking  
-- Segmentation  
-- Cumulative metrics  
-- Change-over-time analysis  
-- Performance metrics  
-- Customer & Product reports  
-- KPI calculations  
-- Exploratory Data Analysis insights  
-
-### ✅ 3. Advanced Reporting
-SQL-based dashboards & reports:
-- **Customer Analytics Report**
-- **Product Performance Report**
-
-### ✅ 4. Python Analysis
-Statistical and customer analytics the SQL layer can't easily do ([notebook](analysis/retail_sales_analysis.ipynb)):
-- Data-quality audit of the Gold layer (integrity, uniqueness, business rules)
-- Pareto concentration, category margins, cross-sell / attach rate, market performance
-- **RFM segmentation** (7 segments, exported to Power BI) and **quarterly cohort retention**
-- Welch's t-tests + effect sizes to separate real differences from noise
-
-### ✅ 5. Power BI Dashboard
-A 4-page interactive report on the Gold layer:
-- Star-schema model with a marked date table, an inactive ship-date relationship and hidden keys
-- 33 DAX measures: time intelligence (YTD, YoY, rolling averages), profit, attach & repeat rates, ranking
-- SQL segmentation logic re-implemented as DAX calculated columns; Python RFM segments merged in Power Query
-- Synced slicers, dynamic titles and Row-Level Security
-- Every KPI reconciled against SQL and Python outputs
-- Saved as `.pbix` **and** as a text-based Power BI Project (TMDL + PBIR) for Git
-
-### ✅ 6. Insights & Recommendations
-A consulting-style [report](INSIGHTS.md): executive summary, findings, sized recommendations, next steps and data caveats.
-
----
-
-# 📊 Power BI Dashboard
-
-Open [`Power BI Dashboard/Sales_Performance.pbix`](powerbi/Sales_Performance.pbix) · [PDF export](powerbi/Sales_Performance.pdf) · [model, DAX & validation details](powerbi/README.md)
-
-| Page | What it answers |
+| Source → layer lineage | Source-system relationships |
 |---|---|
-| **Executive Overview** | Sales, orders, customers, AOV, margin, repeat rate; monthly trend; sales by category, country, segment |
-| **Sales Trends** | Selected vs. prior year, YoY growth, running total, year × quarter matrix |
-| **Product Performance** | Profit, margin, accessory attach rate; top 10 products; category treemap; volume vs. margin; product ranking |
-| **Customer Insights** | RFM segments, revenue per customer by country, age at first order, top 10 customers |
+| ![Data flow](docs/images/data_flow.png) | ![Data integration](docs/images/data_integration.png) |
 
-| | |
-|---|---|
-| ![Overview](powerbi/screenshots/01_overview.png) | ![Trends](powerbi/screenshots/02_trends.png) |
-| ![Products](powerbi/screenshots/03_products.png) | ![Customers](powerbi/screenshots/04_customers.png) |
+![Star schema](docs/images/data_model.png)
 
 ---
 
-# 🐍 Python Analysis
+## Quick start
 
-[`Python Analysis/retail_sales_analysis.ipynb`](analysis/retail_sales_analysis.ipynb): pandas, NumPy, SciPy, Matplotlib.
+Requires Python 3.10+. No database installation needed: the pipeline starts an embedded PostgreSQL 16 automatically.
 
-| | |
+```bash
+git clone https://github.com/arpit1021-ux/sql-data-warehouse-advanced-analytics.git
+cd sql-data-warehouse-advanced-analytics
+pip install -r requirements.txt
+
+python -m pipeline run      # build bronze → silver → gold, run quality gates, export data/gold/*.csv
+pytest                      # 67 tests against a fresh build
+```
+
+<details>
+<summary>Use your own PostgreSQL server (or Docker) instead</summary>
+
+```bash
+docker compose up -d        # PostgreSQL 16 with data/raw mounted at /data/raw
+python -m pipeline run \
+    --database-url postgresql://postgres:postgres@localhost:5432/DataWarehouse \
+    --source-dir /data/raw
+```
+`--source-dir` is the `data/raw` folder **as the database server sees it**, because `COPY` reads files server-side.
+The same flags work for any server; `DATABASE_URL` can replace `--database-url`.
+</details>
+
+Sample run:
+```
+== Bronze: load source files
+Bronze layer loaded: 6 tables, 116294 rows
+== Silver: cleanse and standardise
+Silver layer loaded: 6 tables, 116284 rows
+== Gold: star schema and reports
+  gold.fact_sales            60398 rows
+  gold.report_customers      18482 rows
+== Quality gates
+  [PASS] gold_checks: fact_sales: no rows lost or duplicated between silver and gold
+  [WARN] silver_checks: erp_cust_az12: birthdates are after 1924-01-01 and not in the future  (15 rows)
+Quality checks: 26 passed, 2 warnings, 0 failed
+Pipeline finished successfully
+```
+
+---
+
+## Data quality and testing
+
+**Quality gates** ([`sql/quality/`](sql/quality/)): 28 declarative checks, each a query returning the offending rows.
+`error` checks fail the pipeline; `warn` checks surface known source issues that are handled downstream
+(19 order lines with invalid dates, 15 implausibly old birthdates).
+
+| Area | Examples |
+|---|---|
+| Keys | Primary keys unique and not null; one current version per product |
+| Standardisation | Gender, marital status, product line, country and maintenance use a fixed vocabulary |
+| Business rules | sales = quantity × price and all positive; order date ≤ ship/due date; cost ≥ 0 |
+| Integrity | Every sale joins to a customer and product; every CRM customer has ERP records |
+| Reconciliation | No rows or revenue lost between Silver and Gold; report totals equal fact totals |
+| Calendar | `dim_date` has no gaps and covers every order, ship and due date |
+
+**Test suite** ([`tests/`](tests/), 67 tests): every quality check; bronze row counts equal the source files;
+`etl.load_log` completeness; a failed load raises and rolls back; `gold.month_diff` semantics; headline KPIs, yearly
+sales and segment counts; all analytics SQL executes; the committed `data/gold` CSVs match a fresh export byte for byte.
+
+**CI** ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)): ruff lint → pipeline → export-reproducibility check →
+pytest → notebook execution, plus a second job that runs the pipeline against a PostgreSQL 16 server container.
+
+---
+
+## Analytics
+
+### SQL ([`sql/analytics/`](sql/analytics/))
+Eleven scripts following an EDA → advanced-analytics progression:
+
+![Analytics roadmap](docs/images/eda_roadmap.png)
+
+| # | Script | Techniques |
+|---|---|---|
+| 01–04 | Database, dimension, date-range and measure exploration | `INFORMATION_SCHEMA`, `DISTINCT`, `AGE()`, aggregates |
+| 05 | Magnitude | `GROUP BY` across dimensions |
+| 06 | Ranking | `ROW_NUMBER()`, top/bottom N |
+| 07 | Change over time | `DATE_TRUNC`, monthly trends |
+| 08 | Cumulative | Running totals and moving averages with window frames |
+| 09 | Performance | `LAG()`, YoY and vs-average comparisons |
+| 10 | Part-to-whole | `SUM() OVER ()` shares |
+| 11 | Segmentation | Cost bands, VIP / Regular / New customers |
+
+Customer and product reports live in the warehouse itself as `gold.report_customers` and `gold.report_products`.
+
+### Python ([`analysis/`](analysis/))
+[`retail_sales_analysis.ipynb`](analysis/retail_sales_analysis.ipynb): data-quality audit, revenue decomposition,
+Pareto concentration, category margins, cross-sell attach rate, market performance, **RFM segmentation**
+(exported to Power BI), **quarterly cohort retention** and **Welch's t-tests with effect sizes**.
+
+| RFM segments | Cohort retention |
 |---|---|
 | ![RFM](analysis/charts/05_rfm_segments.png) | ![Cohorts](analysis/charts/06_cohort_retention.png) |
 
----
+### Power BI ([`powerbi/`](powerbi/))
+[`Sales_Performance.pbix`](powerbi/Sales_Performance.pbix) · [PDF](powerbi/Sales_Performance.pdf):
+star-schema model on the Gold exports, 33 DAX measures (time intelligence, ranking, attach and repeat rates),
+synced slicers, Row-Level Security, and a text-based Power BI Project (TMDL + PBIR) for version control.
 
-# 🏗️ Project Architecture & Diagrams
-
-### 📌 Overall Architecture  
-![Architecture](docs/images/data_architecture.png)
-
-### 🕸 Mesh Architecture Layers  
-![Mesh Architecture](docs/images/mesh_architecture_layers.png)
-
-### 🔗 Data Integration Workflow  
-![Data Integration](docs/images/data_integration.png)
-
-### 🔄 Data Flow Diagram  
-![Data Flow](docs/images/data_flow.png)
-
-### 🧩 Star Schema Data Model  
-![Data Model](docs/images/data_model.png)
+| | |
+|---|---|
+| ![Trends](powerbi/screenshots/02_trends.png) | ![Products](powerbi/screenshots/03_products.png) |
+| ![Customers](powerbi/screenshots/04_customers.png) | ![Overview](powerbi/screenshots/01_overview.png) |
 
 ---
 
-# 🏗️ Tech Stack
+## Repository structure
 
-| Layer | Tools Used |
-|------|------------|
-| Data Warehouse | PostgreSQL / SQL |
-| Data Modeling | Star Schema, Dimensional Modeling |
-| ETL Pipeline | SQL Stored Procedures |
-| EDA & Analytics | SQL (Window functions, Aggregations, CTEs) |
-| Statistical Analysis | Python (pandas, NumPy, SciPy, Matplotlib), Jupyter |
-| Visualization / BI | Power BI Desktop, DAX, Power Query, TMDL/PBIP |
-| Documentation | Markdown, PNG diagrams |
+```
+├── data/
+│   ├── raw/{crm,erp}/          source extracts (6 CSV files)
+│   └── gold/                   Gold layer exports written by the pipeline
+├── sql/
+│   ├── warehouse/              00_init_database, bronze/, silver/, gold/ (DDL + load procedures)
+│   ├── quality/                silver_checks.sql, gold_checks.sql (quality gates)
+│   ├── analytics/              01–11 exploratory and advanced analytics
+│   └── bi/                     read-only role for BI tools
+├── pipeline/                   python -m pipeline (build, check, export)
+├── tests/                      pytest suite
+├── analysis/                   notebook, charts, RFM output
+├── powerbi/                    .pbix, .pbip project, DAX, theme, validation, screenshots
+├── docs/                       data catalog, naming conventions, diagrams
+├── INSIGHTS.md                 business findings and recommendations
+├── docker-compose.yml          PostgreSQL 16 server option
+└── .github/workflows/ci.yml    continuous integration
+```
+
+## Documentation
+* [Data catalog](docs/data_catalog.md): every Gold column, metric definitions and the as-of-date convention
+* [Naming conventions](docs/naming_conventions.md)
+* [Layer design](docs/images/mesh_architecture_layers.png)
+* [Power BI model and measures](powerbi/README.md)
+
+## Tech stack
+PostgreSQL 16 (PL/pgSQL procedures, window functions, CTEs, views) · Python (psycopg 3, pandas, NumPy, SciPy,
+Matplotlib, Jupyter) · pytest · ruff · GitHub Actions · Docker Compose · Power BI Desktop (Power Query, DAX, TMDL/PBIR)
 
 ---
 
-# 🧠 Key Skills Demonstrated
+**Dataset:** synthetic retail data for portfolio use; no real customer data.
+**License:** [MIT](LICENSE).
 
-- Advanced SQL (Window Functions, CTEs, Ranking Functions)  
-- Data Warehousing (Bronze–Silver–Gold architecture)  
-- ETL Pipeline Development  
-- Fact & Dimension Modeling  
-- Data Cleaning & Standardization  
-- Analytical Reporting & KPI Design  
-- Data Architecture Documentation  
-- Python: pandas data wrangling, RFM & cohort analysis, hypothesis testing (Welch's t-test, effect size)  
-- Power BI: data modeling, DAX (time intelligence, context transition), Power Query, RLS  
-- Business storytelling: turning analysis into sized, prioritised recommendations  
-
----
-
-# 🗂️ Project Folder Structure
-
-```
-SQL Data Warehouse & Advanced Analytics/
-│
-│── 📄 README.md                               ← Main Project Documentation
-│── 📑 LICENSE                                  ← License for Project
-│
-├── 🧱 Data Warehouse/
-│   │
-│   ├── scripts/                                ← ETL Scripts for Bronze → Silver → Gold
-│   │   ├── bronze/
-│   │   │   ├── ddl_bronze.sql                  ← Create Bronze Layer Tables
-│   │   │   └── proc_load_bronze.sql            ← Load Raw ERP + CRM Data into Bronze
-│   │   │
-│   │   ├── silver/
-│   │   │   ├── ddl_silver.sql                  ← Create Cleaned Silver Layer Tables
-│   │   │   └── proc_load_silver.sql            ← Transform Bronze → Silver
-│   │   │
-│   │   └── gold/
-│   │       └── ddl_gold.sql                    ← Create Final Fact & Dimensions (DW)
-│   │
-│   ├── tests/                                  ← Data Quality & Validation Scripts
-│   │   ├── quality_checks_gold.sql             ← Gold Layer Validation Tests
-│   │   └── quality_checks_silver.sql           ← Silver Layer Validation Tests
-│   │
-│   ├── docs/                                   ← Architecture, Models & Pipeline Diagrams
-│   │   ├── Analysing Source System.png         ← Source System Exploration
-│   │   ├── data_architecture.png               ← Full Data Architecture Overview
-│   │   ├── data_catalog.md                     ← Documentation for All Tables & Columns
-│   │   ├── data_flow.png                       ← End-to-End Data Flow Diagram
-│   │   ├── data_integration.png                ← ERP + CRM Integration Overview
-│   │   ├── data_layers.pdf                     ← Bronze, Silver, Gold Explanation
-│   │   ├── data_model.png                      ← Data Warehouse Star Schema
-│   │   ├── ETL.png                             ← ETL Pipeline Overview
-│   │   ├── Mesh_Architecture_Layers.png        ← Data Mesh Architecture Layers
-│   │   └── naming_conventions.md               ← Standards for Naming Tables & Columns
-│   │
-│   └── row_dataset/                            ← Raw ERP & CRM Source System Data
-│       ├── source_erp/
-│       │   ├── CUST_AZ12.csv                   ← ERP Customer Data
-│       │   ├── LOC_A101.csv                    ← ERP Location Data
-│       │   └── PX_CAT_G1V2.csv                 ← ERP Product/Category Data
-│       │
-│       └── source_crm/
-│           ├── cust_info.csv                   ← CRM Customer Info
-│           ├── prd_info.csv                    ← CRM Product Info
-│           └── sales_details.csv               ← CRM Sales Transactions
-│
-├── 📊 EDA + Advanced Data Analysis/
-│   │
-│   ├── Data Analysis .png                       ← EDA Output Summary Diagram
-│   │
-│   ├── scripts/                                 ← All SQL Scripts for Analysis
-│   │   ├── 00_init_database.sql                 ← Initialize Analysis Schema
-│   │   ├── 01_database_exploration.sql          ← Explore Tables & Metadata
-│   │   ├── 02_dimensions_exploration.sql        ← Explore Dimension Tables
-│   │   ├── 03_date_range_exploration.sql        ← Explore Date Ranges
-│   │   ├── 04_measures_exploration.sql          ← Explore Key Business Metrics
-│   │   ├── 05_magnitude_analysis.sql            ← Magnitude-Level Analysis
-│   │   ├── 06_ranking_analysis.sql              ← Ranking & Ordering Analysis
-│   │   ├── 07_change_over_time_analysis.sql     ← Trend + Time-Based Analysis
-│   │   ├── 08_cumulative_analysis.sql           ← Running Totals & Rolling Sums
-│   │   ├── 09_performance_analysis.sql          ← Performance & KPI Insights
-│   │   ├── 10_part_to_whole_analysis.sql        ← Proportional Contribution Analysis
-│   │   ├── 11_data_segmentation.sql             ← Customer & Product Segmentation
-│   │   ├── 12_report_customers.sql              ← Generate Customer Report (Gold Layer)
-│   │   └── 12_report_products.sql               ← Generate Product Report (Gold Layer)
-│   │
-│   └── dataset/                                 ← Output Reports from Gold Layer
-│       ├── gold.dim_customers.csv               ← Cleaned Customer Dimension
-│       ├── gold.dim_products.csv                ← Cleaned Product Dimension
-│       ├── gold.fact_sales.csv                  ← Cleaned Fact Sales Table
-│       ├── gold.report_customers.csv            ← Final Customer Analytics Report
-│       └── gold.report_products.csv             ← Final Product Analytics Report
-│
-├── 🐍 Python Analysis/
-│   ├── retail_sales_analysis.ipynb              ← Data quality, Pareto, RFM, cohorts, t-tests
-│   ├── charts/                                  ← Charts used in INSIGHTS.md
-│   ├── output/rfm_segments.csv                  ← RFM segments (loaded into Power BI)
-│   └── requirements.txt
-│
-├── 📈 Power BI Dashboard/
-│   ├── Sales_Performance.pbix                   ← Power BI report (4 pages)
-│   ├── Sales_Performance.pdf                    ← PDF export
-│   ├── Sales_Performance.pbip                   ← Same report as a Power BI Project (TMDL + PBIR, Git-friendly)
-│   ├── dax/measures.dax                         ← All DAX measures & calculated columns
-│   ├── sql/01_bi_layer.sql                      ← gold.dim_date + read-only bi_reader role
-│   ├── theme/warehouse_theme.json               ← Report theme
-│   ├── validation/                              ← KPI reconciliation SQL + expected values
-│   └── screenshots/                             ← Dashboard page screenshots
-│
-└── 📌 INSIGHTS.md                                ← Business insights & recommendations
-```
-
----
-
-# 🛠️ Key Features
-
-### 🟩 Data Warehouse (Bronze → Silver → Gold)
-- Raw data ingestion  
-- Data profiling  
-- Standardization & validation  
-- Star schema modeling  
-- Automated ETL procedures  
-- Data quality tests  
-- Complete documentation  
-
-### 🟦 EDA + Advanced SQL Analytics
-- Dimension exploration  
-- Measures analysis  
-- Ranking, segmentation  
-- Time-series & cumulative trends  
-- KPI calculations (Recency, AOV, Monthly Spend, etc.)  
-- Customer & Product performance reports  
-
----
-
-# 📊 Reports Generated
-
-### 📘 Customer Report
-Includes:
-- Customer segments (VIP, Regular, New)
-- Recency
-- Lifespan
-- Total orders, products, quantity, sales
-- Avg order value
-- Avg monthly spend  
-
-### 📙 Product Report
-Includes:
-- Product segments (High Performer / Mid Range / Low Performer)
-- Recency
-- Lifespan
-- Unique customers
-- Avg selling price
-- Monthly revenue  
-
----
-
-# 🧬 Data Architecture Flow
-
-```
-RAW (ERP + CRM)
-      ↓
-BRONZE → Clean storage
-      ↓
-SILVER → Harmonized & Enriched Data
-      ↓
-GOLD → Final Fact + Dimension Tables
-      ↓
-ANALYTICS → Reports, KPIs, Dashboards
-```
-
----
-
-# 📁 Important Files
-
-### 🔹 Data Warehouse Scripts
-
-```
-bronze/
-    ddl_bronze.sql
-    proc_load_bronze.sql
-silver/
-    ddl_silver.sql
-    proc_load_silver.sql
-gold/
-    ddl_gold.sql
-```
-
-### 🔹 EDA SQL Scripts
-
-```
-00_init_database.sql  
-01_database_exploration.sql  
-02_dimensions_exploration.sql  
-...  
-12_report_customers.sql  
-12_report_products.sql 
-```
-
----
-
-# 📈 Key Outcomes
-
-- Built a fully functional SQL Data Warehouse  
-- Designed & implemented ETL pipelines  
-- Performed advanced SQL analytics  
-- Designed star schema (Fact + Dimensions)  
-- Developed customer & product analytical reports  
-- Demonstrated real-world Data Engineer + Analyst workflow  
-- Segmented customers with RFM and cohort analysis in Python  
-- Delivered a 4-page Power BI dashboard reconciled to the warehouse  
-- Turned findings into sized business recommendations ([INSIGHTS.md](INSIGHTS.md))  
-
----
-
-# 🎓 What I Will Learn
-
-- How to design a Data Warehouse from scratch  
-- How to build ETL pipelines (Bronze → Silver → Gold)  
-- How to clean & transform raw data  
-- How to write advanced SQL analytical scripts  
-- How to generate customer & product insights using SQL  
-- How to document a real-world data engineering project 
-
----
-
-# 📥 Clone This Repository
-```
-git clone https://github.com/arpit1021-ux/sql-data-warehouse-advanced-analytics.git
-cd sql-data-warehouse-advanced-analytics
-```
-
----
-
-# 🏁 How to Run This Project
-
-### 1. Initialize the Database
-```
-00_init_database.sql
-```
-
-### 2. Load Bronze Layer
-```
-proc_load_bronze.sql
-```
-
-### 3. Load Silver Layer
-```
-proc_load_silver.sql
-```
-
-### 4. Create Gold Layer
-```
-ddl_gold.sql
-```
-
-### 5. Run Analysis Scripts (00 → 12)
-```
-EDA + Advanced Data Analysis/scripts/
-```
-
-### 6. Run the Python analysis
-```
-cd analysis
-pip install -r requirements.txt
-jupyter notebook retail_sales_analysis.ipynb
-```
-
-### 7. Open the dashboard
-```
-Power BI Dashboard/Sales_Performance.pbix
-→ Transform data → Edit parameters → RepoFolder = <your clone path>\
-→ Home → Refresh
-```
-
----
-
-# ⭐ Project Highlights (for Resume / Portfolio)
-
-- Real-world **Data Engineering + Analytics** workflow  
-- End-to-end SQL project (**Data Warehousing + EDA + Advanced Data Analysis**)
-- Realistic **ETL + Data Modeling** experience  
-- Clean architecture & documentation  
-- Retail analytics insights  
-- Strong **Analytics + Business Insights** generation  
-- Showcases SQL expertise at scale
-- **Python** RFM segmentation, cohort retention and significance testing
-- **Power BI dashboard** on the Gold layer with DAX time intelligence, RLS and KPI reconciliation
-- **Consulting-style insights report** with sized recommendations
-
----
-
-# 📑 License  
-MIT License — see `LICENSE` file.
-
----
-
-# ⚠️ Dataset Disclaimer  
-All datasets used are **dummy, synthetic, or public**, intended only for learning and portfolio demonstration.  
-No real customer or company data is used.
-
----
-
-## 🧑‍💻 Author
-
-**👤 Arpit Singh**  
-📍 Computer & Communication Engineering Student | Software Engineering | SQL | Data Analytics   
-📬 [LinkedIn](https://www.linkedin.com/in/arpitsingh05) | 🔗[GitHub](https://github.com/arpit1021-ux)
-
-📧 [arpit.singh1183@gmail.com](mailto:arpit.singh1183@gmail.com)
-
----
-
-⭐ *If you found this project helpful, feel free to star the repo and connect with me for collaboration!*
+## Author
+**Arpit Singh**, Computer & Communication Engineering, LNMIIT Jaipur
+[LinkedIn](https://www.linkedin.com/in/arpitsingh05) · [GitHub](https://github.com/arpit1021-ux) · [arpit.singh1183@gmail.com](mailto:arpit.singh1183@gmail.com)
