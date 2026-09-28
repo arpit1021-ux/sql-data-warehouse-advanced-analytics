@@ -82,5 +82,5 @@ plain text that diffs cleanly in Git:
 
 **Live PostgreSQL instead of CSV:** create the read-only login with [`sql/bi/bi_reader_role.sql`](../sql/bi/bi_reader_role.sql),
 then change each table's first Power Query step from `Csv.Document(...)` to
-`PostgreSQL.Database("localhost:5432", "DataWarehouse"){[Schema="gold", Item="<view>"]}[Data]`.
+`PostgreSQL.Database("localhost:5433", "DataWarehouse"){[Schema="gold", Item="<view>"]}[Data]`.
 Column names are identical, so the model and visuals don't change.

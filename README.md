@@ -96,11 +96,11 @@ pytest                      # 67 tests against a fresh build
 **Option B: Docker (any Python 3.10+).** Use this on Python 3.13+, where the embedded server isn't available.
 
 ```powershell
-docker compose up -d                      # PostgreSQL 16 with data/raw mounted at /data/raw
+docker compose up -d                      # PostgreSQL 16 on port 5433, data/raw mounted at /data/raw
 pip install -r requirements.txt
 
 # PowerShell (bash: export DATABASE_URL=... WAREHOUSE_SOURCE_DIR=/data/raw)
-$env:DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/DataWarehouse"
+$env:DATABASE_URL = "postgresql://postgres:postgres@localhost:5433/DataWarehouse"
 $env:WAREHOUSE_SOURCE_DIR = "/data/raw"
 
 python -m pipeline run
