@@ -20,7 +20,7 @@ class QualityGateError(RuntimeError):
 
 
 def run_sql_file(conn: psycopg.Connection, path: Path) -> None:
-    log.debug("Executing %s", path.relative_to(config.REPO_ROOT))
+    log.debug("Executing %s", _display(path))
     conn.execute(path.read_text(encoding="utf-8"))
 
 
@@ -88,7 +88,7 @@ def export_gold(conn: psycopg.Connection, export_dir: Path = config.GOLD_EXPORT_
             for chunk in copy:
                 handle.write(chunk)
         written.append(target)
-        log.info("  exported %s", target.relative_to(config.REPO_ROOT))
+        log.info("  exported %s", _display(target))
     return written
 
 
@@ -107,6 +107,14 @@ def _log_layer_counts(conn: psycopg.Connection, layer: str) -> None:
     ).fetchall()
     total = sum(count for _, count in rows)
     log.info("%s layer loaded: %d tables, %d rows", layer.capitalize(), len(rows), total)
+
+
+def _display(path: Path) -> str:
+    """Repository-relative path for log messages (absolute if outside the repo)."""
+    try:
+        return str(path.relative_to(config.REPO_ROOT))
+    except ValueError:
+        return str(path)
 
 
 class Timer:

@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    name: Lint (ruff)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install ruff
+      - run: ruff check .
+      - run: ruff format --check .
+
+  test:
+    name: Build warehouse + tests (embedded PostgreSQL)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Run pipeline (build, quality gates, export)
+        run: python -m pipeline run
+      - name: Committed Gold exports are reproducible
+        run: git diff --exit-code -- data/gold
+      - name: Test suite
+        run: pytest
+      - name: Analysis notebook executes end to end
+        run: jupyter nbconvert --to notebook --execute analysis/retail_sales_analysis.ipynb --output /tmp/executed.ipynb
+      - name: Committed RFM output is reproducible
+        run: git diff --exit-code -- analysis/output
+
+  postgres-server:
+    name: Pipeline against a PostgreSQL 16 server (docker)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: DataWarehouse
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install "psycopg[binary]>=3.1"
+      - name: Copy raw data into the database container (server-side COPY reads it there)
+        run: |
+          docker exec ${{ job.services.postgres.id }} mkdir -p /data
+          docker cp data/raw ${{ job.services.postgres.id }}:/data/raw
+      - name: Run pipeline
+        run: >
+          python -m pipeline run --no-export
+          --database-url postgresql://postgres:postgres@localhost:5432/DataWarehouse
+          --source-dir /data/raw
