@@ -23,11 +23,11 @@ SELECT
 FROM
 (
 	SELECT 
-		DATE_TRUNC('year',order_date)::DATE AS order_date,
+		DATE_TRUNC('month',order_date)::DATE AS order_date,
 		SUM(sales_amount) AS total_sales,
 		ROUND(AVG(price),2) AS avg_price
 	FROM gold.fact_sales 
 	WHERE order_date IS NOT NULL
-	GROUP BY DATE_TRUNC('year',order_date)
-)
-
+	GROUP BY DATE_TRUNC('month',order_date)
+) AS monthly_sales
+ORDER BY order_date;

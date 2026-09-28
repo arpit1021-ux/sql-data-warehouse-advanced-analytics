@@ -20,10 +20,12 @@ FROM gold.fact_sales ;
 
 
 -- Find the youngest and oldest customer based on birthdate
-SELECT 
-MIN(birthdate) AS oldest_birthdate,
-EXTRACT(YEAR FROM AGE(CURRENT_DATE, MIN(birthdate))) AS oldest_age,
-MAX(birthdate) AS youngest_birthdate,
-EXTRACT(YEAR FROM AGE(CURRENT_DATE, MAX(birthdate))) AS youngest_age
-FROM gold.dim_customers ;
-
+-- (ages are measured at the last order date in the data, not today)
+SELECT
+    MIN(c.birthdate)                                          AS oldest_birthdate,
+    EXTRACT(YEAR FROM AGE(a.as_of_date, MIN(c.birthdate)))   AS oldest_age,
+    MAX(c.birthdate)                                          AS youngest_birthdate,
+    EXTRACT(YEAR FROM AGE(a.as_of_date, MAX(c.birthdate)))   AS youngest_age
+FROM gold.dim_customers c
+CROSS JOIN (SELECT MAX(order_date) AS as_of_date FROM gold.fact_sales) AS a
+GROUP BY a.as_of_date;
