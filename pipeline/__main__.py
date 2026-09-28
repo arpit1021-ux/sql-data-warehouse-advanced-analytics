@@ -18,7 +18,7 @@ import sys
 import psycopg
 
 from . import config, steps
-from .database import EmbeddedServerUnavailable, connect, resolve_database_url
+from .database import DatabaseUnavailable, EmbeddedServerUnavailable, connect, resolve_database_url
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -52,7 +52,7 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         url = resolve_database_url(args.database_url)
-    except EmbeddedServerUnavailable as exc:
+    except (EmbeddedServerUnavailable, DatabaseUnavailable) as exc:
         logging.error("%s", exc)
         return 1
     try:
@@ -75,6 +75,9 @@ def main(argv: list[str] | None = None) -> int:
                     steps.export_gold(conn)
     except steps.QualityGateError as exc:
         logging.error("%s - see the FAIL lines above", exc)
+        return 1
+    except DatabaseUnavailable as exc:
+        logging.error("%s", exc)
         return 1
     except psycopg.Error as exc:
         logging.error("Database error: %s", str(exc).strip())

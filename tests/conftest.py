@@ -14,19 +14,27 @@ import pytest
 from psycopg.conninfo import conninfo_to_dict, make_conninfo
 
 from pipeline import config, steps
-from pipeline.database import start_embedded_server
+from pipeline.database import (
+    DatabaseUnavailable,
+    EmbeddedServerUnavailable,
+    open_connection,
+    start_embedded_server,
+)
 
 TEST_DATABASE = "dwh_test"
 
 
 @pytest.fixture(scope="session")
 def database_url() -> str:
-    admin_url = (
-        os.environ.get("TEST_DATABASE_URL") or os.environ.get("DATABASE_URL") or start_embedded_server()
-    )
-    with psycopg.connect(admin_url, autocommit=True) as conn:
-        conn.execute(f'DROP DATABASE IF EXISTS "{TEST_DATABASE}" WITH (FORCE)')
-        conn.execute(f'CREATE DATABASE "{TEST_DATABASE}"')
+    try:
+        admin_url = (
+            os.environ.get("TEST_DATABASE_URL") or os.environ.get("DATABASE_URL") or start_embedded_server()
+        )
+        with open_connection(admin_url) as conn:
+            conn.execute(f'DROP DATABASE IF EXISTS "{TEST_DATABASE}" WITH (FORCE)')
+            conn.execute(f'CREATE DATABASE "{TEST_DATABASE}"')
+    except (EmbeddedServerUnavailable, DatabaseUnavailable) as exc:
+        pytest.exit(str(exc), returncode=1)
     params = conninfo_to_dict(admin_url)
     params["dbname"] = TEST_DATABASE
     return make_conninfo(**params)
@@ -44,7 +52,7 @@ def source_dir() -> str:
 @pytest.fixture(scope="session")
 def warehouse(database_url: str, source_dir: str) -> psycopg.Connection:
     """Autocommit connection to a freshly built warehouse (all layers loaded)."""
-    conn = psycopg.connect(database_url, autocommit=True)
+    conn = open_connection(database_url)
     steps.init_schemas(conn)
     steps.load_bronze(conn, source_dir)
     steps.load_silver(conn)
