@@ -1,0 +1,17 @@
+relationship c45789c1-a0ec-443d-8ef7-ea86999f8778
+	fromColumn: fact_sales.order_date
+	toColumn: dim_date.date
+
+relationship c445a430-2697-4270-aa61-39aef3bb0ebc
+	isActive: false
+	fromColumn: fact_sales.shipping_date
+	toColumn: dim_date.date
+
+relationship 02bffe73-fa27-449d-b8a5-19eab9fe8fee
+	fromColumn: fact_sales.customer_key
+	toColumn: dim_customers.customer_key
+
+relationship 5a9209de-a863-45c1-a57a-8f82c3c8280c
+	fromColumn: fact_sales.product_key
+	toColumn: dim_products.product_key
+

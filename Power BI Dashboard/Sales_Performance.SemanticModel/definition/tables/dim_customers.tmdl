@@ -1,0 +1,192 @@
+table dim_customers
+	lineageTag: 16ec677a-091d-40f8-9a38-c4116950bfd8
+
+	column customer_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e128c531-7286-4eb6-8735-f224319ba40f
+		summarizeBy: none
+		sourceColumn: customer_key
+
+		annotation SummarizationSetBy = User
+
+	column customer_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d1321fdb-59d2-4e38-bf56-6fb11a32c6d8
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = User
+
+	column customer_number
+		dataType: string
+		lineageTag: 9712c529-ebc6-4034-9a2f-11cee432199b
+		summarizeBy: none
+		sourceColumn: customer_number
+
+		annotation SummarizationSetBy = User
+
+	column first_name
+		dataType: string
+		lineageTag: 6b6e1655-c078-4684-9e88-9dd3ce4a03ec
+		summarizeBy: none
+		sourceColumn: first_name
+
+		annotation SummarizationSetBy = User
+
+	column last_name
+		dataType: string
+		lineageTag: 66c3793d-0c5b-4566-a161-1e27f9bdd60f
+		summarizeBy: none
+		sourceColumn: last_name
+
+		annotation SummarizationSetBy = User
+
+	column country
+		dataType: string
+		lineageTag: 8fed0852-db7d-4dda-b688-aea602777722
+		dataCategory: Country
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = User
+
+	column marital_status
+		dataType: string
+		lineageTag: a4a7cea2-b476-4610-973b-8663772584cf
+		summarizeBy: none
+		sourceColumn: marital_status
+
+		annotation SummarizationSetBy = User
+
+	column gender
+		dataType: string
+		lineageTag: 0c4006fd-1b81-410d-9981-38bb33bb8f09
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = User
+
+	column birthdate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 4ccfd19a-a8b1-4f18-8ebc-9c3b214db1da
+		summarizeBy: none
+		sourceColumn: birthdate
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column create_date
+		dataType: dateTime
+		isHidden
+		formatString: Short Date
+		lineageTag: 920c7056-7049-4ccb-8c7d-961277ecd456
+		summarizeBy: none
+		sourceColumn: create_date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column rfm_segment
+		dataType: string
+		lineageTag: 3dc40ef8-0be5-4d2b-a63d-8e9b82b3edb2
+		summarizeBy: none
+		sourceColumn: rfm_segment
+
+		annotation SummarizationSetBy = User
+
+	column rfm_score
+		dataType: string
+		lineageTag: 22ce31d4-68b7-40e3-962e-0ee05cf006d0
+		summarizeBy: none
+		sourceColumn: rfm_score
+
+		annotation SummarizationSetBy = User
+
+	column recency_days
+		dataType: int64
+		formatString: 0
+		lineageTag: 7b7d6b6f-e728-49e7-884e-df2597af6773
+		summarizeBy: none
+		sourceColumn: recency_days
+
+		annotation SummarizationSetBy = User
+
+	column 'Customer Name' = dim_customers[first_name] & " " & dim_customers[last_name]
+		dataType: string
+		lineageTag: 3c85d0f5-be91-452c-a30a-ecbad1bb8d7a
+		summarizeBy: none
+
+	column 'First Order Date' = CALCULATE ( MIN ( fact_sales[order_date] ) )
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 15eeac61-393a-4da3-ad09-2e56a83a5682
+		summarizeBy: none
+
+	column 'Last Order Date' = CALCULATE ( MAX ( fact_sales[order_date] ) )
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 1879fd6e-ac92-4562-94fc-58c8b91169a9
+		summarizeBy: none
+
+	column 'Customer Lifetime Sales' = CALCULATE ( SUM ( fact_sales[sales_amount] ) )
+		dataType: decimal
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: f858f963-dfa3-4bdd-9847-367755bd1092
+		summarizeBy: none
+
+	column 'Lifespan Months' = DATEDIFF ( dim_customers[First Order Date], dim_customers[Last Order Date], MONTH )
+		dataType: int64
+		formatString: 0
+		lineageTag: 3b5a3311-b7c3-4bcb-af7b-9edcf90d9a5f
+		summarizeBy: none
+
+	column 'Customer Segment' = SWITCH ( TRUE (), ISBLANK ( dim_customers[First Order Date] ), "No Orders", dim_customers[Lifespan Months] >= 12 && dim_customers[Customer Lifetime Sales] > 5000, "VIP", dim_customers[Lifespan Months] >= 12, "Regular", "New" )
+		dataType: string
+		lineageTag: 3607c1e3-e026-42d5-a074-3a716c9b47e2
+		summarizeBy: none
+
+	column 'Age at First Order' = IF ( NOT ISBLANK ( dim_customers[birthdate] ) && NOT ISBLANK ( dim_customers[First Order Date] ), INT ( YEARFRAC ( dim_customers[birthdate], dim_customers[First Order Date] ) ) )
+		dataType: int64
+		formatString: 0
+		lineageTag: 22a75b33-a831-4401-b0cd-4be85649bb7d
+		summarizeBy: none
+
+	column 'Age Group' = SWITCH ( TRUE (), ISBLANK ( dim_customers[Age at First Order] ), "Unknown", dim_customers[Age at First Order] < 30, "Under 30", dim_customers[Age at First Order] < 40, "30-39", dim_customers[Age at First Order] < 50, "40-49", dim_customers[Age at First Order] < 60, "50-59", "60+" )
+		dataType: string
+		lineageTag: dc1cb154-5d17-4813-a5a5-1105cdbb9910
+		summarizeBy: none
+		sortByColumn: 'Age Group Order'
+
+	column 'Age Group Order' = SWITCH ( TRUE (), ISBLANK ( dim_customers[Age at First Order] ), 6, dim_customers[Age at First Order] < 30, 1, dim_customers[Age at First Order] < 40, 2, dim_customers[Age at First Order] < 50, 3, dim_customers[Age at First Order] < 60, 4, 5 )
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 37840af6-b0f0-4d5f-bf01-95c15caf56bf
+		summarizeBy: none
+
+	partition dim_customers = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(RepoFolder & "EDA + Advanced Data Analysis\dataset\gold.dim_customers.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"customer_key", Int64.Type}, {"customer_id", Int64.Type}, {"customer_number", type text}, {"first_name", type text}, {"last_name", type text}, {"country", type text}, {"marital_status", type text}, {"gender", type text}, {"birthdate", type date}, {"create_date", type date}}, "en-US"),
+				    Unknown = Table.ReplaceValue(Typed, "n/a", "Unknown", Replacer.ReplaceValue, {"country", "gender", "marital_status"}),
+				    RfmSource = Csv.Document(File.Contents(RepoFolder & "Python Analysis\output\rfm_segments.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    RfmPromoted = Table.PromoteHeaders(RfmSource, [PromoteAllScalars=true]),
+				    Rfm = Table.TransformColumnTypes(Table.SelectColumns(RfmPromoted, {"customer_key", "rfm_segment", "rfm_score", "recency_days"}), {{"customer_key", Int64.Type}, {"rfm_segment", type text}, {"rfm_score", type text}, {"recency_days", Int64.Type}}),
+				    Joined = Table.NestedJoin(Unknown, {"customer_key"}, Rfm, {"customer_key"}, "rfm", JoinKind.LeftOuter),
+				    Expanded = Table.ExpandTableColumn(Joined, "rfm", {"rfm_segment", "rfm_score", "recency_days"}),
+				    NoRfm = Table.ReplaceValue(Expanded, null, "No Orders", Replacer.ReplaceValue, {"rfm_segment"})
+				in
+				    NoRfm
+
+	annotation PBI_ResultType = Table
+

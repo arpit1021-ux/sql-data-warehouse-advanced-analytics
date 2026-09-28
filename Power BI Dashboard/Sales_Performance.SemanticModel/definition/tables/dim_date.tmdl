@@ -1,0 +1,87 @@
+table dim_date
+	lineageTag: 469d920b-3748-401f-81db-41763acbf9fc
+	dataCategory: Time
+
+	column date
+		dataType: dateTime
+		isKey
+		formatString: Short Date
+		lineageTag: 059a046e-2c20-4aef-b6e1-2101e4959c91
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 6372ff80-040a-4d20-8c4a-b3da64444ff3
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = User
+
+	column quarter_name
+		dataType: string
+		lineageTag: b1f178bd-7d65-4d81-a441-09fde277a9d0
+		summarizeBy: none
+		sourceColumn: quarter_name
+
+		annotation SummarizationSetBy = User
+
+	column year_quarter
+		dataType: string
+		lineageTag: 0307a6bd-5cbb-4668-be71-5317488a621d
+		summarizeBy: none
+		sourceColumn: year_quarter
+
+		annotation SummarizationSetBy = User
+
+	column month
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: cdf302d2-6d93-4d05-9d88-9f700030fb7b
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = User
+
+	column month_short
+		dataType: string
+		lineageTag: 0fd5e377-a121-4513-8080-71f3e3ee7587
+		summarizeBy: none
+		sourceColumn: month_short
+		sortByColumn: month
+
+		annotation SummarizationSetBy = User
+
+	column year_month
+		dataType: string
+		lineageTag: a1860771-7882-4181-bb30-fef5b6f7d92f
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = User
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				    StartDate = #date(2010, 1, 1),
+				    EndDate = #date(2014, 12, 31),
+				    Dates = List.Dates(StartDate, Duration.Days(EndDate - StartDate) + 1, #duration(1, 0, 0, 0)),
+				    Base = Table.TransformColumnTypes(Table.FromList(Dates, Splitter.SplitByNothing(), {"date"}), {{"date", type date}}),
+				    Year = Table.AddColumn(Base, "year", each Date.Year([date]), Int64.Type),
+				    Quarter = Table.AddColumn(Year, "quarter_name", each "Q" & Text.From(Date.QuarterOfYear([date])), type text),
+				    YearQuarter = Table.AddColumn(Quarter, "year_quarter", each Text.From(Date.Year([date])) & "-Q" & Text.From(Date.QuarterOfYear([date])), type text),
+				    Month = Table.AddColumn(YearQuarter, "month", each Date.Month([date]), Int64.Type),
+				    MonthShort = Table.AddColumn(Month, "month_short", each Date.ToText([date], "MMM", "en-US"), type text),
+				    YearMonth = Table.AddColumn(MonthShort, "year_month", each Date.ToText([date], "yyyy-MM", "en-US"), type text)
+				in
+				    YearMonth
+
+	annotation PBI_ResultType = Table
+

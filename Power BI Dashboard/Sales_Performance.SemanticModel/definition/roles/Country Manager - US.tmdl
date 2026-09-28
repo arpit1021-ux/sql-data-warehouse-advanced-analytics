@@ -1,0 +1,7 @@
+role 'Country Manager - US'
+	modelPermission: read
+
+	tablePermission dim_customers = [country] = "United States"
+
+	annotation PBI_Id = a85e34efe68240e5846bf9546ea1c85d
+

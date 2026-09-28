@@ -1,0 +1,185 @@
+table _Measures
+	lineageTag: de7e988d-b876-4cc1-a7c0-2c8647bfce2c
+
+	measure 'Total Sales' = SUM ( fact_sales[sales_amount] )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Sales
+		lineageTag: fd775e9a-a206-46ac-ac68-9517b6ce368f
+
+	measure 'Total Quantity' = SUM ( fact_sales[quantity] )
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: f97c5b37-50ff-4d91-acb8-08543844f4f0
+
+	measure 'Total Orders' = DISTINCTCOUNT ( fact_sales[order_number] )
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: 24fe7081-9aaa-423a-a752-53a7715b5072
+
+	measure 'Avg Order Value' = DIVIDE ( [Total Sales], [Total Orders] )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Sales
+		lineageTag: 6d78d9f6-fc36-43d3-9ea1-0f68ac2cbe73
+
+	measure 'Avg Selling Price' = DIVIDE ( [Total Sales], [Total Quantity] )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Sales
+		lineageTag: bfccf003-d932-4e68-8116-bcee4b089b39
+
+	measure 'Category Share %' = DIVIDE ( [Total Sales], CALCULATE ( [Total Sales], ALL ( dim_products[category] ) ) )
+		formatString: 0.0%
+		displayFolder: Sales
+		lineageTag: b7c5822a-5f85-472c-abff-c210f7d81f69
+
+	measure 'Total Cost' = SUMX ( fact_sales, fact_sales[quantity] * RELATED ( dim_products[cost] ) )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Profit
+		lineageTag: 832fed1a-f20c-4630-8696-cc78d0020e44
+
+	measure 'Gross Profit' = [Total Sales] - [Total Cost]
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Profit
+		lineageTag: 347ea110-0a5c-4c03-8858-49e91ac28dae
+
+	measure 'Gross Margin %' = DIVIDE ( [Gross Profit], [Total Sales] )
+		formatString: 0.0%
+		displayFolder: Profit
+		lineageTag: b23ea36f-aa29-4ed1-9826-8a4114471070
+
+	measure 'Active Customers' = DISTINCTCOUNT ( fact_sales[customer_key] )
+		formatString: #,0
+		displayFolder: Customers
+		lineageTag: 1d738492-0280-4b2e-abb1-d361bc1f0293
+
+	measure 'Sales per Customer' = DIVIDE ( [Total Sales], [Active Customers] )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Customers
+		lineageTag: 94d1af0e-b2a5-4000-ac06-1a62a20c0837
+
+	measure 'Orders per Customer' = DIVIDE ( [Total Orders], [Active Customers] )
+		formatString: 0.00
+		displayFolder: Customers
+		lineageTag: b31ed02c-1e19-49cb-9e22-e33afecaae39
+
+	measure 'Repeat Customer Rate' = DIVIDE ( COUNTROWS ( FILTER ( VALUES ( fact_sales[customer_key] ), CALCULATE ( DISTINCTCOUNT ( fact_sales[order_number] ) ) > 1 ) ), [Active Customers] )
+		formatString: 0.0%
+		displayFolder: Customers
+		lineageTag: 4e5a035f-69d7-41fa-ac51-4ad7d7c9311d
+
+	measure 'Accessory Attach Rate' = VAR BikeCustomers = CALCULATETABLE ( VALUES ( fact_sales[customer_key] ), dim_products[category] = "Bikes" ) VAR AccessoryCustomers = CALCULATETABLE ( VALUES ( fact_sales[customer_key] ), dim_products[category] = "Accessories" ) RETURN DIVIDE ( COUNTROWS ( INTERSECT ( BikeCustomers, AccessoryCustomers ) ), COUNTROWS ( BikeCustomers ) )
+		formatString: 0.0%
+		displayFolder: Customers
+		lineageTag: 347a0bd7-90ea-45d0-8bd3-4f82bc1bf70d
+
+	measure 'Sales by Ship Date' = CALCULATE ( [Total Sales], USERELATIONSHIP ( fact_sales[shipping_date], dim_date[date] ) )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Customers
+		lineageTag: c8bb1bad-dc72-410f-98d6-33f2694f4d9e
+
+	measure 'Avg Days to Ship' = AVERAGEX ( FILTER ( fact_sales, NOT ISBLANK ( fact_sales[order_date] ) ), DATEDIFF ( fact_sales[order_date], fact_sales[shipping_date], DAY ) )
+		formatString: 0.0
+		displayFolder: Customers
+		lineageTag: 63aba5aa-f881-44b0-bf2d-77d93f81aa47
+
+	measure 'Sales YTD' = TOTALYTD ( [Total Sales], dim_date[date] )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Time Intelligence
+		lineageTag: dbbc2345-e47b-4996-9b6b-ec5f7619f480
+
+	measure 'Sales PY' = CALCULATE ( [Total Sales], SAMEPERIODLASTYEAR ( dim_date[date] ) )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Time Intelligence
+		lineageTag: 61cf1399-3e3f-4e6d-8965-a415058347c3
+
+	measure 'Sales YoY %' = DIVIDE ( [Total Sales] - [Sales PY], [Sales PY] )
+		formatString: 0.0%
+		displayFolder: Time Intelligence
+		lineageTag: e1bc7b72-05f2-4e15-ac4f-e8313510192a
+
+	measure 'Running Total Sales' = IF ( ISBLANK ( [Total Sales] ), BLANK (), CALCULATE ( [Total Sales], FILTER ( ALLSELECTED ( dim_date[date] ), dim_date[date] <= MAX ( dim_date[date] ) ) ) )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Time Intelligence
+		lineageTag: d1fd349e-7d44-4069-b30a-3ca56aa52b2b
+
+	measure 'Sales 3M Rolling Avg' = IF ( ISBLANK ( [Total Sales] ), BLANK (), DIVIDE ( CALCULATE ( [Total Sales], DATESINPERIOD ( dim_date[date], MAX ( dim_date[date] ), -3, MONTH ) ), 3 ) )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Time Intelligence
+		lineageTag: e0a04738-8555-489f-b0d4-fcc613bfac23
+
+	measure 'Sales PM' = CALCULATE ( [Total Sales], DATEADD ( dim_date[date], -1, MONTH ) )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Time Intelligence
+		lineageTag: 1c78c5e2-cc1d-4296-8c62-bed6e6634444
+
+	measure 'Sales MoM %' = DIVIDE ( [Total Sales] - [Sales PM], [Sales PM] )
+		formatString: 0.0%
+		displayFolder: Time Intelligence
+		lineageTag: a366b488-5b05-45ad-bd77-62c93458047b
+
+	measure 'Product Rank' = IF ( ISINSCOPE ( dim_products[product_name] ), RANKX ( ALLSELECTED ( dim_products[product_name] ), [Total Sales], , DESC, DENSE ) )
+		formatString: 0
+		displayFolder: Ranking
+		lineageTag: 4d5b9528-ac9a-4b2b-bda7-5719edd0ee0b
+
+	measure 'Customer Rank' = IF ( ISINSCOPE ( dim_customers[Customer Name] ), RANKX ( ALLSELECTED ( dim_customers[Customer Name] ), [Total Sales], , DESC, DENSE ) )
+		formatString: 0
+		displayFolder: Ranking
+		lineageTag: e0e45118-cf5d-403a-8a03-0d10746d790b
+
+	measure 'Top 10 Product Sales' = IF ( ISINSCOPE ( dim_products[product_name] ) && [Product Rank] <= 10, [Total Sales] )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Ranking
+		lineageTag: b2984735-5544-4add-9e4a-d4538e2cfe68
+
+	measure 'Top 10 Customer Sales' = IF ( ISINSCOPE ( dim_customers[Customer Name] ) && [Customer Rank] <= 10, [Total Sales] )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Ranking
+		lineageTag: da3039dd-70e4-4d1b-b53b-e9eda7fec725
+
+	measure 'Product Page Title' = "Product Performance — " & IF ( ISFILTERED ( dim_products[category] ), CONCATENATEX ( VALUES ( dim_products[category] ), dim_products[category], ", " ), "All Categories" )
+		displayFolder: Ranking
+		lineageTag: 6932abf6-c6c0-445d-918f-e3267625f7d7
+
+	measure 'Selected Year' = IF ( HASONEVALUE ( dim_date[year] ), VALUES ( dim_date[year] ), YEAR ( CALCULATE ( MAX ( fact_sales[order_date] ), ALL ( fact_sales ), ALL ( dim_date ) ) ) - 1 )
+		formatString: 0
+		displayFolder: Time Intelligence
+		lineageTag: 5a6d6cd6-ac76-480c-9aba-f4c2f21ec6fc
+
+	measure 'Selected Year Label' = [Selected Year] & IF ( HASONEVALUE ( dim_date[year] ), "", " (latest full year)" )
+		displayFolder: Time Intelligence
+		lineageTag: e0d96eb8-db5f-4bb4-b6bc-6ef89b521b4d
+
+	measure 'Sales (Selected Year)' = VAR y = [Selected Year] RETURN CALCULATE ( [Total Sales], dim_date[year] = y )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Time Intelligence
+		lineageTag: 2e240e5e-7572-492b-a1a8-cd054007179c
+
+	measure 'Sales (Prior Year)' = VAR y = [Selected Year] RETURN CALCULATE ( [Total Sales], dim_date[year] = y - 1 )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Time Intelligence
+		lineageTag: fc22fa51-5b48-4c96-8266-bdda1ad6ea93
+
+	measure 'YoY % (Selected Year)' = DIVIDE ( [Sales (Selected Year)] - [Sales (Prior Year)], [Sales (Prior Year)] )
+		formatString: 0.0%
+		displayFolder: Time Intelligence
+		lineageTag: 0d2bb751-3fb7-4f44-998e-4a1a7df98b65
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: 472cc914-f769-47f0-943c-ca9bd63d8aa3
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [Column1 = text], {})
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

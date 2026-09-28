@@ -1,0 +1,125 @@
+table dim_products
+	lineageTag: a0022b1e-b6d7-4531-9fa6-d2aca6439e49
+
+	column product_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 57d01ae0-b06f-4b42-add1-71a7fdedd3d1
+		summarizeBy: none
+		sourceColumn: product_key
+
+		annotation SummarizationSetBy = User
+
+	column product_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fb1b5da1-8846-4162-92e3-14d779eb97a2
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = User
+
+	column product_number
+		dataType: string
+		lineageTag: d683468c-f247-4361-8e27-29f0f1209685
+		summarizeBy: none
+		sourceColumn: product_number
+
+		annotation SummarizationSetBy = User
+
+	column product_name
+		dataType: string
+		lineageTag: d7f6df3f-6906-4377-ac99-46301f6481d1
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = User
+
+	column category_id
+		dataType: string
+		isHidden
+		lineageTag: f0c782df-7db6-48e8-9b88-7af6ca076889
+		summarizeBy: none
+		sourceColumn: category_id
+
+		annotation SummarizationSetBy = User
+
+	column category
+		dataType: string
+		lineageTag: 4b1948b7-08e5-4759-b728-26391dec826c
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = User
+
+	column subcategory
+		dataType: string
+		lineageTag: 701cfdfa-2a97-464c-8e1c-9667965bdb36
+		summarizeBy: none
+		sourceColumn: subcategory
+
+		annotation SummarizationSetBy = User
+
+	column maintenance
+		dataType: string
+		lineageTag: 64467f95-92ba-4aaf-9091-234fbfaeb812
+		summarizeBy: none
+		sourceColumn: maintenance
+
+		annotation SummarizationSetBy = User
+
+	column cost
+		dataType: decimal
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 8b777065-9f0c-4fc7-b18f-7d9128202e65
+		summarizeBy: none
+		sourceColumn: cost
+
+		annotation SummarizationSetBy = User
+
+	column product_line
+		dataType: string
+		lineageTag: e51b8219-1401-4959-9846-42fd7d619d67
+		summarizeBy: none
+		sourceColumn: product_line
+
+		annotation SummarizationSetBy = User
+
+	column start_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: e442cb21-3558-4f4d-a157-ee081624633b
+		summarizeBy: none
+		sourceColumn: start_date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Product Lifetime Sales' = CALCULATE ( SUM ( fact_sales[sales_amount] ) )
+		dataType: decimal
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: edc5e54f-664f-48ee-b617-15b06d9df900
+		summarizeBy: none
+
+	column 'Product Segment' = SWITCH ( TRUE (), ISBLANK ( dim_products[Product Lifetime Sales] ), "Not Sold", dim_products[Product Lifetime Sales] > 50000, "High-Performer", dim_products[Product Lifetime Sales] >= 10000, "Mid-Range", "Low-Performer" )
+		dataType: string
+		lineageTag: 7a6d8740-e6e9-4bc6-841d-095728b22d25
+		summarizeBy: none
+
+	partition dim_products = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(RepoFolder & "EDA + Advanced Data Analysis\dataset\gold.dim_products.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"product_key", Int64.Type}, {"product_id", Int64.Type}, {"product_number", type text}, {"product_name", type text}, {"category_id", type text}, {"category", type text}, {"subcategory", type text}, {"maintenance", type text}, {"cost", Currency.Type}, {"product_line", type text}, {"start_date", type date}}, "en-US"),
+				    Blanks = Table.ReplaceValue(Typed, "", "Unknown", Replacer.ReplaceValue, {"category", "subcategory", "maintenance"}),
+				    Unknown = Table.ReplaceValue(Blanks, "n/a", "Unknown", Replacer.ReplaceValue, {"product_line"})
+				in
+				    Unknown
+
+	annotation PBI_ResultType = Table
+

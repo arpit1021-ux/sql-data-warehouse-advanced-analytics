@@ -1,0 +1,8 @@
+# Power BI project local files
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+**/.pbi/cache.abf.*
+
+# Python
+__pycache__/
+.ipynb_checkpoints/

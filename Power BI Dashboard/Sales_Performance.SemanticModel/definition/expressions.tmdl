@@ -1,0 +1,6 @@
+/// Root folder of the repository (change this after cloning). Must end with a backslash.
+expression RepoFolder = "C:\Storage\Projects\Advance-SQL-Project-Data-Warehousing-EDA-Advanced-Data-Analytics-main\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 66774374-97e2-418b-a987-f17a8fa15217
+
+	annotation PBI_ResultType = Text
+

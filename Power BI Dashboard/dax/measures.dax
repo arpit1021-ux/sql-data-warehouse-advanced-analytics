@@ -1,0 +1,151 @@
+// =============================================================================
+// DAX reference: every measure and calculated column in Sales_Performance.pbix
+// Generated from the Power BI project (Sales_Performance.SemanticModel/definition),
+// which is the source of truth. Measures live in the _Measures table.
+// =============================================================================
+
+// ---------------------------------------------------------------------------- SALES
+
+Total Sales =
+    SUM ( fact_sales[sales_amount] )
+
+Total Quantity =
+    SUM ( fact_sales[quantity] )
+
+Total Orders =
+    DISTINCTCOUNT ( fact_sales[order_number] )
+
+Avg Order Value =
+    DIVIDE ( [Total Sales], [Total Orders] )
+
+Avg Selling Price =
+    DIVIDE ( [Total Sales], [Total Quantity] )
+
+Category Share % =
+    DIVIDE ( [Total Sales], CALCULATE ( [Total Sales], ALL ( dim_products[category] ) ) )
+
+// ---------------------------------------------------------------------------- PROFIT
+
+Total Cost =
+    SUMX ( fact_sales, fact_sales[quantity] * RELATED ( dim_products[cost] ) )
+
+Gross Profit =
+    [Total Sales] - [Total Cost]
+
+Gross Margin % =
+    DIVIDE ( [Gross Profit], [Total Sales] )
+
+// ---------------------------------------------------------------------------- CUSTOMERS
+
+Active Customers =
+    DISTINCTCOUNT ( fact_sales[customer_key] )
+
+Sales per Customer =
+    DIVIDE ( [Total Sales], [Active Customers] )
+
+Orders per Customer =
+    DIVIDE ( [Total Orders], [Active Customers] )
+
+Repeat Customer Rate =
+    DIVIDE ( COUNTROWS ( FILTER ( VALUES ( fact_sales[customer_key] ), CALCULATE ( DISTINCTCOUNT ( fact_sales[order_number] ) ) > 1 ) ), [Active Customers] )
+
+Accessory Attach Rate =
+    VAR BikeCustomers = CALCULATETABLE ( VALUES ( fact_sales[customer_key] ), dim_products[category] = "Bikes" ) VAR AccessoryCustomers = CALCULATETABLE ( VALUES ( fact_sales[customer_key] ), dim_products[category] = "Accessories" ) RETURN DIVIDE ( COUNTROWS ( INTERSECT ( BikeCustomers, AccessoryCustomers ) ), COUNTROWS ( BikeCustomers ) )
+
+Sales by Ship Date =
+    CALCULATE ( [Total Sales], USERELATIONSHIP ( fact_sales[shipping_date], dim_date[date] ) )
+
+Avg Days to Ship =
+    AVERAGEX ( FILTER ( fact_sales, NOT ISBLANK ( fact_sales[order_date] ) ), DATEDIFF ( fact_sales[order_date], fact_sales[shipping_date], DAY ) )
+
+// ---------------------------------------------------------------------------- TIME INTELLIGENCE
+
+Sales YTD =
+    TOTALYTD ( [Total Sales], dim_date[date] )
+
+Sales PY =
+    CALCULATE ( [Total Sales], SAMEPERIODLASTYEAR ( dim_date[date] ) )
+
+Sales YoY % =
+    DIVIDE ( [Total Sales] - [Sales PY], [Sales PY] )
+
+Running Total Sales =
+    IF ( ISBLANK ( [Total Sales] ), BLANK (), CALCULATE ( [Total Sales], FILTER ( ALLSELECTED ( dim_date[date] ), dim_date[date] <= MAX ( dim_date[date] ) ) ) )
+
+Sales 3M Rolling Avg =
+    IF ( ISBLANK ( [Total Sales] ), BLANK (), DIVIDE ( CALCULATE ( [Total Sales], DATESINPERIOD ( dim_date[date], MAX ( dim_date[date] ), -3, MONTH ) ), 3 ) )
+
+Sales PM =
+    CALCULATE ( [Total Sales], DATEADD ( dim_date[date], -1, MONTH ) )
+
+Sales MoM % =
+    DIVIDE ( [Total Sales] - [Sales PM], [Sales PM] )
+
+Selected Year =
+    IF ( HASONEVALUE ( dim_date[year] ), VALUES ( dim_date[year] ), YEAR ( CALCULATE ( MAX ( fact_sales[order_date] ), ALL ( fact_sales ), ALL ( dim_date ) ) ) - 1 )
+
+Selected Year Label =
+    [Selected Year] & IF ( HASONEVALUE ( dim_date[year] ), "", " (latest full year)" )
+
+Sales (Selected Year) =
+    VAR y = [Selected Year] RETURN CALCULATE ( [Total Sales], dim_date[year] = y )
+
+Sales (Prior Year) =
+    VAR y = [Selected Year] RETURN CALCULATE ( [Total Sales], dim_date[year] = y - 1 )
+
+YoY % (Selected Year) =
+    DIVIDE ( [Sales (Selected Year)] - [Sales (Prior Year)], [Sales (Prior Year)] )
+
+// ---------------------------------------------------------------------------- RANKING
+
+Product Rank =
+    IF ( ISINSCOPE ( dim_products[product_name] ), RANKX ( ALLSELECTED ( dim_products[product_name] ), [Total Sales], , DESC, DENSE ) )
+
+Customer Rank =
+    IF ( ISINSCOPE ( dim_customers[Customer Name] ), RANKX ( ALLSELECTED ( dim_customers[Customer Name] ), [Total Sales], , DESC, DENSE ) )
+
+Top 10 Product Sales =
+    IF ( ISINSCOPE ( dim_products[product_name] ) && [Product Rank] <= 10, [Total Sales] )
+
+Top 10 Customer Sales =
+    IF ( ISINSCOPE ( dim_customers[Customer Name] ) && [Customer Rank] <= 10, [Total Sales] )
+
+Product Page Title =
+    "Product Performance — " & IF ( ISFILTERED ( dim_products[category] ), CONCATENATEX ( VALUES ( dim_products[category] ), dim_products[category], ", " ), "All Categories" )
+
+// ---------------------------------------------------------------------------- CALCULATED COLUMNS: dim_customers
+
+dim_customers[Customer Name] =
+    dim_customers[first_name] & " " & dim_customers[last_name]
+
+dim_customers[First Order Date] =
+    CALCULATE ( MIN ( fact_sales[order_date] ) )
+
+dim_customers[Last Order Date] =
+    CALCULATE ( MAX ( fact_sales[order_date] ) )
+
+dim_customers[Customer Lifetime Sales] =
+    CALCULATE ( SUM ( fact_sales[sales_amount] ) )
+
+dim_customers[Lifespan Months] =
+    DATEDIFF ( dim_customers[First Order Date], dim_customers[Last Order Date], MONTH )
+
+dim_customers[Customer Segment] =
+    SWITCH ( TRUE (), ISBLANK ( dim_customers[First Order Date] ), "No Orders", dim_customers[Lifespan Months] >= 12 && dim_customers[Customer Lifetime Sales] > 5000, "VIP", dim_customers[Lifespan Months] >= 12, "Regular", "New" )
+
+dim_customers[Age at First Order] =
+    IF ( NOT ISBLANK ( dim_customers[birthdate] ) && NOT ISBLANK ( dim_customers[First Order Date] ), INT ( YEARFRAC ( dim_customers[birthdate], dim_customers[First Order Date] ) ) )
+
+dim_customers[Age Group] =
+    SWITCH ( TRUE (), ISBLANK ( dim_customers[Age at First Order] ), "Unknown", dim_customers[Age at First Order] < 30, "Under 30", dim_customers[Age at First Order] < 40, "30-39", dim_customers[Age at First Order] < 50, "40-49", dim_customers[Age at First Order] < 60, "50-59", "60+" )
+
+dim_customers[Age Group Order] =
+    SWITCH ( TRUE (), ISBLANK ( dim_customers[Age at First Order] ), 6, dim_customers[Age at First Order] < 30, 1, dim_customers[Age at First Order] < 40, 2, dim_customers[Age at First Order] < 50, 3, dim_customers[Age at First Order] < 60, 4, 5 )
+
+// ---------------------------------------------------------------------------- CALCULATED COLUMNS: dim_products
+
+dim_products[Product Lifetime Sales] =
+    CALCULATE ( SUM ( fact_sales[sales_amount] ) )
+
+dim_products[Product Segment] =
+    SWITCH ( TRUE (), ISBLANK ( dim_products[Product Lifetime Sales] ), "Not Sold", dim_products[Product Lifetime Sales] > 50000, "High-Performer", dim_products[Product Lifetime Sales] >= 10000, "Mid-Range", "Low-Performer" )

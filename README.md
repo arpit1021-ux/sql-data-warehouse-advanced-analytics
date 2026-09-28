@@ -1,4 +1,4 @@
-# 🚀 SQL Data Warehouse & Advanced Analytics
+# 🚀 SQL Data Warehouse, Python Analytics & Power BI Dashboard
 
 ![Project Banner](banner.png)
 
@@ -9,15 +9,31 @@ A complete, end-to-end **SQL-driven Data Warehouse & Analytics Project**, coveri
 - **EDA + Advanced SQL Analytics**
 - **Customer & Product Reporting**
 - **Business Insights & KPI Generation**
+- **Python Analytics: RFM segmentation, cohort retention, Pareto, significance testing**
+- **Interactive Power BI Dashboard on the Gold Layer (DAX, star-schema model, RLS)**
+- **Consulting-style Insights & Recommendations report**
 
-This project simulates a **real industry-grade data engineering + business analytics workflow**, starting from raw ERP & CRM datasets and delivering production-ready insights using SQL.
+This project simulates a **real industry-grade data engineering + business analytics workflow**, starting from raw ERP & CRM datasets and delivering insights with **SQL → Python → Power BI**, ending in business recommendations.
 
-![Tool](https://img.shields.io/badge/Tool-PostgreSQL-blue) ![Tool](https://img.shields.io/badge/Tool-Advanced_SQL-blueviolet) ![Process](https://img.shields.io/badge/Process-Data_Warehousing_|_ETL-orange) ![Process](https://img.shields.io/badge/Process-Star_Schema_|_Data_Modeling-yellow) ![Feature](https://img.shields.io/badge/Feature-EDA_|_Advanced_Analytics-lightgreen) ![Feature](https://img.shields.io/badge/Feature-Fact_|_Dimension_Tables-green) ![Domain](https://img.shields.io/badge/Domain-Retail_Analytics-red) ![Type](https://img.shields.io/badge/Type-End_to_End_Project-critical) ![Status](https://img.shields.io/badge/Status-Completed-success)
+![Tool](https://img.shields.io/badge/Tool-PostgreSQL-blue) ![Tool](https://img.shields.io/badge/Tool-Advanced_SQL-blueviolet) ![Process](https://img.shields.io/badge/Process-Data_Warehousing_|_ETL-orange) ![Process](https://img.shields.io/badge/Process-Star_Schema_|_Data_Modeling-yellow) ![Feature](https://img.shields.io/badge/Feature-EDA_|_Advanced_Analytics-lightgreen) ![Feature](https://img.shields.io/badge/Feature-Fact_|_Dimension_Tables-green) ![Domain](https://img.shields.io/badge/Domain-Retail_Analytics-red) ![Type](https://img.shields.io/badge/Type-End_to_End_Project-critical) ![Python](https://img.shields.io/badge/Python-pandas_|_SciPy-3776AB) ![BI](https://img.shields.io/badge/BI-Power_BI_|_DAX-F2C811) ![Status](https://img.shields.io/badge/Status-Completed-success)
 
 ---
 
 ## 🔍 Summary  
-This project builds a complete SQL Data Warehouse (Bronze → Silver → Gold) and performs advanced EDA + analytics to generate customer and product insights for a retail business.
+This project builds a complete SQL Data Warehouse (Bronze → Silver → Gold) from raw ERP + CRM data, analyses it with advanced SQL and Python,
+and delivers a 4-page **Power BI dashboard** and a **business insights report** for a retail business.
+
+## 📌 Headline insights ([full report →](INSIGHTS.md))
+
+| | Finding | So what |
+|---|---|---|
+| 📈 | 2013 revenue grew **+180%**, driven by 12.5K new customers + an accessories launch; AOV fell 57% purely from product mix | Report AOV by category, not blended |
+| 💰 | Accessories earn a **62.8% margin** vs 39% for bikes | Bundle accessories with every bike |
+| ⚠️ | **33% of revenue** sits with ~2,900 high-value customers who haven't ordered in ~a year (RFM "At Risk") | Win-back programme (≈ $0.3M illustrative upside) |
+| 🌎 | US revenue per customer is **half of Australia's** ($1,225 vs $2,523) | US pricing/assortment review (≈ $0.9M at +10%) |
+| 🔁 | **63%** of customers bought only once | Second-purchase journey after the first order |
+
+![Executive Overview](Power%20BI%20Dashboard/screenshots/01_overview.png)
 
 ---
 
@@ -26,6 +42,9 @@ This project builds a complete SQL Data Warehouse (Bronze → Silver → Gold) a
 - [🧩 Business Problem](#-business-problem)
 - [🚀 Project Overview](#-project-overview)
 - [🏗️ Project Architecture & Diagrams](#️-project-architecture--diagrams)
+- [📊 Power BI Dashboard](#-power-bi-dashboard)
+- [🐍 Python Analysis](#-python-analysis)
+- [📌 Insights & Recommendations](INSIGHTS.md)
 - [🏗️ Tech Stack](#️-tech-stack)
 - [🧠 Key Skills Demonstrated](#-key-skills-demonstrated)
 - [🗂️ Project Folder Structure](#️-project-folder-structure)
@@ -90,6 +109,53 @@ SQL-based dashboards & reports:
 - **Customer Analytics Report**
 - **Product Performance Report**
 
+### ✅ 4. Python Analysis
+Statistical and customer analytics the SQL layer can't easily do ([notebook](Python%20Analysis/retail_sales_analysis.ipynb)):
+- Data-quality audit of the Gold layer (integrity, uniqueness, business rules)
+- Pareto concentration, category margins, cross-sell / attach rate, market performance
+- **RFM segmentation** (7 segments, exported to Power BI) and **quarterly cohort retention**
+- Welch's t-tests + effect sizes to separate real differences from noise
+
+### ✅ 5. Power BI Dashboard
+A 4-page interactive report on the Gold layer:
+- Star-schema model with a marked date table, an inactive ship-date relationship and hidden keys
+- 33 DAX measures: time intelligence (YTD, YoY, rolling averages), profit, attach & repeat rates, ranking
+- SQL segmentation logic re-implemented as DAX calculated columns; Python RFM segments merged in Power Query
+- Synced slicers, dynamic titles and Row-Level Security
+- Every KPI reconciled against SQL and Python outputs
+- Saved as `.pbix` **and** as a text-based Power BI Project (TMDL + PBIR) for Git
+
+### ✅ 6. Insights & Recommendations
+A consulting-style [report](INSIGHTS.md): executive summary, findings, sized recommendations, next steps and data caveats.
+
+---
+
+# 📊 Power BI Dashboard
+
+Open [`Power BI Dashboard/Sales_Performance.pbix`](Power%20BI%20Dashboard/Sales_Performance.pbix) · [PDF export](Power%20BI%20Dashboard/Sales_Performance.pdf) · [model, DAX & validation details](Power%20BI%20Dashboard/README.md)
+
+| Page | What it answers |
+|---|---|
+| **Executive Overview** | Sales, orders, customers, AOV, margin, repeat rate; monthly trend; sales by category, country, segment |
+| **Sales Trends** | Selected vs. prior year, YoY growth, running total, year × quarter matrix |
+| **Product Performance** | Profit, margin, accessory attach rate; top 10 products; category treemap; volume vs. margin; product ranking |
+| **Customer Insights** | RFM segments, revenue per customer by country, age at first order, top 10 customers |
+
+| | |
+|---|---|
+| ![Overview](Power%20BI%20Dashboard/screenshots/01_overview.png) | ![Trends](Power%20BI%20Dashboard/screenshots/02_trends.png) |
+| ![Products](Power%20BI%20Dashboard/screenshots/03_products.png) | ![Customers](Power%20BI%20Dashboard/screenshots/04_customers.png) |
+
+---
+
+# 🐍 Python Analysis
+
+[`Python Analysis/retail_sales_analysis.ipynb`](Python%20Analysis/retail_sales_analysis.ipynb): pandas, NumPy, SciPy, Matplotlib.
+
+| | |
+|---|---|
+| ![RFM](Python%20Analysis/charts/05_rfm_segments.png) | ![Cohorts](Python%20Analysis/charts/06_cohort_retention.png) |
+
 ---
 
 # 🏗️ Project Architecture & Diagrams
@@ -119,6 +185,8 @@ SQL-based dashboards & reports:
 | Data Modeling | Star Schema, Dimensional Modeling |
 | ETL Pipeline | SQL Stored Procedures |
 | EDA & Analytics | SQL (Window functions, Aggregations, CTEs) |
+| Statistical Analysis | Python (pandas, NumPy, SciPy, Matplotlib), Jupyter |
+| Visualization / BI | Power BI Desktop, DAX, Power Query, TMDL/PBIP |
 | Documentation | Markdown, PNG diagrams |
 
 ---
@@ -132,6 +200,9 @@ SQL-based dashboards & reports:
 - Data Cleaning & Standardization  
 - Analytical Reporting & KPI Design  
 - Data Architecture Documentation  
+- Python: pandas data wrangling, RFM & cohort analysis, hypothesis testing (Welch's t-test, effect size)  
+- Power BI: data modeling, DAX (time intelligence, context transition), Power Query, RLS  
+- Business storytelling: turning analysis into sized, prioritised recommendations  
 
 ---
 
@@ -184,32 +255,50 @@ SQL Data Warehouse & Advanced Analytics/
 │           ├── prd_info.csv                    ← CRM Product Info
 │           └── sales_details.csv               ← CRM Sales Transactions
 │
-└── 📊 EDA + Advanced Data Analysis/
-    │
-    ├── Data Analysis .png                       ← EDA Output Summary Diagram
-    │
-    ├── scripts/                                 ← All SQL Scripts for Analysis
-    │   ├── 00_init_database.sql                 ← Initialize Analysis Schema
-    │   ├── 01_database_exploration.sql          ← Explore Tables & Metadata
-    │   ├── 02_dimensions_exploration.sql        ← Explore Dimension Tables
-    │   ├── 03_date_range_exploration.sql        ← Explore Date Ranges
-    │   ├── 04_measures_exploration.sql          ← Explore Key Business Metrics
-    │   ├── 05_magnitude_analysis.sql            ← Magnitude-Level Analysis
-    │   ├── 06_ranking_analysis.sql              ← Ranking & Ordering Analysis
-    │   ├── 07_change_over_time_analysis.sql     ← Trend + Time-Based Analysis
-    │   ├── 08_cumulative_analysis.sql           ← Running Totals & Rolling Sums
-    │   ├── 09_performance_analysis.sql          ← Performance & KPI Insights
-    │   ├── 10_part_to_whole_analysis.sql        ← Proportional Contribution Analysis
-    │   ├── 11_data_segmentation.sql             ← Customer & Product Segmentation
-    │   ├── 12_report_customers.sql              ← Generate Customer Report (Gold Layer)
-    │   └── 12_report_products.sql               ← Generate Product Report (Gold Layer)
-    │
-    └── dataset/                                 ← Output Reports from Gold Layer
-        ├── gold.dim_customers.csv               ← Cleaned Customer Dimension
-        ├── gold.dim_products.csv                ← Cleaned Product Dimension
-        ├── gold.fact_sales.csv                  ← Cleaned Fact Sales Table
-        ├── gold.report_customers.csv            ← Final Customer Analytics Report
-        └── gold.report_products.csv             ← Final Product Analytics Report
+├── 📊 EDA + Advanced Data Analysis/
+│   │
+│   ├── Data Analysis .png                       ← EDA Output Summary Diagram
+│   │
+│   ├── scripts/                                 ← All SQL Scripts for Analysis
+│   │   ├── 00_init_database.sql                 ← Initialize Analysis Schema
+│   │   ├── 01_database_exploration.sql          ← Explore Tables & Metadata
+│   │   ├── 02_dimensions_exploration.sql        ← Explore Dimension Tables
+│   │   ├── 03_date_range_exploration.sql        ← Explore Date Ranges
+│   │   ├── 04_measures_exploration.sql          ← Explore Key Business Metrics
+│   │   ├── 05_magnitude_analysis.sql            ← Magnitude-Level Analysis
+│   │   ├── 06_ranking_analysis.sql              ← Ranking & Ordering Analysis
+│   │   ├── 07_change_over_time_analysis.sql     ← Trend + Time-Based Analysis
+│   │   ├── 08_cumulative_analysis.sql           ← Running Totals & Rolling Sums
+│   │   ├── 09_performance_analysis.sql          ← Performance & KPI Insights
+│   │   ├── 10_part_to_whole_analysis.sql        ← Proportional Contribution Analysis
+│   │   ├── 11_data_segmentation.sql             ← Customer & Product Segmentation
+│   │   ├── 12_report_customers.sql              ← Generate Customer Report (Gold Layer)
+│   │   └── 12_report_products.sql               ← Generate Product Report (Gold Layer)
+│   │
+│   └── dataset/                                 ← Output Reports from Gold Layer
+│       ├── gold.dim_customers.csv               ← Cleaned Customer Dimension
+│       ├── gold.dim_products.csv                ← Cleaned Product Dimension
+│       ├── gold.fact_sales.csv                  ← Cleaned Fact Sales Table
+│       ├── gold.report_customers.csv            ← Final Customer Analytics Report
+│       └── gold.report_products.csv             ← Final Product Analytics Report
+│
+├── 🐍 Python Analysis/
+│   ├── retail_sales_analysis.ipynb              ← Data quality, Pareto, RFM, cohorts, t-tests
+│   ├── charts/                                  ← Charts used in INSIGHTS.md
+│   ├── output/rfm_segments.csv                  ← RFM segments (loaded into Power BI)
+│   └── requirements.txt
+│
+├── 📈 Power BI Dashboard/
+│   ├── Sales_Performance.pbix                   ← Power BI report (4 pages)
+│   ├── Sales_Performance.pdf                    ← PDF export
+│   ├── Sales_Performance.pbip                   ← Same report as a Power BI Project (TMDL + PBIR, Git-friendly)
+│   ├── dax/measures.dax                         ← All DAX measures & calculated columns
+│   ├── sql/01_bi_layer.sql                      ← gold.dim_date + read-only bi_reader role
+│   ├── theme/warehouse_theme.json               ← Report theme
+│   ├── validation/                              ← KPI reconciliation SQL + expected values
+│   └── screenshots/                             ← Dashboard page screenshots
+│
+└── 📌 INSIGHTS.md                                ← Business insights & recommendations
 ```
 
 ---
@@ -309,6 +398,9 @@ gold/
 - Designed star schema (Fact + Dimensions)  
 - Developed customer & product analytical reports  
 - Demonstrated real-world Data Engineer + Analyst workflow  
+- Segmented customers with RFM and cohort analysis in Python  
+- Delivered a 4-page Power BI dashboard reconciled to the warehouse  
+- Turned findings into sized business recommendations ([INSIGHTS.md](INSIGHTS.md))  
 
 ---
 
@@ -358,6 +450,20 @@ ddl_gold.sql
 EDA + Advanced Data Analysis/scripts/
 ```
 
+### 6. Run the Python analysis
+```
+cd "Python Analysis"
+pip install -r requirements.txt
+jupyter notebook retail_sales_analysis.ipynb
+```
+
+### 7. Open the dashboard
+```
+Power BI Dashboard/Sales_Performance.pbix
+→ Transform data → Edit parameters → RepoFolder = <your clone path>\
+→ Home → Refresh
+```
+
 ---
 
 # ⭐ Project Highlights (for Resume / Portfolio)
@@ -369,6 +475,9 @@ EDA + Advanced Data Analysis/scripts/
 - Retail analytics insights  
 - Strong **Analytics + Business Insights** generation  
 - Showcases SQL expertise at scale
+- **Python** RFM segmentation, cohort retention and significance testing
+- **Power BI dashboard** on the Gold layer with DAX time intelligence, RLS and KPI reconciliation
+- **Consulting-style insights report** with sized recommendations
 
 ---
 

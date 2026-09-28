@@ -1,0 +1,106 @@
+table fact_sales
+	lineageTag: c5b2e028-4b41-4709-80d1-8ad3ce60be49
+
+	column order_number
+		dataType: string
+		lineageTag: dacf2ba6-0ae8-468a-8d8a-d4b3533e45ad
+		summarizeBy: none
+		sourceColumn: order_number
+
+		annotation SummarizationSetBy = User
+
+	column product_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9c68ed52-e838-41f4-93b2-28726a87579c
+		summarizeBy: none
+		sourceColumn: product_key
+
+		annotation SummarizationSetBy = User
+
+	column customer_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 10d6a45c-834b-4c94-adf6-53d12cc8f7c8
+		summarizeBy: none
+		sourceColumn: customer_key
+
+		annotation SummarizationSetBy = User
+
+	column order_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 48f256f1-9554-4ceb-b784-26b896cdfdad
+		summarizeBy: none
+		sourceColumn: order_date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column shipping_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: bc81eec6-9396-4809-b697-162242984490
+		summarizeBy: none
+		sourceColumn: shipping_date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column due_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 2c3471df-041a-47cf-98bb-7463f5a8c16f
+		summarizeBy: none
+		sourceColumn: due_date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column sales_amount
+		dataType: decimal
+		isHidden
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: b98111bd-7df6-4c19-adf6-b393cf16fb1f
+		summarizeBy: sum
+		sourceColumn: sales_amount
+
+		annotation SummarizationSetBy = User
+
+	column quantity
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: 5a0128c0-51d4-4a7f-b601-6bfb34efc97c
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = User
+
+	column price
+		dataType: decimal
+		isHidden
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 35502210-c014-444d-ac16-2962ceca6424
+		summarizeBy: sum
+		sourceColumn: price
+
+		annotation SummarizationSetBy = User
+
+	partition fact_sales = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(RepoFolder & "EDA + Advanced Data Analysis\dataset\gold.fact_sales.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"order_number", type text}, {"product_key", Int64.Type}, {"customer_key", Int64.Type}, {"order_date", type date}, {"shipping_date", type date}, {"due_date", type date}, {"sales_amount", Currency.Type}, {"quantity", Int64.Type}, {"price", Currency.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+
